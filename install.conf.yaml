@@ -1,7 +1,31 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
 - clean: ['~']
 
 - link:
-    ~/.profile: profile
-    ~/.zshrc: zshrc
+    #zsh
+    ~/.zshrc:
+        force: true
+        path: zsh/zshrc
 
+    #oh-my-zsh
+    ~/.oh-my-zsh/oh-my-zsh.sh:
+        force: true
+        path: oh-my-zsh/oh-my-zsh.sh
+    ~/.oh-my-zsh/themes/omegavoid.zsh-theme:
+        force: true
+        path: zsh/omegavoid.zsh-theme
+    
+    #git
+    ~/.gitconfig: git/gitconfig
+    ~/.gitignore_global: git/gitignore_global
 
+    #neovim
+    ~/.config/nvim/init.vim: neovim/init.vim
+    ~/.config/nvim/plugins.vim: neovim/plugins.vim
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
