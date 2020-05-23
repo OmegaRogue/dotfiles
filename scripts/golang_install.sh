@@ -17,5 +17,5 @@ case "${unameArch}" in
     armv7l*)     ARCH=armv6l;;
 esac
 
-wget https://dl.google.com/go/go$VERSION.OS-$ARCH.tar.gz -P ~/downloads/
-sudo tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
+wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz -P ~/downloads/
+sudo tar -C /usr/local -xzf ~/downloads/go$VERSION.$OS-$ARCH.tar.gz
