@@ -55,4 +55,4 @@
     - [zsh ~/.dotfiles/scripts/neovim_install.sh, Installing Neovim]
     - [~/.dotfiles/scripts/dotnet-install.sh -c Current, Installing DotNet Core SDK]
     - [zsh ~/.dotfiles/scripts/golang_install.sh, Installing Golang]
-    - [zsh ~/.dotfiles/scripts/golang_install.sh, Installing Zsh]
+    - [zsh ~/.dotfiles/scripts/zsh.sh, Installing Zsh]
