@@ -1,0 +1,1 @@
+/home/omegarogue/.dotfiles/zsh/omegavoid.zsh-theme
