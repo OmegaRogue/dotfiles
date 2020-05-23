@@ -63,7 +63,7 @@ Plug 'junegunn/gv.vim'
 " ---------------------------------------------------------------------------------------------------------------------
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
+"Plug 'ryanoasis/vim-devicons'
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -84,6 +84,8 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-git'
 " Dockerfile
 Plug 'honza/dockerfile.vim'
+
+Plug 'omnisharp/omnisharp-vim'
 
 "}}}
 
