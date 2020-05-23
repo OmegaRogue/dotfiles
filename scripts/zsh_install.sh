@@ -1,2 +1,2 @@
 sudo apt-get update
-sudo apt-get install zsh fzf
+sudo apt-get install -y zsh fzf
