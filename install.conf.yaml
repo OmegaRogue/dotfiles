@@ -10,6 +10,9 @@
     ~/.zshrc:
         force: true
         path: zsh/zshrc
+    ~/.dircolors: zsh/dircolors
+    ~/.zshenv: zsh/zshenv
+    ~/.zsh_aliases: zsh/zsh_aliases
 
     #oh-my-zsh
     ~/.oh-my-zsh/oh-my-zsh.sh:
@@ -18,6 +21,11 @@
     ~/.oh-my-zsh/themes/omegavoid.zsh-theme:
         force: true
         path: zsh/omegavoid.zsh-theme
+
+    #bash
+    ~/.profile: bash/profile
+    ~/.bashrc: bash/bashrc
+    ~/.bash_logout: bash/bash_logout
     
     #git
     ~/.gitconfig: git/gitconfig
@@ -27,5 +35,23 @@
     ~/.config/nvim/init.vim: neovim/init.vim
     ~/.config/nvim/plugins.vim: neovim/plugins.vim
 
+    #ssh
+    ~/.ssh/config: ssh/config
+
+    #scripts
+    ~/.scripts: scripts
+
+- create:
+    - ~/projects
+    - ~/downloads
+
+
+
 - shell:
+    - chsh -s $(which zsh)
+    - sudo chsh -s $(which zsh)
     - [git submodule update --init --recursive, Installing submodules]
+
+    - [sudo zsh ~/.dotfiles/scripts/neovim_install.sh, Installing Neovim]
+    - [sudo zsh ~/.dotfiles/scripts/install_dotnet.sh, Installing DotNet Core SDK]
+    - [sudo zsh ~/.dotfiles/scripts/golang_install.sh, Installing Golang]
