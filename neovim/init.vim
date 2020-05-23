@@ -43,6 +43,8 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 colorscheme darcula
 set termguicolors
 
+set mouse=a
+
 " -----------------------------------------------------
 " tree Config {{{
 " -----------------------------------------------------
