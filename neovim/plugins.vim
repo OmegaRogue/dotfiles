@@ -37,6 +37,26 @@ Plug 'doums/darcula'
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
+" Text insertion/manipulation {{{
+" ---------------------------------------------------------------------------------------------------------------------
+
+Plug 'vim-scripts/tComment'
+Plug 'justinmk/vim-sneak'
+Plug 'matze/vim-move'
+Plug 'terryma/vim-smooth-scroll'
+Plug 'sickill/vim-pasta'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'bkad/CamelCaseMotion'  " CamelCase and snake_case motions"  
+Plug 'terryma/vim-expand-region' " Easily expand selected region
+"Plug 'godlygeek/tabular', { 'on':  'Tabularize' } " Easy alignment
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+"}}}
+
+" ---------------------------------------------------------------------------------------------------------------------
 " Project Management {{{
 " ---------------------------------------------------------------------------------------------------------------------
 

@@ -1,0 +1,16 @@
+antigen use oh-my-zsh
+
+antigen bundle kubectl
+antigen bundle helm
+antigen bundle git
+antigen bundle colored-man-pages
+antigen bundle sudo
+antigen bundle zsh_reload
+antigen bundle zsh-interactive-cd
+antigen bundle magic-enter
+antigen bundle command-not-found
+antigen bundle vi-mode
+
+antigen theme OmegaRogue/dotfiles zsh/omegavoid.zsh-theme
+
+antigen apply

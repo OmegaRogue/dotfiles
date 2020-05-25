@@ -5,9 +5,6 @@
 
 - clean: ['~']
 
-- shell:
-   # - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing oh-my-zsh]
-
 
 - link:
     #zsh
@@ -18,13 +15,9 @@
     ~/.zshenv: zsh/zshenv
     ~/.zsh_aliases: zsh/zsh_aliases
 
-    #oh-my-zsh
-    ~/.oh-my-zsh/oh-my-zsh.sh:
-        force: true
-        path: oh-my-zsh/oh-my-zsh.sh
-    ~/.oh-my-zsh/themes/omegavoid.zsh-theme:
-        force: true
-        path: zsh/omegavoid.zsh-theme
+    #antigen
+    ~/.antigenrc: antigen/antigenrc
+
 
     #bash
     ~/.profile: bash/profile
@@ -54,9 +47,21 @@
 - shell:
     #- chsh -s $(which zsh)
     #- sudo chsh -s $(which zsh)
-    - [git submodule update --init --recursive, Installing submodules]
+    -
+        command: zsh ~/.dotfiles/scripts/zsh_install.sh
+        description: Installing Zsh
+    -
+        command: git submodule update --init --recursive
+        description: Installing submodules
 
-    - [zsh ~/.dotfiles/scripts/neovim_install.sh, Installing Neovim]
-    - [~/.dotfiles/scripts/dotnet-install.sh -c Current, Installing DotNet Core SDK]
-    - [zsh ~/.dotfiles/scripts/golang_install.sh, Installing Golang]
-    - [zsh ~/.dotfiles/scripts/zsh_install.sh, Installing Zsh]
+    -
+        command: zsh ~/.dotfiles/scripts/neovim_install.sh
+        description: Installing Neovim
+    -
+        command: ~/.dotfiles/scripts/dotnet_install.sh
+        description: Installing DotNet Core SDK
+    - 
+        command: zsh ~/.dotfiles/scripts/golang_install.sh
+        description: Installing Golang
+        quiet: false
+        stdout: true
