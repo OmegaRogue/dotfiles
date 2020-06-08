@@ -1,5 +1,5 @@
 source ~/.dotfiles/antigen/antigen.zsh
-antigen init .antigenrc
+antigen init ~/.antigenrc
 
 
 

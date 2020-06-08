@@ -31,6 +31,8 @@
     #neovim
     ~/.config/nvim/init.vim: neovim/init.vim
     ~/.config/nvim/plugins.vim: neovim/plugins.vim
+    ~/.config/nvim/vscode.vim: neovim/vscode.vim
+    ~/.config/nvim/autoload/utils.vim: neovim/autoload/utils.vim
 
     #ssh
     ~/.ssh/config: ssh/config

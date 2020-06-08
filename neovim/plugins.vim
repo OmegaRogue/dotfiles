@@ -34,6 +34,7 @@ Plug 'vim-utils/vim-man'
 
 Plug 'doums/darcula'
 
+
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -46,10 +47,10 @@ Plug 'matze/vim-move'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'sickill/vim-pasta'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'bkad/CamelCaseMotion'  " CamelCase and snake_case motions"  
 Plug 'terryma/vim-expand-region' " Easily expand selected region
-"Plug 'godlygeek/tabular', { 'on':  'Tabularize' } " Easy alignment
+Plug 'godlygeek/tabular', { 'on':  'Tabularize' } " Easy alignment
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
@@ -63,7 +64,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-vinegar'
-Plug  'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 
 "}}}
@@ -85,6 +86,7 @@ Plug 'junegunn/gv.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'ryanoasis/vim-devicons'
+
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------

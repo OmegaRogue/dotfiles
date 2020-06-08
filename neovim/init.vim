@@ -2,11 +2,11 @@
 " ### Author : OmegaRogue <thatomegarogue@gmail.com>                                                                 ###
 " ######################################################################################################################
 " ### Neovim Configuration                                                                                           ###
-" ### Neovimmer since : Tue 19.05.2020                                                                               ###                                                                             ###
+" ### Neovimmer since : Tue 19.05.2020                                                                               ### 
 " ######################################################################################################################
 
-
 let home_path = $HOME
+
 
 "Plugins managed with vim-plug {{{
 if filereadable(expand("~/.config/nvim/plugins.vim"))
@@ -14,7 +14,9 @@ if filereadable(expand("~/.config/nvim/plugins.vim"))
 endif
 "}}}
 
-
+" ---------------------------------------------------------------------------------------------------------------------
+" Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults) {{{
+" ======================================================================================================================
 
 " sets blinking cursors for different edit modes
 set guicursor=n-v-c:block,
@@ -23,34 +25,128 @@ set guicursor+=r-cr:hor20,
 set guicursor+=o:hor50,
 set guicursor+=a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,
 set guicursor+=sm:block-blinkwait175-blinkoff150-blinkon175
-  
-" Reset cursor to blinking vertical bar on leave
-au VimLeave * set guicursor=a:ver25-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 
+set mouse=a
 
-" If more than one window and previous buffer was NERDTree, go back to it.
-autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+set clipboard=unnamedplus
 
-let g:plug_window = 'noautocmd vertical topleft new'
+"}}}
 
-" Maps Ctrl-n to toggle NERDTree
-map <C-n> :NERDTreeToggle<CR>
-  
-" Quit Vim if the only windows left is a NERDTree window
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" ---------------------------------------------------------------------------------------------------------------------
+" Color and highlighting settings {{{
+" ======================================================================================================================
 
 " Enable Darcula Color Scheme
 colorscheme darcula
 set termguicolors
+"}}}
 
-set mouse=a
+" ---------------------------------------------------------------------------------------------------------------------
+" Search settings {{{
+" ---------------------------------------------------------------------------------------------------------------------
+
+"}}}
+
+" ---------------------------------------------------------------------------------------------------------------------
+" Persistent undo settings {{{
+" ---------------------------------------------------------------------------------------------------------------------
+if has('persistent_undo')
+  set undofile
+  set undodir=~/.config/nvim/undo//
+endif
+"}}}
+
+" ---------------------------------------------------------------------------------------------------------------------
+" Folding settings {{{
+" ---------------------------------------------------------------------------------------------------------------------
+
+"}}}
+
+" ---------------------------------------------------------------------------------------------------------------------
+" Vim-Multiple-Cursors settings {{{
+" ---------------------------------------------------------------------------------------------------------------------
+
+"}}}
+
+
+
+" ---------------------------------------------------------------------------------------------------------------------
+" Core key bindings-Remappings {{{
+" ======================================================================================================================
+" Use CamelCaseMotion instead of default motions
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
+
+
+
+"}}}
+
+" -----------------------------------------------------
+" Startify Config {{{
+" -----------------------------------------------------
+"autocmd User Startified setlocal cursorline
+autocmd User Startified setlocal buftype=
+" let g:startify_disable_at_vimenter    = 0
+let g:startify_enable_special         = 1
+let g:startify_files_number           = 8
+let g:startify_relative_path          = 1
+let g:startify_change_to_dir          = 1
+let g:startify_update_oldfiles        = 1
+let g:startify_session_autoload       = 1
+let g:startify_session_persistence    = 1
+let g:startify_session_delete_buffers = 1
+
+let g:startify_skiplist = [
+            \ 'COMMIT_EDITMSG',
+            \ '.*/doc/.*.txt'
+            \ ]
+
+
+"}}}
+
+let g:startify_bookmarks = [
+            \ { 'c': '~/.dotfiles/neovim/init.vim' },
+            \ { 'd': '~/.dotfiles/neovim/plugins.vim'},
+            \ { 'f': '~/.dotfiles/neovim/autoload/utils.vim'},
+            \ { 'g': '~/.dotfiles/zsh/zshrc'},
+            \ { 'h': '~/.dotfiles/zsh/zshenv'},
+            \ { 'i': '~/.dotfiles/zsh/zsh_aliases'},
+            \ { 'j': '~/.dotfiles/install.conf.yaml'}
+            \ ]
+
+let g:startify_list_order = [
+            \ ['   Recent'],
+            \ 'files',
+            \ ['   Recent in current'],
+            \ 'dir',
+            \ ['   Sessions:'],
+            \ 'sessions',
+            \ ['   Bookmarks:'],
+            \ 'bookmarks',
+            \ ['   Commands:'],
+            \ 'commands',
+            \ ]
+
+
+let g:startify_commands = [
+    \ ['Vim Reference', 'h ref']
+    \ ]
+
+
+
 
 " -----------------------------------------------------
 " tree Config {{{
 " -----------------------------------------------------
 autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd VimEnter *
             \   if !argc()
             \ |   Startify
@@ -103,7 +199,54 @@ autocmd filetype nerdtree syn match go_icon #?# containedin=NERDTreeFile
 " nnoremap <silent> <Leader>h :call utils#nerdWrapper()<CR>
 nnoremap <silent> <Leader>h :NERDTreeToggle<CR>
 
-map <Leader>n :NERDTreeToggle<CR>
+"map <Leader>n :NERDTreeToggle<CR>
+
+" If more than one window and previous buffer was NERDTree, go back to it.
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+
+
+let g:plug_window = 'noautocmd vertical topleft new'
+
+
+
+"}}}
+
+
+
+" -----------------------------------------------------
+" Sneak, s f https://github.com/justinmk/vim-sneak {{{
+" -----------------------------------------------------
+nmap f <Plug>Sneak_s
+nmap F <Plug>Sneak_S
+xmap f <Plug>Sneak_s
+xmap F <Plug>Sneak_S
+omap f <Plug>Sneak_s
+omap F <Plug>Sneak_S
+"}}}
+
+" -----------------------------------------------------
+" Gitgutter {{{
+" -----------------------------------------------------
+"let g:gitgutter_map_keys=0
+"let g:gitgutter_max_signs=9999
+"let g:gitgutter_sign_added='+'
+""let g:gitgutter_sign_modified='~'
+"let g:gitgutter_sign_removed='-'
+"let g:gitgutter_sign_modified_removed='~'
+"let g:gitgutter_sign_removed_first_line='-'
+"let g:gitgutter_override_sign_column_highlight = 0
+"set signcolumn=yes
+
+"highlight GitGutterAdd ctermfg=green ctermbg=NONE
+"highlight GitGutterChange ctermfg=yellow ctermbg=NONE
+"highlight GitGutterDelete ctermfg=red ctermbg=NONE
+"highlight GitGutterChangeDelete ctermfg=magenta ctermbg=NONE
+
+hi! link GitGutterAdd GitAddStripe
+hi! link GitGutterChange GitChangeStripe
+hi! link GitGutterDelete GitDeleteStripe
+
+let g:gitgutter_sign_removed = '▶'
 
 "}}}
 
@@ -120,17 +263,51 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_exclude_preview = 1
 "}}}
 
-let s:clip = '/mnt/c/Windows/System32/clip.exe' 
-if executable(s:clip)
-	augroup WSLYank
-		autocmd!
-		autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
-	augroup END
-end
 
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+" -----------------------------------------------------
+" Pasta  Pasting in Vim with indentation adjusted to destination context.{{{
+" -----------------------------------------------------
+let g:pasta_paste_before_mapping = ',O'
+let g:pasta_paste_after_mapping = ',o'
+"}}}
+
+
+" -----------------------------------------------------
+" Smooth scroll vim-smooth-scroll {{{
+" -----------------------------------------------------
+"noremap <silent> <c-key> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+"noremap <silent> <c-key> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-o> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+"}}}
+
+
+" -----------------------------------------------------
+" Autocommands {{{
+" =====================================================
+
+" Reset cursor to blinking vertical bar on leave
+au VimLeave * set guicursor=a:ver25-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+
+"}}}
+
+" -----------------------------------------------------
+" F-key actions {{{
+" =====================================================
+
+"F1 Open/close Help
+nnoremap <silent> <F1> :call utils#showHelp()<CR>
+
+"F2 Source (reload configuration)
+nnoremap <silent> <F2> :so ~/.config/nvim/init.vim<CR>
+
+"F3 Toggle white characters visibility
+nnoremap <silent> <F3> :set list!<CR> :set list?<CR>
+
+"F4 Exit Vim
+nnoremap <F4> :qa<CR>
+"Shift+F4 (F16) Force Quit Vim
+nnoremap <F16> :qa!<CR>
+
+"F12 Show F keys toggles
+nnoremap <F12> :call utils#showToggles()<CR>
