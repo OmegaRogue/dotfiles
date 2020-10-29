@@ -30,6 +30,7 @@ set mouse=a
 
 set clipboard=unnamedplus
 
+
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -287,7 +288,7 @@ noremap <silent> <c-o> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 " =====================================================
 
 " Reset cursor to blinking vertical bar on leave
-au VimLeave * set guicursor=a:ver25-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+au QuitPre * set guicursor=a:ver25-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 
 "}}}
 
