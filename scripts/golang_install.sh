@@ -1,4 +1,4 @@
-VERSION=1.14.3
+VERSION=1.15.3
 
 unameOs="$(uname)"
 unameArch="$(uname -m)"
