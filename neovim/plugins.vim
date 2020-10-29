@@ -67,6 +67,8 @@ Plug 'tpope/vim-vinegar'
 Plug 'mhinz/vim-startify'
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 
+Plug 'ludovicchabant/vim-gutentags'
+
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -109,6 +111,9 @@ Plug 'tpope/vim-git'
 Plug 'honza/dockerfile.vim'
 
 Plug 'omnisharp/omnisharp-vim'
+
+" LaTeX
+Plug 'lervag/vimtex'
 
 "}}}
 
