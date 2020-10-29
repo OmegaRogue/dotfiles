@@ -9,5 +9,6 @@ chmod +x ~/.dotfiles/scripts/dotnet-install.sh
 
 fi
 
+sudo apt-get install -y zlib1g
 
 ~/.dotfiles/scripts/dotnet-install.sh -c Current
