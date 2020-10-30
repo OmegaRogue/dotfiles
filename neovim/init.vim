@@ -26,9 +26,14 @@ set guicursor+=o:hor50,
 set guicursor+=a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,
 set guicursor+=sm:block-blinkwait175-blinkoff150-blinkon175
 
+
 set mouse=a
 
 set clipboard=unnamedplus
+
+" tex flavor
+let g:tex_flavor = 'latex'
+
 
 
 "}}}
@@ -55,6 +60,17 @@ if has('persistent_undo')
   set undofile
   set undodir=~/.config/nvim/undo//
 endif
+"}}}
+
+
+" ---------------------------------------------------------------------------------------------------------------------
+" Tabs {{{
+" ---------------------------------------------------------------------------------------------------------------------
+
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing
+set shiftwidth=4    " number of spaces to use for autoindent
+
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -121,18 +137,21 @@ let g:startify_bookmarks = [
             \ { 'j': '~/.dotfiles/install.conf.yaml'}
             \ ]
 
-let g:startify_list_order = [
-            \ ['   Recent'],
-            \ 'files',
-            \ ['   Recent in current'],
-            \ 'dir',
-            \ ['   Sessions:'],
-            \ 'sessions',
-            \ ['   Bookmarks:'],
-            \ 'bookmarks',
-            \ ['   Commands:'],
-            \ 'commands',
-            \ ]
+" Read ~/.NERDTreeBookmarks file and takes its second column
+function! s:nerdtreeBookmarks()
+    let bookmarks = systemlist("cut -d' ' -f 2 ~/.NERDTreeBookmarks")
+    let bookmarks = bookmarks[0:-2] " Slices an empty last line
+    return map(bookmarks, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_lists = [
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']},
+          \ { 'type': 'commands',  'header': ['   Commands']       },
+          \ ]
 
 
 let g:startify_commands = [
@@ -148,12 +167,7 @@ let g:startify_commands = [
 autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-autocmd VimEnter *
-            \   if !argc()
-            \ |   Startify
-            \ |   NERDTree
-            \ |   wincmd w
-            \ | endif
+autocmd VimEnter *   if !argc() | Startify | NERDTree | wincmd w | endif
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeWinSize=50
 let g:NERDTreeAutoDeleteBuffer=1
@@ -283,12 +297,14 @@ noremap <silent> <c-o> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 "}}}
 
 
+
+
 " -----------------------------------------------------
 " Autocommands {{{
 " =====================================================
 
 " Reset cursor to blinking vertical bar on leave
-au QuitPre * set guicursor=a:ver25-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+au VimLeave * set guicursor=a:ver25-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
 
 "}}}
 

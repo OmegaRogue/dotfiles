@@ -40,6 +40,9 @@
     #scripts
     ~/.scripts: scripts
 
+    #LaTeX
+    ~/.latexmkrc: latexmk/latexmkrc
+
 - create:
     - ~/projects
     - ~/downloads

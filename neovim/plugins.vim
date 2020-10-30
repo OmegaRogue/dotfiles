@@ -23,7 +23,7 @@ call plug#begin('~/.config/nvim/plugins')
 " Interface {{{
 " ---------------------------------------------------------------------------------------------------------------------
 
-Plug 'ashisha/image.vim'
+"Plug 'ashisha/image.vim'
 Plug 'vim-utils/vim-man'
 
 "}}}
@@ -62,9 +62,10 @@ Plug 'tpope/vim-unimpaired'
 " ---------------------------------------------------------------------------------------------------------------------
 
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-vinegar'
 Plug 'mhinz/vim-startify'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-vinegar'
+
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 
 Plug 'ludovicchabant/vim-gutentags'
