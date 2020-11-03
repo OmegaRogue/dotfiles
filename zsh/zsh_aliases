@@ -9,3 +9,5 @@ alias dist-upgrade='sudo apt-get dist-upgrade'
 
 #neovim
 alias v='nvim'
+
+alias multipass=multipass.exe
