@@ -9,3 +9,5 @@ export PATH=$PATH:/usr/local/go/bin:/home/omegarogue/.local/bin:/mnt/d/Programs/
 
 export MANPAGER="nvim -c MANPAGER -"
 export PAGER="nvim -c PAGER -"
+
+export GPG_TTY=$(tty)
