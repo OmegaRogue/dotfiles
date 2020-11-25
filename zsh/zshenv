@@ -5,4 +5,7 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 
 export PATH=$PATH:$HOME/.dotnet
 export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:/usr/local/go/bin:/home/omegarogue/.local/bin
+export PATH=$PATH:/usr/local/go/bin:/home/omegarogue/.local/bin:/mnt/d/Programs/mupdf-1.18.0-windows
+
+export MANPAGER="nvim -c MANPAGER -"
+export PAGER="nvim -c PAGER -"

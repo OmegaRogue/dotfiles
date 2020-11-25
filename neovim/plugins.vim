@@ -24,7 +24,9 @@ call plug#begin('~/.config/nvim/plugins')
 " ---------------------------------------------------------------------------------------------------------------------
 
 "Plug 'ashisha/image.vim'
-Plug 'vim-utils/vim-man'
+"Plug 'vim-utils/vim-man'
+Plug 'lambdalisue/vim-pager'
+Plug 'lambdalisue/vim-manpager'
 
 "}}}
 
@@ -68,7 +70,7 @@ Plug 'tpope/vim-vinegar'
 
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 
 "}}}
 
@@ -115,6 +117,9 @@ Plug 'omnisharp/omnisharp-vim'
 
 " LaTeX
 Plug 'lervag/vimtex'
+
+Plug 'vim-scripts/Improved-AnsiEsc'
+
 
 "}}}
 

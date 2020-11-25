@@ -10,6 +10,9 @@ antigen bundle zsh-interactive-cd
 antigen bundle magic-enter
 antigen bundle command-not-found
 antigen bundle vi-mode
+antigen bundle nmap
+antigen bundle microk8s
+antigen bundle systemd
 
 antigen theme OmegaRogue/dotfiles zsh/omegavoid.zsh-theme
 

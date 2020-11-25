@@ -4,7 +4,7 @@
       create: true
 
 - clean: ['~']
-
+ 
 
 - link:
     #zsh
@@ -50,7 +50,7 @@
 
 
 - shell:
-    #- chsh -s $(which zsh)
+    #- chsh -s  $(which zsh)
     #- sudo chsh -s $(which zsh)
     -
         command: zsh ~/.dotfiles/scripts/zsh_install.sh

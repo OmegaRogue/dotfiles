@@ -49,6 +49,7 @@ let g:vimtex_compiler_latexmk = {
         \ ],
         \}
 
+let g:vimtex_view_method = 'mupdf'
 
 "}}}
 
@@ -59,6 +60,9 @@ let g:vimtex_compiler_latexmk = {
 " Enable Darcula Color Scheme
 colorscheme darcula
 set termguicolors
+
+
+
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -319,6 +323,9 @@ noremap <silent> <c-o> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 " Reset cursor to blinking vertical bar on leave
 au VimLeave * set guicursor=a:ver25-blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+
+" Enable ssh_config highlighting in ssh configs in subfolders
+au BufNewFile,BufRead ssh_config,*/.ssh/config,*/ssh/config  setf sshconfig
 
 "}}}
 
