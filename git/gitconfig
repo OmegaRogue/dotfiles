@@ -1,4 +1,8 @@
 [user]
 	name = OmegaRogue
 	email = omegarogue@omegavoid.codes
-	signingkey = 118FA8EB46EA7B87
+	signingkey = F1D2D977AEE8640248BBE5A6118FA8EB46EA7B87
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
