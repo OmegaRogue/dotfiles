@@ -11,3 +11,5 @@ export MANPAGER="nvim -c MANPAGER -"
 export PAGER="nvim -c PAGER -"
 
 export GPG_TTY=$(tty)
+
+export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
