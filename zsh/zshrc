@@ -2,7 +2,7 @@ source ~/.dotfiles/antigen/antigen.zsh
 antigen init ~/.antigenrc
 
 
-
+$HOME/.local/bin/gpg-agent-relay start
 
 
 # User configuration
