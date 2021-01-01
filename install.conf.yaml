@@ -7,7 +7,7 @@
  
 
 - link:
-    #zsh
+    # zsh
     ~/.zshrc:
         force: true
         path: zsh/zshrc
@@ -15,37 +15,41 @@
     ~/.zshenv: zsh/zshenv
     ~/.zsh_aliases: zsh/zsh_aliases
 
-    #antigen
+    # antigen
     ~/.antigenrc: antigen/antigenrc
 
 
-    #bash
+    # bash
     ~/.profile: bash/profile
     ~/.bashrc: bash/bashrc
     ~/.bash_logout: bash/bash_logout
     
-    #git
+    # git
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
 
-    #neovim
+    # neovim
     ~/.config/nvim/init.vim: neovim/init.vim
     ~/.config/nvim/plugins.vim: neovim/plugins.vim
     ~/.config/nvim/vscode.vim: neovim/vscode.vim
     ~/.config/nvim/autoload/utils.vim: neovim/autoload/utils.vim
 
-    #ssh
+    # ssh
     ~/.ssh/config: ssh/config
 
-    #scripts
+    # scripts
     ~/.scripts: scripts
 
-    #LaTeX
+    # LaTeX
     ~/.latexmkrc: latexmk/latexmkrc
+
+    # NPM
+    ~/.npmrc: npm/npmrc
 
 - create:
     - ~/projects
     - ~/downloads
+    - ~/.npm-global
 
 
 
