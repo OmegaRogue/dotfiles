@@ -13,6 +13,7 @@ antigen bundle vi-mode
 antigen bundle nmap
 antigen bundle microk8s
 antigen bundle systemd
+antigen bundle terraform
 
 antigen theme OmegaRogue/dotfiles zsh/omegavoid.zsh-theme
 

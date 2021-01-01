@@ -118,7 +118,7 @@ Plug 'omnisharp/omnisharp-vim'
 " LaTeX
 Plug 'lervag/vimtex'
 
-Plug 'vim-scripts/Improved-AnsiEsc'
+"Plug 'vim-scripts/Improved-AnsiEsc'
 
 
 "}}}
