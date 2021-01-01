@@ -3,6 +3,7 @@ antigen use oh-my-zsh
 antigen bundle kubectl
 antigen bundle helm
 antigen bundle git
+antigen bundle git-flow
 antigen bundle colored-man-pages
 antigen bundle sudo
 antigen bundle zsh_reload
