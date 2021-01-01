@@ -239,8 +239,8 @@ prompt_aws() {
 
 #🏠⌂
 prompt_terraform() {
-  [[-z "$(tf_prompt_info)"]] && return
-  prompt_segment black white "$(tf_prompt_info)"
+  [[ -z $(tf_prompt_info)]] && return
+  prompt_segment black white $(tf_prompt_info)
   
 }
 
