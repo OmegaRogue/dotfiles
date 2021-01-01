@@ -235,6 +235,15 @@ prompt_aws() {
     *) prompt_segment green black "AWS: $AWS_PROFILE" ;;
   esac
 }
+#Terraform workspace:
+
+#🏠⌂
+prompt_terraform() {
+  [[-z $(tf_prompt_info)]] && return
+  case $(tf_prompt_info) in
+    "[default]") prompt_segment black white "🏠";;
+  esac
+}
 
 ## Main prompt
 build_prompt() {
@@ -243,6 +252,7 @@ build_prompt() {
   prompt_virtualenv
   prompt_aws
   prompt_context
+  prompt_terraform
   prompt_dir
   prompt_git
   prompt_bzr
