@@ -243,7 +243,7 @@ prompt_terraform() {
   case $(tf_prompt_info) in
     "[default]") prompt_segment black white "🏠";;
   esac
-  prompt_segment black white $(tf_prompt_info);;
+  prompt_segment black white "$(tf_prompt_info)";;
 }
 
 ## Main prompt
