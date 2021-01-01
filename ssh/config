@@ -2,26 +2,20 @@ Match user "omegarogue"
     PermitLocalCommand yes
     # Unfortunately ssh does not support line breaks in config files
     LocalCommand ssh -o PermitLocalCommand=no %n "which git >/dev/null && ([[ -d ~/.dotfiles ]] && (echo "Updating dotfiles on %h ..." && cd ~/.dotfiles && git pull | grep -q 'Already up to date.' && echo 'Already up to date.' || zsh ~/.dotfiles/install ) || (echo "Installing dotfiles on %h ..." && git clone -q https://github.com/OmegaRogue/dotfiles .dotfiles && "sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"" && rm ~/.oh-my-zsh/oh-my-zsh.sh ~/.zshrc && ./.dotfiles/install && echo "done"))"
-Match user "pi"
-    PermitLocalCommand yes
-    # Unfortunately ssh does not support line breaks in config files
-    LocalCommand ssh -o PermitLocalCommand=no pi@%n "which git >/dev/null && ([[ -d ~/.dotfiles ]] && (echo "Updating dotfiles on %h ..." && cd ~/.dotfiles && git pull | grep -q 'Already up to date.' && echo 'Already up to date.' || zsh ~/.dotfiles/install ) || (echo "Installing dotfiles on %h ..." && git clone -q https://github.com/OmegaRogue/dotfiles-local -b pi .dotfiles && "sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"" && rm ~/.oh-my-zsh/oh-my-zsh.sh ~/.zshrc && ./.dotfiles/install && echo "done"))"
-
 
 
  
 
 Host omegacloud
-  HostName 192.168.250.55
+  HostName 192.168.222.102
     User vmadmin
-
-
-
 Host omegadb
-  HostName 192.168.250.56
+  HostName 192.168.222.103
     User vmadmin
-
+Host omegaredis
+  HostName 192.168.222.104
+    User vmadmin
 
 Host omegakube
-  HostName 192.168.250.57
+  HostName 192.168.222.37
     User vmadmin
