@@ -240,7 +240,10 @@ prompt_aws() {
 #🏠⌂
 prompt_terraform() {
   [[ -z $(tf_prompt_info) ]] && return
-  prompt_segment black white $(tf_prompt_info)
+  case $(tf_prompt_info) in
+    *default*) prompt_segment black white "🏠"
+    *) prompt_segment black white $(tf_prompt_info|sed 's/[][]//g')
+  
   
 }
 
