@@ -120,6 +120,7 @@ Plug 'lervag/vimtex'
 
 "Plug 'vim-scripts/Improved-AnsiEsc'
 
+Plug 'hashivim/vim-terraform'
 
 "}}}
 
