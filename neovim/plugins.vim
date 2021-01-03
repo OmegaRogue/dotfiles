@@ -122,6 +122,8 @@ Plug 'lervag/vimtex'
 
 Plug 'hashivim/vim-terraform'
 
+Plug 'dzeban/vim-log-syntax'
+
 "}}}
 
 
