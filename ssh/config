@@ -5,6 +5,19 @@ Match user "omegarogue"
 
 
  
+Host esx01
+  HostName 192.168.222.11
+	User root
+Host esx02
+  HostName 192.168.222.12
+	User root
+Host esx03
+  HostName 192.168.222.13
+	User root
+
+Host omegakube
+  HostName 192.168.222.37
+    User vmadmin
 
 Host omegacloud
   HostName 192.168.222.102
@@ -16,6 +29,3 @@ Host omegaredis
   HostName 192.168.222.104
     User vmadmin
 
-Host omegakube
-  HostName 192.168.222.37
-    User vmadmin
