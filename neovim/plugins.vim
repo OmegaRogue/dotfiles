@@ -120,7 +120,11 @@ Plug 'lervag/vimtex'
 
 "Plug 'vim-scripts/Improved-AnsiEsc'
 
+" Hashicorp tools
 Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-consul'
+Plug 'hashivim/vim-packer'
+
 
 Plug 'dzeban/vim-log-syntax'
 
