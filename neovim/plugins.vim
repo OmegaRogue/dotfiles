@@ -124,6 +124,8 @@ Plug 'hashivim/vim-terraform'
 
 Plug 'dzeban/vim-log-syntax'
 
+Plug 'gisphm/vim-gitignore'
+
 "}}}
 
 
