@@ -125,7 +125,6 @@ Plug 'hashivim/vim-terraform'
 Plug 'hashivim/vim-consul'
 Plug 'hashivim/vim-packer'
 
-
 Plug 'dzeban/vim-log-syntax'
 
 Plug 'gisphm/vim-gitignore'
