@@ -1,4 +1,5 @@
-export MAGIC_ENTER_OTHER_COMMAND='ls -lha .'
+export MAGIC_ENTER_OTHER_COMMAND=' ls -lha .'
+export MAGIC_ENTER_GIT_COMMAND=' git status -u .'
 
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
@@ -6,8 +7,8 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$HOME/.dotnet:/usr/local/go/bin:/home/omegarogue/.local/bin:/mnt/d/Programs/mupdf-1.18.0-windows:~/.npm-global/bin:~/go/bin
 
-export MANPAGER="nvim -c MANPAGER -"
-export PAGER="nvim -c PAGER -"
+#export MANPAGER="nvim -c MANPAGER -"
+#export PAGER="nvim -c PAGER -"
 
 export GPG_TTY=$(tty)
 

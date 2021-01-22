@@ -131,6 +131,7 @@ sunmap ge
 
 "}}}
 
+let g:mkdp_auto_start = 1
 " -----------------------------------------------------
 " Startify Config {{{
 " -----------------------------------------------------
@@ -172,9 +173,9 @@ function! s:nerdtreeBookmarks()
 endfunction
 
 let g:startify_lists = [
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
           \ { 'type': 'files',     'header': ['   MRU']            },
           \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-          \ { 'type': 'sessions',  'header': ['   Sessions']       },
           \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
           \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']},
           \ { 'type': 'commands',  'header': ['   Commands']       },

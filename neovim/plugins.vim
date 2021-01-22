@@ -90,7 +90,7 @@ Plug 'junegunn/gv.vim'
 " ---------------------------------------------------------------------------------------------------------------------
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
 "}}}
 
@@ -129,6 +129,7 @@ Plug 'dzeban/vim-log-syntax'
 
 Plug 'gisphm/vim-gitignore'
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 "}}}
 
 
