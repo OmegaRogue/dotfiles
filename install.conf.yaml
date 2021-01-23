@@ -46,6 +46,9 @@
     # NPM
     ~/.npmrc: npm/npmrc
 
+    # tmux
+    ~/.tmux.conf: tmux/tmux.conf
+
 - create:
     - ~/projects
     - ~/downloads

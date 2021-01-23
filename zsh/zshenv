@@ -1,4 +1,4 @@
-export MAGIC_ENTER_OTHER_COMMAND=' [[ $(ls -a |wc -l) -le 30 ]] && ls -lh . || ls .'
+export MAGIC_ENTER_OTHER_COMMAND=' [[ $(ls . |wc -l) -le 30 ]] && ls -lh . || ls .'
 export MAGIC_ENTER_GIT_COMMAND=' git status -u .'
 
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
@@ -13,3 +13,33 @@ export PATH=$PATH:$HOME/.dotnet:/usr/local/go/bin:/home/omegarogue/.local/bin:/m
 export GPG_TTY=$(tty)
 
 export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+
+export DEFAULT_USER=$USER
+
+#export ZSH_TMUX_AUTOSTART=true
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+
+export VISUAL='nvim'
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nvim'
+else
+  export EDITOR='nvim'
+fi
+
+# Uncomment the following line to disable colors in ls.
+#DISABLE_LS_COLORS="true"
+#LOAD set LS_COLORS from .dircolors
+if [ -f ~/.dircolors ]; then
+  eval $(dircolors -b $HOME/.dircolors)
+fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"

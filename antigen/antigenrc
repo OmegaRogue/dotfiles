@@ -10,12 +10,15 @@ antigen bundle zsh_reload
 antigen bundle zsh-interactive-cd
 antigen bundle magic-enter
 antigen bundle command-not-found
-antigen bundle vi-mode
+#antigen bundle vi-mode
 antigen bundle nmap
 antigen bundle microk8s
 antigen bundle systemd
 antigen bundle terraform
+#antigen bundle tmux
 
 antigen theme OmegaRogue/dotfiles zsh/omegavoid.zsh-theme
 
 antigen apply
+
+# vim: set filetype=zsh:
