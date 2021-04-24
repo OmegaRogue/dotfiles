@@ -1,7 +1,7 @@
 - shell:
   -
     description: Clone fzf repo
-    command: git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    command: git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || echo "already installed"
   -
     description: Install fzf
     command: ~/.fzf/install
