@@ -9,7 +9,7 @@
 - create:
     - ~/.config
 - clean:
-    ~:
+    ~/:
       force: true
     ~/.config:
       recursive: true

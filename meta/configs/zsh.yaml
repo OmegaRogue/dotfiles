@@ -7,10 +7,5 @@
     ~/.zsh_aliases: zsh/zsh_aliases
 - shell:
     -
+      command: zsh ~/.dotfiles/scripts/zsh_install.sh
       description: Installing Zsh
-      command:  if [ -x "$(command -v apk)" ];       then sudo apk add --no-cache zsh \
-                elif [ -x "$(command -v apt-get)" ]; then sudo apt-get install zsh \
-                else echo "FAILED TO INSTALL PACKAGE: Package manager not found. You must manually install: zsh">&2; fi
-    - 
-      description: Set Zsh as default shell
-      command: chsh -s $(which zsh)

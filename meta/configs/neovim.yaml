@@ -5,7 +5,5 @@
     ~/.config/nvim/autoload/utils.vim: neovim/autoload/utils.vim
 - shell:
     -
+      command: zsh ~/.dotfiles/scripts/neovim_install.sh
       description: Installing Neovim
-      command:  if [ -x "$(command -v apk)" ];       then sudo apk add --no-cache neovim \
-                elif [ -x "$(command -v apt-get)" ]; then sudo apt-get install neovim \
-                else echo "FAILED TO INSTALL PACKAGE: Package manager not found. You must manually install: neovim">&2; fi
