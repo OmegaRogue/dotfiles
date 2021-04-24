@@ -1,4 +1,3 @@
-$HOME/.local/bin/gpg-agent-relay start
 
 source ~/.dotfiles/antigen/antigen.zsh
 antigen init ~/.antigenrc
@@ -6,7 +5,8 @@ antigen init ~/.antigenrc
 
 
 
-
+#powerline-daemon -q
+#. '/home/omegarogue/.local/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -22,5 +22,8 @@ source $HOME/.zshenv
 
 
 
+gpgconf --launch gpg-agent
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+

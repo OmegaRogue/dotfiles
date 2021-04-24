@@ -27,7 +27,9 @@ call plug#begin('~/.config/nvim/plugins')
 "Plug 'vim-utils/vim-man'
 Plug 'lambdalisue/vim-pager'
 Plug 'lambdalisue/vim-manpager'
-
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'melonmanchan/vim-tmux-resizer'
+Plug 'MikeDacre/tmux-zsh-vim-titles'
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -130,6 +132,9 @@ Plug 'dzeban/vim-log-syntax'
 Plug 'gisphm/vim-gitignore'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
+Plug 'samsaga2/vim-z80'
+
 "}}}
 
 

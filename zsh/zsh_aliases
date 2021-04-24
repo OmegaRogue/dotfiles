@@ -9,10 +9,12 @@ alias dist-upgrade='sudo apt-get dist-upgrade'
 
 #neovim
 alias v='nvim'
-
+alias nivm='nvim'
 # Terraform
 alias tfi='tf init'
 alias tfp='tf plan'
 alias tfpd='tf plan -destroy'
 alias tfa='tf apply'
 alias tfd='tf destroy'
+# Cloudflared
+alias cfd='cloudflared'

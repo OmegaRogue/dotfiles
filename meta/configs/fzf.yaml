@@ -1,0 +1,10 @@
+- shell:
+  -
+    description: Clone fzf repo
+    command: git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  -
+    description: Install fzf
+    command: ~/.fzf/install
+  - 
+    description: Update fzf
+    command: pushd ~/.fzf && git pull && ./install && popd

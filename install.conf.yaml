@@ -2,21 +2,26 @@
     link:
       relink: true
       create: true
+    shell:
+      stdout: true
+      stderr: true
 
-- clean: ['~']
- 
+- create:
+    #- $HOME/projects
+    #- $HOME/Downloads
+    - $HOME/.config
+
+- clean:
+    $HOME:
+      force: true
+    $HOME/.config:
+      recursive: true
 
 - link:
     # zsh
-    ~/.zshrc:
-        force: true
-        path: zsh/zshrc
-    ~/.dircolors: zsh/dircolors
-    ~/.zshenv: zsh/zshenv
-    ~/.zsh_aliases: zsh/zsh_aliases
-
+  
     # antigen
-    ~/.antigenrc: antigen/antigenrc
+    
 
 
     # bash
@@ -25,34 +30,24 @@
     ~/.bash_logout: bash/bash_logout
     
     # git
-    ~/.gitconfig: git/gitconfig
-    ~/.gitignore_global: git/gitignore_global
 
     # neovim
-    ~/.config/nvim/init.vim: neovim/init.vim
-    ~/.config/nvim/plugins.vim: neovim/plugins.vim
-    ~/.config/nvim/vscode.vim: neovim/vscode.vim
-    ~/.config/nvim/autoload/utils.vim: neovim/autoload/utils.vim
-
+    
     # ssh
-    ~/.ssh/config: ssh/config
-
+    
     # scripts
     ~/.scripts: scripts
 
     # LaTeX
-    ~/.latexmkrc: latexmk/latexmkrc
+    # ~/.latexmkrc: latexmk/latexmkrc
 
     # NPM
-    ~/.npmrc: npm/npmrc
+    # ~/.npmrc: npm/npmrc
 
     # tmux
-    ~/.tmux.conf: tmux/tmux.conf
-
-- create:
-    - ~/projects
-    - ~/downloads
-    - ~/.npm-global
+    
+    # powerline
+    #~/.config/powerline: powerline
 
 
 
@@ -62,18 +57,15 @@
     -
         command: zsh ~/.dotfiles/scripts/zsh_install.sh
         description: Installing Zsh
-    -
-        command: git submodule update --init --recursive
-        description: Installing submodules
 
     -
         command: zsh ~/.dotfiles/scripts/neovim_install.sh
         description: Installing Neovim
-    -
-        command: ~/.dotfiles/scripts/dotnet_install.sh
-        description: Installing DotNet Core SDK
-    - 
-        command: zsh ~/.dotfiles/scripts/golang_install.sh
-        description: Installing Golang
-        quiet: false
-        stdout: true
+  #  -
+  #      command: ~/.dotfiles/scripts/dotnet_install.sh
+  #      description: Installing DotNet Core SDK
+  #  - 
+  #      command: zsh ~/.dotfiles/scripts/golang_install.sh
+  #      description: Installing Golang
+  #      quiet: false
+  #      stdout: true

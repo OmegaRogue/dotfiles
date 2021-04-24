@@ -1,0 +1,4 @@
+- link:
+    ~/.antigenrc: antigen/antigenrc
+- shell:
+  - curl -L git.io/antigen > antigen/antigen.zsh

@@ -10,12 +10,23 @@ antigen bundle zsh_reload
 antigen bundle zsh-interactive-cd
 antigen bundle magic-enter
 antigen bundle command-not-found
-#antigen bundle vi-mode
 antigen bundle nmap
 antigen bundle microk8s
 antigen bundle systemd
 antigen bundle terraform
-#antigen bundle tmux
+antigen bundle virtualenv
+antigen bundle desyncr/auto-ls
+antigen bundle zpm-zsh/colors
+antigen bundle hlissner/zsh-autopair
+antigen bundle 0b10/cheatsheet
+antigen bundle Tarrasch/zsh-bd
+antigen bundle kutsan/zsh-system-clipboard
+antigen bundle MikeDacre/tmux-zsh-vim-titles
+antigen bundle jeffreytse/zsh-vi-mode
+antigen bundle zdharma/fast-syntax-highlighting
+antigen bundle MichaelAquilina/zsh-you-should-use
+
+antigen bundle zpm-zsh/tmux
 
 antigen theme OmegaRogue/dotfiles zsh/omegavoid.zsh-theme
 

@@ -1,53 +1,92 @@
 Match user "omegarogue"
     PermitLocalCommand yes
     # Unfortunately ssh does not support line breaks in config files
-    LocalCommand ssh -o PermitLocalCommand=no %n "which git >/dev/null && ([[ -d ~/.dotfiles ]] && (echo "Updating dotfiles on %h ..." && cd ~/.dotfiles && git pull | grep -q 'Already up to date.' && echo 'Already up to date.' || zsh ~/.dotfiles/install ) || (echo "Installing dotfiles on %h ..." && git clone -q https://github.com/OmegaRogue/dotfiles .dotfiles && "sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"" && rm ~/.oh-my-zsh/oh-my-zsh.sh ~/.zshrc && ./.dotfiles/install && echo "done"))"
+    #LocalCommand ssh -o PermitLocalCommand=no %n "which git >/dev/null && ([[ -d ~/.dotfiles ]] && (echo "Updating dotfiles on %h ..." && cd ~/.dotfiles && git pull | grep -q 'Already up to date.' && echo 'Already up to date.' || zsh ~/.dotfiles/install ) || (echo "Installing dotfiles on %h ..." && git clone -q https://github.com/OmegaRogue/dotfiles .dotfiles && "sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"" && rm ~/.oh-my-zsh/oh-my-zsh.sh ~/.zshrc && ./.dotfiles/install && echo "done"))"
 
 Host node01
   HostName 192.168.0.50
   User pi
+  ForwardAgent yes
 Host node02
   HostName 192.168.0.51
   User pi
+  ForwardAgent yes
 Host node03
   HostName 192.168.0.52
   User pi
+  ForwardAgent yes
 Host node04
   HostName 192.168.0.53
   User pi
+  ForwardAgent yes
 Host node05
   HostName 192.168.0.54
   User pi
+  ForwardAgent yes
 Host omegastorage
   HostName 192.168.0.36
   User admin
+  ForwardAgent yes
 
 Host esx01
   HostName 192.168.222.11
 	User root
+  ForwardAgent yes
 Host esx02
   HostName 192.168.222.12
 	User root
+  ForwardAgent yes
 Host esx03
   HostName 192.168.222.13
 	User root
+  ForwardAgent yes
 
 Host omegakube
   HostName 192.168.222.37
     User vmadmin
+  ForwardAgent yes
 
 Host omegacloud
   HostName 192.168.222.102
     User root
+  ForwardAgent yes
 Host omegadb
   HostName 192.168.222.103
     User root
+  ForwardAgent yes
 Host omegaredis
   HostName 192.168.222.104
     User root
+  ForwardAgent yes
 Host consul01
   HostName 192.168.222.105
 	User root
+  ForwardAgent yes
 Host vault01
   HostName 192.168.222.106
 	User root
+  ForwardAgent yes
+Host pterodactyl-panel
+  HostName 192.168.222.107
+    User root
+  ForwardAgent yes
+Host prometheus
+  HostName 192.168.222.108
+    User root
+  ForwardAgent yes
+Host mail
+  HostName 192.168.222.109
+    User root
+  ForwardAgent yes
+Host traefik
+  HostName 192.168.222.110
+    User root
+  ForwardAgent yes
+Host grafana
+  HostName 192.168.222.112
+    User root
+  ForwardAgent yes
+Host loki
+  HostName 192.168.222.113
+    User root
+  ForwardAgent yes
