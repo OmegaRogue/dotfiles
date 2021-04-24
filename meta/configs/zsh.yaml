@@ -7,5 +7,5 @@
     ~/.zsh_aliases: zsh/zsh_aliases
 - shell:
     -
-      command: zsh ~/.dotfiles/scripts/zsh_install.sh
+      command: sh ~/.dotfiles/scripts/zsh_install.sh
       description: Installing Zsh
