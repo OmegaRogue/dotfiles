@@ -30,8 +30,7 @@ Host omegastorage
 
 Host esx01
   HostName 192.168.222.11
-	User omegarogue
-  ForwardAgent yes
+	ForwardAgent yes
 Host esx02
   HostName 192.168.222.12
 	User root
