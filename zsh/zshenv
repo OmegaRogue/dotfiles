@@ -9,14 +9,13 @@ export PATH=$PATH:$HOME/.dotnet:/usr/local/go/bin:/home/omegarogue/.local/bin:/m
 #export MANPAGER="nvim -c MANPAGER -"
 #export PAGER="nvim -c PAGER -"
 
-export GPG_TTY=$(tty)
-
-export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+if [[ -z $SSH_CONNECTION ]]; then
+	export GPG_TTY=$(tty)
+	export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+fi
 
 export DEFAULT_USER=$USER
 
-#export ZSH_TMUX_AUTOSTART=true
 
 # User configuration
 
