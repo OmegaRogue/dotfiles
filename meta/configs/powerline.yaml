@@ -1,0 +1,4 @@
+- shell:
+    -
+      command: pip install powerline-status
+      description: Installing Powerline
