@@ -1,4 +1,3 @@
-
 source ~/.dotfiles/antigen/antigen.zsh
 antigen init ~/.antigenrc
 
@@ -21,8 +20,9 @@ fi
 source $HOME/.zshenv
 
 
-
-gpgconf --launch gpg-agent
+if [[ -z $SSH_CONNECTION ]]; then
+	gpgconf --launch gpg-agent
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
