@@ -131,7 +131,7 @@ Plug 'dzeban/vim-log-syntax'
 
 Plug 'gisphm/vim-gitignore'
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 Plug 'samsaga2/vim-z80'
 
