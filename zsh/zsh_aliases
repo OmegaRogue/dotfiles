@@ -18,3 +18,7 @@ alias tfa='tf apply'
 alias tfd='tf destroy'
 # Cloudflared
 alias cfd='cloudflared'
+
+
+# GNU Make
+alias make="make -j$(grep -c ^processor /proc/cpuinfo)"

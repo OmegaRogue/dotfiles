@@ -9,6 +9,11 @@ export PATH=$PATH:$HOME/.dotnet:/usr/local/go/bin:/home/omegarogue/.local/bin:/m
 #export MANPAGER="nvim -c MANPAGER -"
 #export PAGER="nvim -c PAGER -"
 
+if [[ -n $(lspci | grep GeForce) ]]; then
+	export PATH=/usr/local/cuda-11.3/bin${PATH:+:${PATH}}
+fi
+
+
 if [[ -z $SSH_CONNECTION ]]; then
 	export GPG_TTY=$(tty)
 	export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
