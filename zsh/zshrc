@@ -1,3 +1,6 @@
+if [[ $(uname -r) == *WSL* ]]; then
+	$HOME/.local/bin/gpg-agent-relay start
+fi
 source ~/.dotfiles/antigen/antigen.zsh
 antigen init ~/.antigenrc
 
