@@ -5,7 +5,7 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 
 
 export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$HOME/.dotnet:/usr/local/go/bin:/home/omegarogue/.local/bin:/mnt/d/Programs/mupdf-1.18.0-windows:~/.npm-global/bin:~/go/bin:/usr/local/vpnclient/
+export PATH=$PATH:$HOME/.dotnet:/usr/local/go/bin:/home/omegarogue/.local/bin:/mnt/d/Programs/mupdf-1.18.0-windows:~/.npm-global/bin:~/go/bin:/usr/local/vpnclient/:/home/omegarogue/.cargo/bin
 #export MANPAGER="nvim -c MANPAGER -"
 #export PAGER="nvim -c PAGER -"
 
@@ -53,3 +53,5 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export SH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
+export TMUX_AUTOSTART=false
+. "$HOME/.cargo/env"

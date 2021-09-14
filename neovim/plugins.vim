@@ -17,19 +17,20 @@ endif
 call plug#begin('~/.config/nvim/plugins')
 
 
+Plug 'voldikss/vim-floaterm'
+	" ---------------------------------------------------------------------------------------------------------------------
+	" Interface {{{
+	" ---------------------------------------------------------------------------------------------------------------------
 
-
-" ---------------------------------------------------------------------------------------------------------------------
-" Interface {{{
-" ---------------------------------------------------------------------------------------------------------------------
-
-"Plug 'ashisha/image.vim'
-"Plug 'vim-utils/vim-man'
-Plug 'lambdalisue/vim-pager'
-Plug 'lambdalisue/vim-manpager'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'melonmanchan/vim-tmux-resizer'
-Plug 'MikeDacre/tmux-zsh-vim-titles'
+	"Plug 'ashisha/image.vim'
+	"Plug 'vim-utils/vim-man'
+	Plug 'lambdalisue/vim-pager'
+	Plug 'lambdalisue/vim-manpager'
+	Plug 'christoomey/vim-tmux-navigator'
+	Plug 'melonmanchan/vim-tmux-resizer'
+	Plug 'MikeDacre/tmux-zsh-vim-titles'
+	Plug 'skywind3000/vim-preview'
+Plug 'majutsushi/tagbar'
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -72,8 +73,8 @@ Plug 'tpope/vim-vinegar'
 
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 
-"Plug 'ludovicchabant/vim-gutentags'
-
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -134,6 +135,7 @@ Plug 'gisphm/vim-gitignore'
 "Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 Plug 'samsaga2/vim-z80'
+Plug 'vim-scripts/avr8bit.vim'
 
 "}}}
 

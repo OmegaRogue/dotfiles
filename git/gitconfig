@@ -8,3 +8,5 @@
 	program = gpg2
 [color]
 	ui = true
+[core]
+	autocrlf = input

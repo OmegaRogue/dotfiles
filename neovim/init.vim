@@ -13,7 +13,9 @@ if filereadable(expand("~/.config/nvim/plugins.vim"))
   source ~/.config/nvim/plugins.vim
 endif
 "}}}
-
+if filereadable(expand("~/.config/nvim/keymap.vim"))
+  source ~/.config/nvim/keymap.vim
+endif
 " ---------------------------------------------------------------------------------------------------------------------
 " Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults) {{{
 " ======================================================================================================================
@@ -30,27 +32,10 @@ set guicursor+=sm:block-blinkwait175-blinkoff150-blinkon175
 set mouse=a
 set clipboard=unnamedplus
 
-" tex flavor
-let g:tex_flavor = 'latex'
 
-let g:vimtex_compiler_latexmk = {
-        \ 'build_dir' : '',
-        \ 'callback' : 1,
-        \ 'continuous' : 1,
-        \ 'executable' : 'latexmk',
-        \ 'hooks' : [],
-        \ 'options' : [
-        \   '-verbose',
-		\   '-lualatex',
-        \   '-file-line-error',
-        \   '-synctex=1',
-        \   '-interaction=nonstopmode',
-        \ ],
-        \}
+set splitbelow
+set splitright
 
-let g:vimtex_view_method = 'mupdf'
-
-"}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
 " Color and highlighting settings {{{
@@ -106,7 +91,6 @@ set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
 set shiftwidth=4    " number of spaces to use for autoindent
 
-let g:terraform_align=1
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -114,6 +98,7 @@ let g:terraform_align=1
 " ---------------------------------------------------------------------------------------------------------------------
 
 let g:terraform_fmt_on_save=1
+let g:terraform_align=1
 
 "}}}
 
@@ -122,42 +107,18 @@ let g:terraform_fmt_on_save=1
 " ---------------------------------------------------------------------------------------------------------------------
 
 "}}}
-
+" ---------------------------------------------------------------------------------------------------------------------
+" Gutentags {{{
+" ---------------------------------------------------------------------------------------------------------------------
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_plus_switch = 1
+"}}}
 " ---------------------------------------------------------------------------------------------------------------------
 " Vim-Multiple-Cursors settings {{{
 " ---------------------------------------------------------------------------------------------------------------------
 
 "}}}
-
-
-
-" ---------------------------------------------------------------------------------------------------------------------
-" Core key bindings-Remappings {{{
-" ======================================================================================================================
-" Use CamelCaseMotion instead of default motions
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-map <silent> ge <Plug>CamelCaseMotion_ge
-sunmap w
-sunmap b
-sunmap e
-sunmap ge
-
-" " Copy to clipboard
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
-
-" " Paste from clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
-
-
-
 
 let g:mkdp_auto_start = 1
 " -----------------------------------------------------
@@ -181,7 +142,6 @@ let g:startify_skiplist = [
             \ ]
 
 
-"}}}
 
 let g:startify_bookmarks = [
             \ { 'c': '~/.dotfiles/neovim/init.vim' },
@@ -215,7 +175,7 @@ let g:startify_commands = [
 	\ {'t': ['Terminal', 'term']},
     \ ]
 
-
+"}}}
 
 
 " -----------------------------------------------------
@@ -269,9 +229,9 @@ autocmd filetype nerdtree syn match haskell_icon #?# containedin=NERDTreeFile
 autocmd filetype nerdtree syn match go_icon #?# containedin=NERDTreeFile
 
 " nnoremap <silent> <Leader>h :call utils#nerdWrapper()<CR>
-nnoremap <silent> <Leader>h :NERDTreeToggle<CR>
+" nnoremap <silent> <Leader>h :NERDTreeToggle<CR>
 
-"map <Leader>n :NERDTreeToggle<CR>
+" map <Leader>n :NERDTreeToggle<CR>
 
 " If more than one window and previous buffer was NERDTree, go back to it.
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
@@ -283,37 +243,37 @@ let g:plug_window = 'noautocmd vertical topleft new'
 
 "}}}
 
-
-
 " -----------------------------------------------------
-" Sneak, s f https://github.com/justinmk/vim-sneak {{{
+" vimtex {{{
 " -----------------------------------------------------
-nmap f <Plug>Sneak_s
-nmap F <Plug>Sneak_S
-xmap f <Plug>Sneak_s
-xmap F <Plug>Sneak_S
-omap f <Plug>Sneak_s
-omap F <Plug>Sneak_S
+
+" tex flavor
+let g:tex_flavor = 'latex'
+
+let g:vimtex_compiler_latexmk = {
+        \ 'build_dir' : '',
+        \ 'callback' : 1,
+        \ 'continuous' : 1,
+        \ 'executable' : 'latexmk',
+        \ 'hooks' : [],
+        \ 'options' : [
+        \   '-verbose',
+		\   '-lualatex',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \ ],
+        \}
+
+let g:vimtex_view_method = 'mupdf'
+
 "}}}
+
+
 
 " -----------------------------------------------------
 " Gitgutter {{{
 " -----------------------------------------------------
-"let g:gitgutter_map_keys=0
-"let g:gitgutter_max_signs=9999
-"let g:gitgutter_sign_added='+'
-""let g:gitgutter_sign_modified='~'
-"let g:gitgutter_sign_removed='-'
-"let g:gitgutter_sign_modified_removed='~'
-"let g:gitgutter_sign_removed_first_line='-'
-"let g:gitgutter_override_sign_column_highlight = 0
-"set signcolumn=yes
-
-"highlight GitGutterAdd ctermfg=green ctermbg=NONE
-"highlight GitGutterChange ctermfg=yellow ctermbg=NONE
-"highlight GitGutterDelete ctermfg=red ctermbg=NONE
-"highlight GitGutterChangeDelete ctermfg=magenta ctermbg=NONE
-
 hi! link GitGutterAdd GitAddStripe
 hi! link GitGutterChange GitChangeStripe
 hi! link GitGutterDelete GitDeleteStripe
@@ -347,13 +307,58 @@ let g:pasta_paste_after_mapping = ',o'
 " -----------------------------------------------------
 " Smooth scroll vim-smooth-scroll {{{
 " -----------------------------------------------------
-"noremap <silent> <c-key> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-"noremap <silent> <c-key> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-o> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 "}}}
 
+" -----------------------------------------------------
+" tmux navigator {{{
+" -----------------------------------------------------
 
+"Cycle between tmux/vim seamlessly
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <A-Left>  :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-Down>  :TmuxNavigateDown<cr>
+nnoremap <silent> <A-Up>    :TmuxNavigateUp<cr>
+nnoremap <silent> <A-Right> :TmuxNavigateRight<cr>
+nnoremap <silent> <A-z>     :TmuxNavigatePrevious<cr>
+nnoremap <silent> <A-h>     :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j>     :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k>     :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l>     :TmuxNavigateRight<cr>
+"additional mappings to support urxvt
+nnoremap <silent> <Esc><Left>  :TmuxNavigateLeft<cr>
+nnoremap <silent> <Esc><Down>  :TmuxNavigateDown<cr>
+nnoremap <silent> <Esc><Up>    :TmuxNavigateUp<cr>
+nnoremap <silent> <Esc><Right> :TmuxNavigateRight<cr>
+nnoremap <silent> <Esc>z       :TmuxNavigatePrevious<cr>
+nnoremap <silent> <Esc>h       :TmuxNavigateLeft<cr>
+nnoremap <silent> <Esc>j       :TmuxNavigateDown<cr>
+nnoremap <silent> <Esc>k       :TmuxNavigateUp<cr>
+nnoremap <silent> <Esc>l       :TmuxNavigateRight<cr>
+
+"terminal mode
+tnoremap <silent> <A-Left>  <C-W>:TmuxNavigateLeft<cr>
+tnoremap <silent> <A-Down>  <C-W>:TmuxNavigateDown<cr>
+tnoremap <silent> <A-Up>    <C-W>:TmuxNavigateUp<cr>
+tnoremap <silent> <A-Right> <C-W>:TmuxNavigateRight<cr>
+tnoremap <silent> <A-z>     <C-W>:TmuxNavigatePrevious<cr>
+tnoremap <silent> <A-h>     <C-W>:TmuxNavigateLeft<cr>
+tnoremap <silent> <A-j>     <C-W>:TmuxNavigateDown<cr>
+tnoremap <silent> <A-k>     <C-W>:TmuxNavigateUp<cr>
+tnoremap <silent> <A-l>     <C-W>:TmuxNavigateRight<cr>
+"additional mappings to support urxvt
+tnoremap <silent> <Esc><Left>  <C-W>:TmuxNavigateLeft<cr>
+tnoremap <silent> <Esc><Down>  <C-W>:TmuxNavigateDown<cr>
+tnoremap <silent> <Esc><Up>    <C-W>:TmuxNavigateUp<cr>
+tnoremap <silent> <Esc><Right> <C-W>:TmuxNavigateRight<cr>
+tnoremap <silent> <Esc>z       <C-W>:TmuxNavigatePrevious<cr>
+tnoremap <silent> <Esc>h       <C-W>:TmuxNavigateLeft<cr>
+tnoremap <silent> <Esc>j       <C-W>:TmuxNavigateDown<cr>
+tnoremap <silent> <Esc>k       <C-W>:TmuxNavigateUp<cr>
+tnoremap <silent> <Esc>l       <C-W>:TmuxNavigateRight<cr>
+
+"}}}
 
 
 " -----------------------------------------------------
@@ -368,23 +373,4 @@ au BufNewFile,BufRead ssh_config,*/.ssh/config,*/ssh/config  setf sshconfig
 
 "}}}
 
-" -----------------------------------------------------
-" F-key actions {{{
-" =====================================================
 
-"F1 Open/close Help
-nnoremap <silent> <F1> :call utils#showHelp()<CR>
-
-"F2 Source (reload configuration)
-nnoremap <silent> <F2> :so ~/.config/nvim/init.vim<CR>
-
-"F3 Toggle white characters visibility
-nnoremap <silent> <F3> :set list!<CR> :set list?<CR>
-
-"F4 Exit Vim
-nnoremap <F4> :qa<CR>
-"Shift+F4 (F16) Force Quit Vim
-nnoremap <F16> :qa!<CR>
-
-"F12 Show F keys toggles
-nnoremap <F12> :call utils#showToggles()<CR>

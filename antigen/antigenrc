@@ -1,20 +1,17 @@
 antigen use oh-my-zsh
 
-antigen bundle kubectl
-antigen bundle helm
-antigen bundle git
-antigen bundle git-flow
-antigen bundle colored-man-pages
-antigen bundle sudo
-antigen bundle zsh_reload
-antigen bundle zsh-interactive-cd
-antigen bundle magic-enter
-antigen bundle command-not-found
-antigen bundle nmap
-antigen bundle microk8s
-antigen bundle systemd
-antigen bundle terraform
-antigen bundle virtualenv
+antigen bundle robbyrussell/oh-my-zsh plugins/git
+antigen bundle robbyrussell/oh-my-zsh plugins/git-flow
+antigen bundle robbyrussell/oh-my-zsh plugins/colored-man-pages
+antigen bundle robbyrussell/oh-my-zsh plugins/sudo
+antigen bundle robbyrussell/oh-my-zsh plugins/zsh_reload
+antigen bundle robbyrussell/oh-my-zsh plugins/zsh-interactive-cd
+antigen bundle robbyrussell/oh-my-zsh plugins/magic-enter
+antigen bundle robbyrussell/oh-my-zsh plugins/command-not-found
+antigen bundle robbyrussell/oh-my-zsh plugins/nmap
+antigen bundle robbyrussell/oh-my-zsh plugins/systemd
+antigen bundle robbyrussell/oh-my-zsh plugins/terraform
+antigen bundle robbyrussell/oh-my-zsh plugins/virtualenv
 antigen bundle desyncr/auto-ls
 antigen bundle zpm-zsh/colors
 antigen bundle hlissner/zsh-autopair
@@ -25,6 +22,7 @@ antigen bundle MikeDacre/tmux-zsh-vim-titles
 antigen bundle jeffreytse/zsh-vi-mode
 antigen bundle zdharma/fast-syntax-highlighting
 antigen bundle MichaelAquilina/zsh-you-should-use
+antigen bundle zsh-users/zsh-completions
 
 antigen bundle zpm-zsh/tmux
 

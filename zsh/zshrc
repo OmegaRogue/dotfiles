@@ -1,3 +1,5 @@
+#setopt SOURCE_TRACE
+
 source ~/.dotfiles/antigen/antigen.zsh
 antigen init ~/.antigenrc
 
@@ -27,3 +29,4 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
+fpath+=${ZDOTDIR:-~}/.zsh_functions
