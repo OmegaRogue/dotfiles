@@ -7,6 +7,8 @@ alias autoremove='sudo apt-get autoremove'
 alias purge='sudo apt-get purge'
 alias dist-upgrade='sudo apt-get dist-upgrade'
 
+alias clr='clear'
+
 #neovim
 alias v='nvim'
 alias nivm='nvim'
