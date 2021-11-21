@@ -255,7 +255,8 @@ colors:
   #     program: notify-send
   #     args: ["Hello, World!"]
   #
-  #command: None
+  #command: 
+  #  program: xkbbell
 
 # Background opacity
 #
