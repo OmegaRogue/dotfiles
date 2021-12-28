@@ -4,7 +4,6 @@ antigen bundle robbyrussell/oh-my-zsh plugins/git
 antigen bundle robbyrussell/oh-my-zsh plugins/git-flow
 antigen bundle robbyrussell/oh-my-zsh plugins/colored-man-pages
 antigen bundle robbyrussell/oh-my-zsh plugins/sudo
-antigen bundle robbyrussell/oh-my-zsh plugins/zsh_reload
 antigen bundle robbyrussell/oh-my-zsh plugins/zsh-interactive-cd
 antigen bundle robbyrussell/oh-my-zsh plugins/magic-enter
 antigen bundle robbyrussell/oh-my-zsh plugins/command-not-found

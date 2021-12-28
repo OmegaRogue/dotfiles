@@ -18,19 +18,20 @@ call plug#begin('~/.config/nvim/plugins')
 
 
 Plug 'voldikss/vim-floaterm'
-	" ---------------------------------------------------------------------------------------------------------------------
-	" Interface {{{
-	" ---------------------------------------------------------------------------------------------------------------------
+" ---------------------------------------------------------------------------------------------------------------------
+" Interface {{{
+" ---------------------------------------------------------------------------------------------------------------------
 
-	"Plug 'ashisha/image.vim'
-	"Plug 'vim-utils/vim-man'
-	Plug 'lambdalisue/vim-pager'
-	Plug 'lambdalisue/vim-manpager'
-	Plug 'christoomey/vim-tmux-navigator'
-	Plug 'melonmanchan/vim-tmux-resizer'
-	Plug 'MikeDacre/tmux-zsh-vim-titles'
-	Plug 'skywind3000/vim-preview'
+"Plug 'ashisha/image.vim'
+"Plug 'vim-utils/vim-man'
+Plug 'lambdalisue/vim-pager'
+Plug 'lambdalisue/vim-manpager'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'melonmanchan/vim-tmux-resizer'
+Plug 'MikeDacre/tmux-zsh-vim-titles'
+Plug 'skywind3000/vim-preview'
 Plug 'majutsushi/tagbar'
+
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -38,7 +39,6 @@ Plug 'majutsushi/tagbar'
 " ---------------------------------------------------------------------------------------------------------------------
 
 Plug 'doums/darcula'
-
 
 "}}}
 
@@ -115,7 +115,7 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-git'
 " Dockerfile
 Plug 'honza/dockerfile.vim'
-
+" C# syntax
 Plug 'omnisharp/omnisharp-vim'
 
 " LaTeX
@@ -128,8 +128,10 @@ Plug 'hashivim/vim-terraform'
 Plug 'hashivim/vim-consul'
 Plug 'hashivim/vim-packer'
 
+" Log syntax
 Plug 'dzeban/vim-log-syntax'
 
+" Gitignore syntax
 Plug 'gisphm/vim-gitignore'
 
 "Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }

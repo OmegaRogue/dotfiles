@@ -39,6 +39,12 @@ Host esx03
   HostName 192.168.222.13
 	User root
   ForwardAgent yes
+Host cloud1
+  HostName 192.168.222.15
+Host cloud2
+  HostName 192.168.222.16
+Host cloud3
+  HostName 192.168.222.17
 
 Host omegakube
   HostName 192.168.222.37

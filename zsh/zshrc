@@ -35,5 +35,5 @@ fi
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 autoload -U +X bashcompinit && bashcompinit
-eval $(opam env)
+#eval $(opam env)
 complete -o nospace -C /usr/bin/nomad nomad
