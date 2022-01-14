@@ -1,4 +1,12 @@
-antigen use oh-my-zsh
+# Check if zplug is installed
+if [[ ! -d ~/.zplug ]]; then
+  git clone https://github.com/zplug/zplug ~/.zplug
+  source ~/.zplug/init.zsh && zplug update --self
+fi
+
+# Essential
+source ~/.zplug/init.zsh
+
 
 zplug "plugins/git", from:oh-my-zsh										# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/git
 zplug "plugins/git-flow", from:oh-my-zsh								# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/git-flow
@@ -50,8 +58,14 @@ zplug "gko/ssh-connect"													# https://github.com/gko/ssh-connect
 zplug "NorthIsMirror/zsh-startify"										# https://github.com/NorthIsMirror/zsh-startify
 zplug "zshzoo/magic-enter"												# https://github.com/zshzoo/magic-enter
 
-#antigen theme https://gist.github.com/a91747db4de2a4fbacb71b2c2162bb91.git omegavoid
+# Install packages that have not been installed yet
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    else
+        echo
+    fi
+fi
 
 zplug load
-
-# vim: set filetype=zsh:

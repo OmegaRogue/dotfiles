@@ -1,7 +1,7 @@
 local wezterm = require "wezterm"
 
 return {
-  font = wezterm.font("JetBrainsMono Nerd Font"),
+  font = wezterm.font("JetBrainsMono Nerd Font Mono"),
   colors = {
     -- The default text color
     foreground = "#DFDBD2",
@@ -24,5 +24,8 @@ return {
     right = 2,
     top = 2,
     bottom = 2
-  }
+  },
+  enable_wayland = true,
+  enable_scroll_bar = true,
+  default_cursor_style = "BlinkingBar",
 }

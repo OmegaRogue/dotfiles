@@ -3,11 +3,24 @@
 if [[ $(uname -r) == *WSL* ]]; then
 	$HOME/.local/bin/gpg-agent-relay start
 fi
-source ~/.dotfiles/antigen/antigen.zsh
-antigen init ~/.antigenrc
 
+setopt autocd
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt share_history          # share command history data
 
+source $HOME/.zsh_plugins
 
+function magic-enter-cmd {
+	if command git rev-parse --is-inside-work-tree &>/dev/null; then
+		echo ' git status -u .'
+	else
+		echo ' [[ $(ls . |wc -l) -le 30 ]] && ls -lh . || ls .'
+	fi
+}
 
 #powerline-daemon -q
 #. '/home/omegarogue/.local/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh'
@@ -37,3 +50,6 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 autoload -U +X bashcompinit && bashcompinit
 #eval $(opam env)
 complete -o nospace -C /usr/bin/nomad nomad
+
+. $HOME/.local/lib/python3.10/site-packages/powerline/bindings/zsh/powerline.zsh
+

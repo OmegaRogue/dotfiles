@@ -13,6 +13,4 @@ alias tfc='tf console'
 # Cloudflared
 alias cfd='cloudflared'
 
-
-# GNU Make
-alias make="make -j$(grep -c ^processor /proc/cpuinfo)"
+alias imgcat='wezterm imgcat'

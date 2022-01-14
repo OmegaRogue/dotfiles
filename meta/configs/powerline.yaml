@@ -2,3 +2,11 @@
     -
       command: '[ -x "$(command -v pip)" ] && pip install powerline-status || [ -x "$(command -v pip3)" ] && pip3 install powerline-status'
       description: Installing Powerline
+- link:
+    ~/.config/powerline/colors.json: powerline/colors.json
+    ~/.config/powerline/config.json: powerline/config.json
+    ~/.config/powerline/colorschemes/omegavoid.json: powerline/colorschemes/omegavoid.json
+    ~/.config/powerline/colorschemes/shell/omegavoid.json: powerline/colorschemes/shell/omegavoid.json
+    ~/.config/powerline/colorschemes/tmux/omegavoid.json: powerline/colorschemes/tmux/omegavoid.json
+    ~/.config/powerline/themes/shell/omegavoid.json: powerline/themes/shell/omegavoid.json
+    ~/.config/powerline/themes/wm/omegavoid.json: powerline/themes/wm/omegavoid.json

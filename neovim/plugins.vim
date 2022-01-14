@@ -73,8 +73,8 @@ Plug 'tpope/vim-vinegar'
 
 " Plug 'vim-ctrlspace/vim-ctrlspace'
 
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
+"Plug 'ludovicchabant/vim-gutentags'
+"Plug 'skywind3000/gutentags_plus'
 "}}}
 
 " ---------------------------------------------------------------------------------------------------------------------
@@ -100,6 +100,8 @@ Plug 'ryanoasis/vim-devicons'
 " ---------------------------------------------------------------------------------------------------------------------
 " Languages {{{
 " ---------------------------------------------------------------------------------------------------------------------
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " HTML5 syntax
 "Plug 'othree/html5.vim'

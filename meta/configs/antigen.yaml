@@ -1,4 +1,6 @@
 - link:
     ~/.antigenrc: antigen/antigenrc
 - shell:
-  - curl -L git.io/antigen > antigen/antigen.zsh
+  - 
+    command: curl -L git.io/antigen > antigen/antigen.zsh
+    description: Install antigen (zsh package manager)
