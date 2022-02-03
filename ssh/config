@@ -5,24 +5,25 @@ Match user "omegarogue"
 
 Host node01
   HostName 192.168.0.50
-  User pi
+  User alarm
   ForwardAgent yes
 Host node02
   HostName 192.168.0.51
-  User pi
+  User alarm
   ForwardAgent yes
 Host node03
   HostName 192.168.0.52
-  User pi
+  User alarm
   ForwardAgent yes
 Host node04
   HostName 192.168.0.53
-  User pi
+  User alarm
   ForwardAgent yes
 Host node05
   HostName 192.168.0.54
-  User pi
+  User alarm
   ForwardAgent yes
+
 Host omegastorage
   HostName 192.168.0.36
   User admin
@@ -41,11 +42,13 @@ Host esx03
   ForwardAgent yes
 Host cloud1
   HostName 192.168.222.15
+    User cadmin
 Host cloud2
   HostName 192.168.222.16
+	User cadmin
 Host cloud3
   HostName 192.168.222.17
-
+	User cadmin
 Host omegakube
   HostName 192.168.222.37
     User vmadmin

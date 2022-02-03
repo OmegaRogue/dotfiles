@@ -128,6 +128,8 @@ Plug 'lervag/vimtex'
 " Hashicorp tools
 Plug 'hashivim/vim-terraform'
 Plug 'hashivim/vim-consul'
+Plug 'hashivim/vim-vagrant'
+Plug 'hashivim/vim-nomadproject'
 Plug 'hashivim/vim-packer'
 
 " Log syntax

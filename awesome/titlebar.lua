@@ -18,20 +18,29 @@ awful.rules.rules = {
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
+	},
+    { rule_any = {type = { "normal", "dialog" },
+      }, properties = { titlebars_enabled = true }
     },
+    { rule = { type = "dock" },
+      properties = {
+         border_width = 0,
+         titlebars_enabled = false
+    }},
 
     -- Floating clients.
     { rule_any = {
         instance = {
           "DTA",  -- Firefox addon DownThemAll.
           "copyq",  -- Includes session name in class.
-          "pinentry",
         },
         class = {
           "Arandr",
           "Blueman-manager",
           "Gpick",
           "Kruler",
+		  "pinentry",
+
           "MessageWin",  -- kalarm.
           "Sxiv",
           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
@@ -52,14 +61,12 @@ awful.rules.rules = {
       }, properties = { floating = true }},
 
     -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" },
-      }, properties = { titlebars_enabled = true }
-    },
-	{ 
-		rule_any = { requests_no_titlebar = { true } },
-		properties = { titlebars_enabled = false, floating = true }, 
+--	{
+		--rule_any = { requests_no_titlebar = { true } },
+		--properties = { titlebars_enabled = false, floating = true },
+		--rule_any = { class = {  } }
 
-	  },
+	--  },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },

@@ -47,7 +47,7 @@ zplug "zpm-zsh/template"												# https://github.com/zpm-zsh/template
 zplug "bric3/nice-exit-code"											# https://github.com/bric3/nice-exit-code
 zplug "marcossegovia/open-create-projects"								# https://github.com/marcossegovia/open-create-projects
 zplug "jgogstad/passwordless-history"									# https://github.com/jgogstad/passwordless-history
-zplug "jimhester/per-directory-history"									# https://github.com/jimhester/per-directory-history
+#zplug "jimhester/per-directory-history"									# https://github.com/jimhester/per-directory-history
 zplug "idadzie/zsh-presenter-mode"										# https://github.com/idadzie/zsh-presenter-mode
 zplug "voronkovich/project.plugin.zsh"									# https://github.com/voronkovich/project.plugin.zsh
 zplug "michaelmcallister/razer-status-code"								# https://github.com/michaelmcallister/razer-status-code

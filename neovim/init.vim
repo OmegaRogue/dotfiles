@@ -186,7 +186,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "autocmd VimEnter *   if !argc() | Startify | NERDTree | wincmd w | endif
 let g:NERDTreeMinimalUI=1
-let g:NERDTreeWinSize=50
+let g:NERDTreeWinSize=30
 let g:NERDTreeAutoDeleteBuffer=1
 let g:NERDTreeShowHidden=1
 let g:NERDTreeHighlightCursorline=0
@@ -260,12 +260,29 @@ let g:vimtex_compiler_latexmk = {
         \   '-verbose',
 		\   '-lualatex',
         \   '-file-line-error',
-        \   '-synctex=1',
+        \   '-synctex=0',
         \   '-interaction=nonstopmode',
         \ ],
         \}
 
+
+"function! SetServerName()
+"  if has('win32')
+"    let nvim_server_file = $TEMP . "/curnvimserver.txt"
+"  else
+"    let nvim_server_file = "/tmp/curnvimserver.txt"
+"  endif
+"  let cmd = printf("echo %s > %s", v:servername, nvim_server_file)
+"  call system(cmd)
+"endfunction
+
+"augroup vimtex_common
+"    autocmd!
+"    autocmd FileType tex call SetServerName()
+"augroup END
+
 let g:vimtex_view_method = 'mupdf'
+"let g:vimtex_compiler_progname = 'nvr'
 
 "}}}
 

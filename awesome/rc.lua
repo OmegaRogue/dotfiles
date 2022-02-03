@@ -46,6 +46,7 @@ do
 end
 -- }}}
 
+local dpi = beautiful.xresources.apply_dpi
 awesome.set_preferred_icon_size(32)
 
 -- {{{ Variable definitions
@@ -58,9 +59,90 @@ awful.spawn.with_shell('powerline-daemon -q')
 
 require('powerline')
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+local github_activity_widget = require("awesome-wm-widgets.github-activity-widget.github-activity-widget")
+local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
+local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 local lain = require("lain")
 local freedesktop = require("freedesktop")
-require('smart_borders'){ show_button_tooltips = true }
+require('smart_borders'){
+	show_button_tooltips = true,
+	align_horizontal = "center",
+	color_normal = "#555555",
+	color_focus = "#666666",
+	button_size = 60,
+    button_floating_size = 80,
+    button_close_size = 80,
+	border_width = 6,
+	color_close_normal = {
+        type = "linear",
+        from = {0, 0},
+        to = {80, 0},
+        stops = {{0, "#fd8489"}, {1, "#555555"}}
+    },
+    color_close_focus = {
+        type = "linear",
+        from = {0, 0},
+        to = {80, 0},
+        stops = {{0, "#fd8489"}, {1, "#666666"}}
+    },
+    color_close_hover = {
+        type = "linear",
+        from = {0, 0},
+        to = {80, 0},
+        stops = {{0, "#FF9EA3"}, {1, "#666666"}}
+    },
+    color_floating_normal = {
+        type = "linear",
+        from = {0, 0},
+        to = {60, 0},
+        stops = {{0, "#555555"}, {1, "#ddace7"}}
+    },
+    color_floating_focus = {
+        type = "linear",
+        from = {0, 0},
+        to = {60, 0},
+        stops = {{0, "#666666"}, {1, "#ddace7"}}
+    },
+    color_floating_hover = {
+        type = "linear",
+        from = {0, 0},
+        to = {60, 0},
+        stops = {{0, "#666666"}, {1, "#F7C6FF"}}
+    },
+
+}
+
+
+--require("GtkNotebook")
+
+awful.spawn("xfsettingsd --daemon")
+awful.spawn("Thunar --daemon")
+awful.spawn("xfdesktop")
+
+-- autostart functionality for various desktop daemons 
+-- needed since we're just using awesome rather than a full-blown DE
+--awful.spawn("nextcloud")
+awful.spawn("picom --daemon") -- start compositor compton as a daemon
+-- the following scans the /etc/xdg/autostart directory and starts anything
+-- there
+-- local pfile = io.popen("find /etc/xdg/autostart -maxdepth 1 -print0")
+-- fileblob = pfile:read("*a")
+-- pfile:close()
+-- -- the find program returned a string with NULLs at the end of each file name
+-- for file in fileblob:gmatch("[^\0]+") do
+--     -- the first file in the list is just the /etc/xdg/autostart dir, so make 
+--     -- sure we skip it
+--     if file:find("/etc/xdg/autostart/.+") then
+--         local f = io.open(file)
+--         local text = f:read("*a")
+--         f:close()
+--         -- run the program
+--         awful.spawn(text:match("[\r\n]Exec=(.-)[\r\n]"))
+--     end
+-- end
+
+
 -- local nice = require("nice")
 -- nice {
 -- 	titlebar_items = {
@@ -262,7 +344,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-	freedesktop.desktop.add_icons({screen = s})
+	--freedesktop.desktop.add_icons({screen = s})
 
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
@@ -296,7 +378,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.mysystray = wibox.widget.systray()
     --s.mysystray:set_base_size(32)
-
+	
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -312,9 +394,15 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             s.mysystray,
+			spotify_widget(),
+			github_activity_widget{
+				username = 'OmegaRogue',
+			},
             --mytextclock,
+			todo_widget(),
             s.mylayoutbox,
             powerline_widget,
+			logout_menu_widget(),
         },
     }
 end)
@@ -413,7 +501,7 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey },            "r",     function () awful.spawn.with_shell("~/.config/rofi/bin/launcher_misc") end,
               {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
@@ -427,7 +515,9 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+    awful.key({ modkey }, "p", function() 
+					os.execute('~/.config/rofi/bin/launcher_misc')
+				end,
               {description = "show the menubar", group = "launcher"})
 )
 

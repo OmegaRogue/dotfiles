@@ -31,3 +31,7 @@ config_xfce:
 	./install-standalone xfce
 config_zsh:
 	./install-standalone zsh
+config_rofi:
+	./install-standalone rofi
+config_picom:
+	./install-standalone picom

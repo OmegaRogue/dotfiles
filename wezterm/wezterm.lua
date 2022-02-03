@@ -28,4 +28,5 @@ return {
   enable_wayland = true,
   enable_scroll_bar = true,
   default_cursor_style = "BlinkingBar",
+  warn_about_missing_glyphs = false,
 }
