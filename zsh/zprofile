@@ -1,0 +1,18 @@
+if [[ "$(tty)" = "/dev/tty1" ]]; then
+	if preg awesome; then
+		nm-applet &
+		.screenlayout/screens.sh &
+		barriers --disable-crypto --enable-drag-drop -l /var/log/barrier.log -c $HOME/.dotfiles/barrier/pc.conf &
+		xfsettingsd -d --replace &
+		gnome-keyring-daemon &
+		#xrdb ~/.Xresources &
+		picom -b&
+		flameshot &
+		#dunst &
+		#xrdb -load ~/.config/X11/xresources &
+
+		gpgconf --launch gpg-agent &
+	else
+		startx "/home/omegarogue/.dotfiles/xorg/xinitrc"
+	fi
+fi

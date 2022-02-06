@@ -1,6 +1,7 @@
 - link:
     ~/.config/awesome/rc.lua: awesome/rc.lua
     ~/.config/awesome/theme.lua: awesome/theme.lua
+    ~/.config/awesome/rules.lua: awesome/rules.lua
     ~/.config/awesome/appmenu.lua: awesome/appmenu.lua 
     ~/.config/awesome/dummy.lua: awesome/dummy.lua
     ~/.config/awesome/titlebar.lua: awesome/titlebar.lua

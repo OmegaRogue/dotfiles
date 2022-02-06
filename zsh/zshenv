@@ -38,6 +38,8 @@ else
   export EDITOR='nvim'
 fi
 
+export TERMINAL='wezterm'
+
 # Uncomment the following line to disable colors in ls.
 #DISABLE_LS_COLORS="true"
 #LOAD set LS_COLORS from .dircolors

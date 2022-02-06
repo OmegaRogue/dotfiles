@@ -15,4 +15,31 @@ alias cfd='cloudflared'
 
 alias imgcat='wezterm imgcat'
 
+
+if (( $+commands[bat] && ! ${+ZSH_CAT_PREFER_CAT} )); then
+  typeset -g bat_params; bat_params=()
+
+  function cat(){
+    bat ${bat_params} $@
+  }
+  compdef cat=bat
+else
+  typeset -g _cat
+  _cat=(=cat)
+
+  typeset -g _cat_params
+  _cat_params=()
+
+
+  function cat(){
+    $_cat ${_cat_params} -C $@
+  }
+  compdef cat=cat
+fi
+
+
+if [[ -f /etc/pacman.conf ]] then
+	alias dragon='dragon-drag-and-drop'
+fi
+
 #alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'

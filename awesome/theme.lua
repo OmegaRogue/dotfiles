@@ -60,6 +60,11 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
+theme.notification_font = "Segoe UI Regular 18"
+theme.notification_shape = function(cr, width, height)
+    return gears.shape.rounded_rect(cr, width, height, 5)
+end
+
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
@@ -73,8 +78,8 @@ theme.menu_width  = dpi(200)
 theme.wibar_height = dpi(30)
 
 theme.tasklist_shape = gears.shape.powerline
-theme.tasklist_font_focus               = "JetBrainsMono Nerd Font Mono 10"
-theme.tasklist_font                     = "JetBrainsMono Nerd Font Mono Extra Bold 10"
+theme.tasklist_font_focus               = "Segoe UI Bold 14"
+theme.tasklist_font                     = "Segoe UI Regular 14"
 theme.tasklist_align                    = 'center'
 --theme.tasklist_spacing                  = 0
 --theme.tasklist_shape_border_width       = 0

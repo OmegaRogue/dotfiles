@@ -5,23 +5,18 @@ Match user "omegarogue"
 
 Host node01
   HostName 192.168.0.50
-  User alarm
   ForwardAgent yes
 Host node02
   HostName 192.168.0.51
-  User alarm
   ForwardAgent yes
 Host node03
   HostName 192.168.0.52
-  User alarm
   ForwardAgent yes
 Host node04
   HostName 192.168.0.53
-  User alarm
   ForwardAgent yes
 Host node05
   HostName 192.168.0.54
-  User alarm
   ForwardAgent yes
 
 Host omegastorage

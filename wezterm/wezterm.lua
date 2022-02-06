@@ -6,7 +6,7 @@ return {
     -- The default text color
     foreground = "#DFDBD2",
     -- The default background color
-    background = "#41403B",
+    --background = "#41403B",
     -- Overrides the cell background color when the current cell is occupied by the
     -- cursor and the cursor style is set to Block
     cursor_bg = "#DFDBD2",
@@ -25,8 +25,54 @@ return {
     top = 2,
     bottom = 2
   },
-  enable_wayland = true,
-  enable_scroll_bar = true,
+  --enable_wayland = true,
+  --enable_scroll_bar = true,
   default_cursor_style = "BlinkingBar",
   warn_about_missing_glyphs = false,
+  ssh_domains = {
+    {
+      -- This name identifies the domain
+      name = "node01",
+      -- The address to connect to
+      remote_address = "192.168.0.50",
+      -- The username to use on the remote host
+      username = "omegarogue",
+    },
+	{
+      -- This name identifies the domain
+      name = "node02",
+      -- The address to connect to
+      remote_address = "192.168.0.51",
+      -- The username to use on the remote host
+      username = "omegarogue",
+    },
+	{
+      -- This name identifies the domain
+      name = "node03",
+      -- The address to connect to
+      remote_address = "192.168.0.52",
+      -- The username to use on the remote host
+      username = "omegarogue",
+    },
+	{
+      -- This name identifies the domain
+      name = "node04",
+      -- The address to connect to
+      remote_address = "192.168.0.53",
+      -- The username to use on the remote host
+      username = "omegarogue",
+    },
+	{
+      -- This name identifies the domain
+      name = "node05",
+      -- The address to connect to
+      remote_address = "192.168.0.54",
+      -- The username to use on the remote host
+      username = "omegarogue",
+    }
+
+
+
+
+  }
 }

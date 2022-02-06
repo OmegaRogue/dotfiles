@@ -7,7 +7,17 @@
 
 let home_path = $HOME
 
+let chassis = "undefined"
+let location = "undefined"
+let deployment = "undefined"
+let icon_name = "undefined"
 
+if executable("hostnamectl")
+	let chassis = system('hostnamectl chassis')
+	let location = system('hostnamectl location')
+	let deployment = system('hostnamectl deployment')
+	let icon_name = system('hostnamectl icon-name')
+endif
 "Plugins managed with vim-plug {{{
 if filereadable(expand("~/.config/nvim/plugins.vim"))
   source ~/.config/nvim/plugins.vim
@@ -32,6 +42,9 @@ set guicursor+=sm:block-blinkwait175-blinkoff150-blinkon175
 set mouse=a
 set clipboard=unnamedplus
 
+" Cursor line
+set cursorline
+set cursorcolumn
 
 set splitbelow
 set splitright
@@ -47,6 +60,9 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 
+let darcula#palette.bg = darcula#palette.null
+set bg&
+call darcula#Hi('Normal',darcula#palette.fg, darcula#palette.bg)
 " Ubuntu Mate terminal colors in terminale
 "let g:terminal_color_0  = '#2e3436'
 "let g:terminal_color_1  = '#cc0000'

@@ -66,48 +66,48 @@ local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 local lain = require("lain")
 local freedesktop = require("freedesktop")
 require('smart_borders'){
-	show_button_tooltips = true,
+	show_button_tooltips = false,
 	align_horizontal = "center",
 	color_normal = "#555555",
 	color_focus = "#666666",
-	button_size = 60,
-    button_floating_size = 80,
-    button_close_size = 80,
+	button_size = 40,
+    button_floating_size = 60,
+    button_close_size = 60,
 	border_width = 6,
 	color_close_normal = {
         type = "linear",
         from = {0, 0},
-        to = {80, 0},
+        to = {60, 0},
         stops = {{0, "#fd8489"}, {1, "#555555"}}
     },
     color_close_focus = {
         type = "linear",
         from = {0, 0},
-        to = {80, 0},
+        to = {60, 0},
         stops = {{0, "#fd8489"}, {1, "#666666"}}
     },
     color_close_hover = {
         type = "linear",
         from = {0, 0},
-        to = {80, 0},
+        to = {60, 0},
         stops = {{0, "#FF9EA3"}, {1, "#666666"}}
     },
     color_floating_normal = {
         type = "linear",
         from = {0, 0},
-        to = {60, 0},
+        to = {40, 0},
         stops = {{0, "#555555"}, {1, "#ddace7"}}
     },
     color_floating_focus = {
         type = "linear",
         from = {0, 0},
-        to = {60, 0},
+        to = {40, 0},
         stops = {{0, "#666666"}, {1, "#ddace7"}}
     },
     color_floating_hover = {
         type = "linear",
         from = {0, 0},
-        to = {60, 0},
+        to = {40, 0},
         stops = {{0, "#666666"}, {1, "#F7C6FF"}}
     },
 
@@ -116,14 +116,14 @@ require('smart_borders'){
 
 --require("GtkNotebook")
 
-awful.spawn("xfsettingsd --daemon")
-awful.spawn("Thunar --daemon")
-awful.spawn("xfdesktop")
+--awful.spawn("xfsettingsd --daemon")
+--awful.spawn("Thunar --daemon")
+--awful.spawn("xfdesktop")
 
 -- autostart functionality for various desktop daemons 
 -- needed since we're just using awesome rather than a full-blown DE
 --awful.spawn("nextcloud")
-awful.spawn("picom --daemon") -- start compositor compton as a daemon
+--awful.spawn("picom --daemon") -- start compositor compton as a daemon
 -- the following scans the /etc/xdg/autostart directory and starts anything
 -- there
 -- local pfile = io.popen("find /etc/xdg/autostart -maxdepth 1 -print0")
@@ -464,7 +464,7 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+    awful.key({ modkey,           }, "Return", function () awful.spawn.with_shell(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
@@ -499,11 +499,9 @@ globalkeys = gears.table.join(
                   end
               end,
               {description = "restore minimized", group = "client"}),
-
     -- Prompt
     awful.key({ modkey },            "r",     function () awful.spawn.with_shell("~/.config/rofi/bin/launcher_misc") end,
               {description = "run prompt", group = "launcher"}),
-
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run {
@@ -515,10 +513,11 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() 
+    awful.key({ modkey }, "p", function()
 					os.execute('~/.config/rofi/bin/launcher_misc')
 				end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+	awful.key({ }, "Print", function () awful.util.spawn("flameshot gui", false) end)
 )
 
 clientkeys = gears.table.join(
@@ -634,7 +633,7 @@ root.keys(globalkeys)
 -- }}}
 
 require("titlebar")
-
+require("rules")
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
@@ -642,7 +641,6 @@ client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
-	
 	--awful.ewmh.client_geometry_requests(c, , {})
 
     if awesome.startup

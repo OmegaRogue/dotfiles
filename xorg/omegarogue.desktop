@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name = custom
+Exec=/etc/X11/Xsession
+TryExec=/etc/X11/Xsession
+Type=Application
+Keywords=Window Manager
