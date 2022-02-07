@@ -8,8 +8,8 @@
     ~/.config/awesome/utils.lua: awesome/utils.lua
     ~/.config/awesome/DataDumper.lua: awesome/DataDumper.lua
     ~/.config/awesome/popup.lua: awesome/popup.lua
-    ~/.config/awesome/freedesktop: ../../awesome/freedesktop
-    ~/.config/awesome/awesome-buttons: ../../awesome/awesome-buttons
-    ~/.config/awesome/awesome-wm-widgets: ../../awesome/awesome-wm-widgets
-    ~/.config/awesome/smart_borders: ../../awesome/smart_borders
+    ~/.config/awesome/freedesktop: freedesktop
+    ~/.config/awesome/awesome-buttons: awesome-buttons
+    ~/.config/awesome/awesome-wm-widgets: awesome-wm-widgets
+    ~/.config/awesome/smart_borders: awesome/smart_borders
 
