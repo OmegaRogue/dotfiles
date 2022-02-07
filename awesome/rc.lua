@@ -394,6 +394,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             s.mysystray,
+			volume_widget(),
 			spotify_widget(),
 			github_activity_widget{
 				username = 'OmegaRogue',

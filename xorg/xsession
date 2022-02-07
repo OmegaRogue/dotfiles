@@ -1,17 +1,17 @@
-# vim: set ft=sh:
+#!/bin/sh
 
 nm-applet &
 barriers --disable-crypto --enable-drag-drop -l /var/log/barrier.log -c $HOME/.dotfiles/barrier/pc.conf &
 bitwarden-desktop &
 xfsettingsd -d --replace &
-eval $(gnome-keyring-daemon --start) &
-export SSH_AUTH_SOCK &
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK
 #xrdb ~/.Xresources &
 picom -b &
 flameshot &
 #dunst &
 #xrdb -load ~/.config/X11/xresources &
-$HOME/.dotfiles/screenlayout/screens.sh &
+.dotfiles/screenlayout/screens.sh &
 #gpgconf --launch gpg-agent &
 evolution &
 

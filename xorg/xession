@@ -1,7 +1,0 @@
-#!/bin/sh
-
-nm-applet &
-gnome-settings-daemon &
-gnome-keyring-daemon &
-
-exec awesome
