@@ -1,7 +1,7 @@
 # vim: set ft=sh:
 
 nm-applet &
-barriers --disable-crypto --enable-drag-drop -l /var/log/barrier.log -c $HOME/.dotfiles/barrier/pc.conf &
+barriers --disable-crypto -l /var/log/barrier.log -c $HOME/.dotfiles/barrier/pc.conf &
 bitwarden-desktop &
 xfsettingsd -d --replace &
 eval $(gnome-keyring-daemon --start) &
