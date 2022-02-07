@@ -10,3 +10,15 @@
 [submodule "meta/plugins/dotbot-ifplatform"]
 	path = meta/plugins/dotbot-ifplatform
 	url = https://github.com/OmegaRogue/dotbot-ifplatform
+[submodule "awesome/awesome-buttons"]
+	path = awesome/awesome-buttons
+	url = git@github.com:streetturtle/awesome-buttons.git
+[submodule "awesome/smart_borders"]
+	path = awesome/smart_borders
+	url = git@github.com:intrntbrn/smart_borders.git
+[submodule "awesome/freedesktop"]
+	path = awesome/freedesktop
+	url = git@github.com:lcpz/awesome-freedesktop.git
+[submodule "awesome/awesome-wm-widgets"]
+	path = awesome/awesome-wm-widgets
+	url = git@github.com:streetturtle/awesome-wm-widgets.git

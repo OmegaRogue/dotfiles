@@ -77,13 +77,22 @@ theme.menu_width  = dpi(200)
 
 theme.wibar_height = dpi(30)
 
-theme.tasklist_shape = gears.shape.powerline
+--theme.taglist_fg_focus      = '#197600'
+--theme.taglist_bg_focus      = '#aedd00'
+--theme.taglist_font          = "JetBrainsMono Nerd Font Mono 12"
+--theme.taglist_fg_normal     = "#DCDCCC"
+--theme.taglist_bg_normal     = theme.bg_normal
+--theme.taglist_squares_sel   = theme_assets.taglist_squares_unsel(4, theme.taglist_fg_focus)
+--theme.taglist_squares_unsel = theme.taglist_squares_sel
+
+
+--theme.tasklist_shape = gears.shape.powerline
 theme.tasklist_font_focus               = "Segoe UI Bold 14"
 theme.tasklist_font                     = "Segoe UI Regular 14"
 theme.tasklist_align                    = 'center'
---theme.tasklist_spacing                  = 0
---theme.tasklist_shape_border_width       = 0
---theme.tasklist_shape_border_width_focus = 0
+theme.tasklist_spacing                  = 0
+theme.tasklist_shape_border_width       = 0
+theme.tasklist_shape_border_width_focus = 0
 
 
 -- You can add as many variables as

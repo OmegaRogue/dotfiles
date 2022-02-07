@@ -14,7 +14,7 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                    -- placement = awful.placement.no_overlap+awful.placement.no_offscreen
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
 	},
     { rule_any = {type = { "normal", "dialog" },
@@ -80,9 +80,26 @@ awful.rules.rules = {
 		  "Event Tester",
 		  "dragon",
 	  }},
-	  properties = { ontop = true, sticky = true}
+	  properties = { ontop = true }
+  }, 
+  { rule_any = { class = { "signal", "Signal", "whatsapp-nativefier-d40211", "whatsapp-nativefier-d40211", "telegram-desktop", "TelegramDesktop" } },
+    properties = { screen = 3, tag = "6", floating = false }
   },
 
+  { rule_any = { class = { "microsoft teams - preview", "Microsoft Teams - Preview" } },
+    properties = { screen = 3, tag = "7", floating = false }
+  },
+  { rule_any = { class = { "evolution", "Evolution" } },
+    properties = { screen = 3, tag = "8" }
+  },
+
+  { rule = { class = "discord" },
+      properties = { screen = 3, tag = "9", floating = false, maximise = false }
+  },
+  { rule = { role = "_NET_WM_STATE_FULLSCREEN" },
+      properties = { floating = true } },
+  { rule = { class = "Gimp", role = "gimp-image-window" },
+      properties = { maximized = true } },
     -- Add titlebars to normal clients and dialogs
 --	{
 		--rule_any = { requests_no_titlebar = { true } },
