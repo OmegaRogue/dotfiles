@@ -6,7 +6,7 @@ return {
     -- The default text color
     foreground = "#DFDBD2",
     -- The default background color
-    --background = "#41403B",
+    -- background = "#41403B",
     -- Overrides the cell background color when the current cell is occupied by the
     -- cursor and the cursor style is set to Block
     cursor_bg = "#DFDBD2",
@@ -30,6 +30,11 @@ return {
   default_cursor_style = "BlinkingBar",
   warn_about_missing_glyphs = false,
   ssh_domains = {
+	{
+	  name = "omegamtf",
+	  remote_address = "omegamtf",
+	  username = "omegarogue",
+    },
     {
       -- This name identifies the domain
       name = "node01",
@@ -70,9 +75,41 @@ return {
       -- The username to use on the remote host
       username = "omegarogue",
     }
+  },
+  hyperlink_rules = {
+    -- Linkify things that look like URLs
+    -- This is actually the default if you don't specify any hyperlink_rules
+    {
+      regex = "\\b\\w+://(?:[\\w.-]+)\\.[a-z]{2,15}\\S*\\b",
+      format = "$0",
+    },
 
+    -- linkify email addresses
+    {
+      regex = "\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b",
+      format = "mailto:$0",
+    },
 
+    -- file:// URI
+    {
+      regex = "\\bfile://\\S*\\b",
+      format = "$0",
+    },
 
-
+    -- Make task numbers clickable
+    --[[
+    {
+      regex = "\\b[tT](\\d+)\\b"
+      format = "https://example.com/tasks/?t=$1"
+    }
+    ]]
+	{
+		regex = "(?:(?:zgenom\\s+load)|(?:Plug)|(?:set\\s+-g\\s+@plugin))\\s+[\'\"]?([^\\s/\'\"]+/[^\\s/\'\"]+)[\'\"]?",
+		format = "https://github.com/$1",
+	},
+	{
+		regex = "(?:zgenom\\s+ohmyzsh)\\s+(?:--completion\\s+)?[\'\"]?([^\\s/\'\"]+/[^\\s/\'\"]+)[\'\"]?",
+		format = "https://github.com/ohmyzsh/oh-my-zsh/tree/master/$1",
+	}
   }
 }

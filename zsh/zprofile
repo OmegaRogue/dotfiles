@@ -1,5 +1,5 @@
 if [[ "$(tty)" = "/dev/tty1" ]]; then
-	if preg awesome; then
+	if pgrep awesome; then
 		nm-applet &
 		.screenlayout/screens.sh &
 		barriers --disable-crypto --enable-drag-drop -l /var/log/barrier.log -c $HOME/.dotfiles/barrier/pc.conf &

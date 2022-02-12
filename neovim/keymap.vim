@@ -47,6 +47,63 @@ xmap F <Plug>Sneak_S
 omap f <Plug>Sneak_s
 omap F <Plug>Sneak_S
 "}}}
+
+" -----------------------------------------------------
+" Smooth scroll vim-smooth-scroll {{{
+" -----------------------------------------------------
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-o> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+"}}}
+
+" -----------------------------------------------------
+" tmux navigator {{{
+" -----------------------------------------------------
+
+"Cycle between tmux/vim seamlessly
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <A-Left>  :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-Down>  :TmuxNavigateDown<cr>
+nnoremap <silent> <A-Up>    :TmuxNavigateUp<cr>
+nnoremap <silent> <A-Right> :TmuxNavigateRight<cr>
+nnoremap <silent> <A-z>     :TmuxNavigatePrevious<cr>
+nnoremap <silent> <A-h>     :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j>     :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k>     :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l>     :TmuxNavigateRight<cr>
+"additional mappings to support urxvt
+nnoremap <silent> <Esc><Left>  :TmuxNavigateLeft<cr>
+nnoremap <silent> <Esc><Down>  :TmuxNavigateDown<cr>
+nnoremap <silent> <Esc><Up>    :TmuxNavigateUp<cr>
+nnoremap <silent> <Esc><Right> :TmuxNavigateRight<cr>
+nnoremap <silent> <Esc>z       :TmuxNavigatePrevious<cr>
+nnoremap <silent> <Esc>h       :TmuxNavigateLeft<cr>
+nnoremap <silent> <Esc>j       :TmuxNavigateDown<cr>
+nnoremap <silent> <Esc>k       :TmuxNavigateUp<cr>
+nnoremap <silent> <Esc>l       :TmuxNavigateRight<cr>
+
+"terminal mode
+tnoremap <silent> <A-Left>  <C-W>:TmuxNavigateLeft<cr>
+tnoremap <silent> <A-Down>  <C-W>:TmuxNavigateDown<cr>
+tnoremap <silent> <A-Up>    <C-W>:TmuxNavigateUp<cr>
+tnoremap <silent> <A-Right> <C-W>:TmuxNavigateRight<cr>
+tnoremap <silent> <A-z>     <C-W>:TmuxNavigatePrevious<cr>
+tnoremap <silent> <A-h>     <C-W>:TmuxNavigateLeft<cr>
+tnoremap <silent> <A-j>     <C-W>:TmuxNavigateDown<cr>
+tnoremap <silent> <A-k>     <C-W>:TmuxNavigateUp<cr>
+tnoremap <silent> <A-l>     <C-W>:TmuxNavigateRight<cr>
+"additional mappings to support urxvt
+tnoremap <silent> <Esc><Left>  <C-W>:TmuxNavigateLeft<cr>
+tnoremap <silent> <Esc><Down>  <C-W>:TmuxNavigateDown<cr>
+tnoremap <silent> <Esc><Up>    <C-W>:TmuxNavigateUp<cr>
+tnoremap <silent> <Esc><Right> <C-W>:TmuxNavigateRight<cr>
+tnoremap <silent> <Esc>z       <C-W>:TmuxNavigatePrevious<cr>
+tnoremap <silent> <Esc>h       <C-W>:TmuxNavigateLeft<cr>
+tnoremap <silent> <Esc>j       <C-W>:TmuxNavigateDown<cr>
+tnoremap <silent> <Esc>k       <C-W>:TmuxNavigateUp<cr>
+tnoremap <silent> <Esc>l       <C-W>:TmuxNavigateRight<cr>
+
+"}}}
+
 " -----------------------------------------------------
 " F-key actions {{{
 " =====================================================

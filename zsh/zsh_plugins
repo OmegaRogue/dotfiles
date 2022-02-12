@@ -19,7 +19,7 @@ if ! zgenom saved; then
 	zgenom ohmyzsh plugins/colored-man-pages				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/colored-man-pages
 	zgenom ohmyzsh plugins/sudo								# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/sudo
 	zgenom ohmyzsh plugins/magic-enter						# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/magic-enter
-	zgenom ohmyzsh plugins/command-not-found				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/command-not-found
+#	zgenom ohmyzsh plugins/command-not-found				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/command-not-found
 	zgenom ohmyzsh plugins/virtualenv						# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/virtualenv
 	zgenom load desyncr/auto-ls								# https://github.com/desyncr/auto-ls
 	zgenom load zpm-zsh/colors								# https://github.com/zpm-zsh/colors

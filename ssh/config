@@ -3,6 +3,11 @@ Match user "omegarogue"
     # Unfortunately ssh does not support line breaks in config files
     #LocalCommand ssh -o PermitLocalCommand=no %n "which git >/dev/null && ([[ -d ~/.dotfiles ]] && (echo "Updating dotfiles on %h ..." && cd ~/.dotfiles && git pull | grep -q 'Already up to date.' && echo 'Already up to date.' || zsh ~/.dotfiles/install ) || (echo "Installing dotfiles on %h ..." && git clone -q https://github.com/OmegaRogue/dotfiles .dotfiles && "sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"" && rm ~/.oh-my-zsh/oh-my-zsh.sh ~/.zshrc && ./.dotfiles/install && echo "done"))"
 
+
+Host omegamtf
+	HostName 192.168.0.21
+	HostName 192.168.0.31
+  ForwardAgent yes
 Host node01
   HostName 192.168.0.50
   ForwardAgent yes

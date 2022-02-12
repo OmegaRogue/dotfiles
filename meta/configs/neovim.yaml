@@ -1,15 +1,18 @@
 - link:
     ~/.config/nvim/init.vim: neovim/init.vim
-    ~/.config/nvim/plugins.vim: neovim/plugins.vim
-    ~/.config/nvim/vscode.vim: neovim/vscode.vim
-    ~/.config/nvim/keymap.vim: neovim/keymap.vim
+    # ~/.config/nvim/init.lua: neovim/init.lua
+    # ~/.config/nvim/plugins.vim: neovim/plugins.vim
+    ~/.config/nvim/lua/plugins.lua: neovim/lua/plugins.lua
+    # ~/.config/nvim/vscode.vim: neovim/vscode.vim
+    # ~/.config/nvim/keymap.vim: neovim/keymap.vim
+    ~/.config/nvim/lua/keymap.lua: neovim/lua/keymap.lua
 
     ~/.config/nvim/autoload/utils.vim: neovim/autoload/utils.vim
-- shell:
-    - 
-      description: Install Neovim
-      command: | 
-          if   [ -x "$(command -v apk)"    ]; then sudo apk add --no-cache neovim
-          elif [ -x "$(command -v apt-get)"]; then sudo apt-get install -y neovim
-          elif [ -x "$(command -v pacman)" ]; then sudo pacman -S --noconfirm neovim
-          else echo "FAILED TO INSTALL PACKAGE: Package manager not found. You must manually install: neovim">&2; fi
+# - shell:
+#     - 
+#       description: Install Neovim
+#       command: | 
+#           if   [ -x "$(command -v apk)"    ]; then sudo apk add --no-cache neovim
+#           elif [ -x "$(command -v apt-get)"]; then sudo apt-get install -y neovim
+#           elif [ -x "$(command -v pacman)" ]; then sudo pacman -S --noconfirm neovim
+#           else echo "FAILED TO INSTALL PACKAGE: Package manager not found. You must manually install: neovim">&2; fi

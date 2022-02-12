@@ -67,14 +67,17 @@ require('powerline')
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 local awesomebuttons = require("awesome-buttons.awesome-buttons")
-local github_activity_widget = require(
-                                   "awesome-wm-widgets.github-activity-widget.github-activity-widget")
-local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
+local github_activity_widget = require("awesome-wm-widgets.github-activity-widget.github-activity-widget")
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
-local batteryarc_widget = require(
-                              "awesome-wm-widgets.batteryarc-widget.batteryarc")
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+
 local lain = require("lain")
-local quake = lain.util.quake {app = "wezterm", argname = "", followtag = true}
+local bat = lain.widget.bat({})
+local temp = lain.widget.temp({
+    settings = function()
+        widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
+    end
+})
 local freedesktop = require("freedesktop")
 require('smart_borders') {
     show_button_tooltips = false,
@@ -340,7 +343,6 @@ awful.screen.connect_for_each_screen(function(s)
             spotify_widget(),
             github_activity_widget {username = 'OmegaRogue'},
             -- mytextclock,
-            todo_widget(),
             s.mylayoutbox,
             powerline_widget,
 			s.powerbutton,
@@ -366,7 +368,6 @@ awful.screen.connect_for_each_screen(function(s)
             -- spotify_widget(),
             -- github_activity_widget {username = 'OmegaRogue'},
             -- mytextclock,
-            -- todo_widget(),
             -- s.mylayoutbox,
             -- powerline_widget,
             -- logout_menu_widget()
@@ -396,11 +397,7 @@ globalkeys = gears.table.join(awful.key({modkey}, "s", hotkeys_popup.show_help,
     group = "tag"
 }), awful.key({modkey}, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
-                              awful.key({modkey}, "z",
-                                        function() quake:toggle() end, {
-    description = "quake",
-    group = "awesome"
-}), awful.key({modkey}, "j", function() awful.client.focus.byidx(1) end,
+	 awful.key({modkey}, "j", function() awful.client.focus.byidx(1) end,
               {description = "focus next by index", group = "client"}),
                               awful.key({modkey}, "k", function()
     awful.client.focus.byidx(-1)
@@ -609,3 +606,22 @@ client.connect_signal("unfocus",
 -- end
 
 awful.spawn.with_shell('powerline wm.awesome')
+--path = system.pathForFile("highScore.txt", system.DocumentsDirectory)
+-- local file,err = io.open("dump.txt",'w')
+-- if file then
+--     for s in screen do
+--         --file:write(json.encode(s))
+--         file:write(s.index.."=")
+-- 		for o,a in pairs(s.outputs) do
+-- 			file:write(tostring(o).."{\n")
+-- 				for k,v in pairs(a) do
+-- 					file:write("\t"..tostring(k).."="..tostring(v)..",\n")
+-- 				end
+-- 			
+-- 			file:write("\t},\n")
+-- 		end
+--     end
+--     file:close()
+-- else
+--     print("error:", err) -- not so hard?
+-- end

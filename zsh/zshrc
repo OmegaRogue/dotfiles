@@ -52,7 +52,8 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/nomad nomad
 
 . $HOME/.local/lib/python3.10/site-packages/powerline/bindings/zsh/powerline.zsh
-
+# Search repos for programs that can't be found
+source /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
