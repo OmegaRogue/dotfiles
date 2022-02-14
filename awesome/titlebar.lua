@@ -1,9 +1,7 @@
-
 local awful = require("awful")
 local beautiful = require("beautiful")
 local gears = require("gears")
 local wibox = require("wibox")
-
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 -- client.connect_signal("request::titlebars", function(c)

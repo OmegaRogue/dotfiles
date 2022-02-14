@@ -6,7 +6,7 @@ barriers --disable-crypto -l /var/log/barrier.log -c $HOME/.dotfiles/barrier/pc.
 setxkbmap -device `xinput list | grep "Virtual core XTEST keyboard" | sed -e 's/.\+=\([0-9]\+\).\+/\1/'` de
  
 bitwarden-desktop &
-xfsettingsd -d --replace &
+#xfsettingsd -d --replace &
 eval $(gnome-keyring-daemon --start) &
 export SSH_AUTH_SOCK &
 #xrdb ~/.Xresources &
@@ -17,5 +17,5 @@ flameshot &
 $HOME/.dotfiles/screenlayout/screens.sh &
 #gpgconf --launch gpg-agent &
 evolution &
-
-exec awesome
+exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+#exec awesome

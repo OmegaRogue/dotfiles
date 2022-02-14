@@ -1,6 +1,6 @@
 {
 	"common": {
-		"term_truecolor": false
+		"term_truecolor": true
 	},
 	"ext": {
 		"ipython": {
@@ -45,8 +45,8 @@
 			}
 		},
 		"wm": {
-			"colorscheme": "default",
-			"theme": "default",
+			"colorscheme": "omegavoid",
+			"theme": "omegavoid",
 			"update_interval": 2
 		}
 	}

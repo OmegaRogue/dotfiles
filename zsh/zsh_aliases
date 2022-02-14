@@ -17,12 +17,12 @@ alias imgcat='wezterm imgcat'
 
 alias sudo='sudo '
 
+
 unalias l
 unalias la
 unalias ll
 unalias ls
 unalias lsa
-
 
 if (( $+commands[bat] && ! ${+ZSH_CAT_PREFER_CAT} )); then
   typeset -g bat_params; bat_params=()

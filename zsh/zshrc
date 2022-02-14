@@ -1,4 +1,5 @@
 #setopt SOURCE_TRACE
+#setopt XTRACE
 
 if [[ $(uname -r) == *WSL* ]]; then
 	$HOME/.local/bin/gpg-agent-relay start
@@ -13,7 +14,6 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt share_history          # share command history data
 
 
-source $HOME/.zsh_plugins
 
 function magic-enter-cmd {
 	if command git rev-parse --is-inside-work-tree &>/dev/null; then
@@ -25,6 +25,13 @@ function magic-enter-cmd {
 
 powerline-daemon -q
 
+
+# ensure correct PATH zshenv
+source $HOME/.zshenv
+
+
+source $HOME/.zsh_plugins
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -34,8 +41,6 @@ if [ -f ~/.zsh_aliases ]; then
   . ~/.zsh_aliases
 fi
 
-# ensure correct PATH zshenv
-source $HOME/.zshenv
 
 
 if [[ -z $SSH_CONNECTION ]]; then
@@ -70,3 +75,4 @@ source /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null
 #unset __conda_setup
 # <<< conda initialize <<<
 
+neofetch

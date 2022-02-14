@@ -111,5 +111,12 @@ return {
 		regex = "(?:zgenom\\s+ohmyzsh)\\s+(?:--completion\\s+)?[\'\"]?([^\\s/\'\"]+/[^\\s/\'\"]+)[\'\"]?",
 		format = "https://github.com/ohmyzsh/oh-my-zsh/tree/master/$1",
 	}
-  }
+  },
+    -- leader = { key="\\", mods="CTRL", timeout_milliseconds=1000 },
+   -- keys = {
+    -- {key="2", mods="LEADER", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
+    -- {key="5", mods="LEADER", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
+    -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
+  -- }
+
 }

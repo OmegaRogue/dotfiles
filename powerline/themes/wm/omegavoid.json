@@ -2,12 +2,20 @@
 	"segments": {
 		"right": [
 			{
-				"function": "powerline.segments.common.vcs.branch"
+				"function":"powerline.segments.common.sys.cpu_load_percent"
 			},
 			{
-				"function": "powerline.segments.common.wthr.weather",
-				"priority": 50
+				"function":"powerline.segments.common.sys.uptime"
 			},
+			{
+            "function":"powerline.segments.common.bat.battery",
+             "args": {
+                 "full_heart": "  ♥",
+                 "empty_heart": "  ♥",
+                 "online": "  ⚡︎",
+                 "offline": "   "
+                }
+            },
 			{
 				"function": "powerline.segments.common.time.date"
 			},
@@ -17,14 +25,6 @@
 				"args": {
 					"format": "%H:%M",
 					"istime": true
-				}
-			},
-			{
-				"function": "powerline.segments.common.mail.email_imap_alert",
-				"priority": 10,
-				"args": {
-					"username": "",
-					"password": ""
 				}
 			}
 		]

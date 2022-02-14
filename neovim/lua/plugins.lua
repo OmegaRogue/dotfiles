@@ -3,10 +3,9 @@
 -- Plugin manager (Plug) settings.
 -- Author : OmegaRogue <thatomegarogue@gmail.com>
 -- ======================================================================================================================
-
---if &compatible
+-- if &compatible
 --  set nocompatible
---end
+-- end
 local Plug = vim.fn['plug#']
 vim.cmd [[
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -17,14 +16,14 @@ endif
 ]]
 vim.call('plug#begin', '~/.config/nvim/plugins')
 
-Plug 'voldikss/vim-floaterm'
 Plug 'svermeulen/vimpeccable'
+
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Interface {{{
 -- ---------------------------------------------------------------------------------------------------------------------
 
---Plug 'ashisha/image.vim'
---Plug 'vim-utils/vim-man'
+-- Plug 'ashisha/image.vim'
+-- Plug 'vim-utils/vim-man'
 Plug 'lambdalisue/vim-pager'
 Plug 'lambdalisue/vim-manpager'
 Plug 'christoomey/vim-tmux-navigator'
@@ -32,8 +31,10 @@ Plug 'melonmanchan/vim-tmux-resizer'
 Plug 'MikeDacre/tmux-zsh-vim-titles'
 Plug 'skywind3000/vim-preview'
 Plug 'majutsushi/tagbar'
+Plug('tversteeg/registers.nvim', {branch = 'main'})
+Plug 'voldikss/vim-floaterm'
 
---}}}
+-- }}}
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Color Themes {{{
@@ -41,7 +42,7 @@ Plug 'majutsushi/tagbar'
 
 Plug 'doums/darcula'
 
---}}}
+-- }}}
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Text insertion/manipulation {{{
@@ -53,15 +54,15 @@ Plug 'matze/vim-move'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'sickill/vim-pasta'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug('mg979/vim-visual-multi', {branch='master'})
-Plug 'bkad/CamelCaseMotion'  -- CamelCase and snake_case motions
+Plug('mg979/vim-visual-multi', {branch = 'master'})
+Plug 'bkad/CamelCaseMotion' -- CamelCase and snake_case motions
 Plug 'terryma/vim-expand-region' -- Easily expand selected region
-Plug('godlygeek/tabular', { on='Tabularize' }) -- Easy alignment
+Plug('godlygeek/tabular', {on = 'Tabularize'}) -- Easy alignment
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
---}}}
+-- }}}
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Project Management {{{
@@ -74,9 +75,9 @@ Plug 'tpope/vim-vinegar'
 
 -- Plug 'vim-ctrlspace/vim-ctrlspace'
 
---Plug 'ludovicchabant/vim-gutentags'
---Plug 'skywind3000/gutentags_plus'
---}}}
+-- Plug 'ludovicchabant/vim-gutentags'
+-- Plug 'skywind3000/gutentags_plus'
+-- }}}
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Git {{{
@@ -87,7 +88,7 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 
---}}}
+-- }}}
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Status Bar Theme vim-airline {{{
@@ -96,19 +97,24 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 
---}}}
+-- }}}
 
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Languages {{{
 -- ---------------------------------------------------------------------------------------------------------------------
 
-Plug('neoclide/coc.nvim', {branch='release'})
+Plug('neoclide/coc.nvim', {branch = 'release'})
 
 -- HTML5 syntax
---Plug 'othree/html5.vim'
+-- Plug 'othree/html5.vim'
 
 -- Color highlighter
-Plug('lilydjwg/colorizer', { ['for']={'css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript', 'javascript.jsx'}})
+Plug('lilydjwg/colorizer', {
+    ['for'] = {
+        'css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript',
+        'javascript.jsx'
+    }
+})
 
 -- Yaml indentation
 Plug 'martin-svk/vim-yaml'
@@ -124,7 +130,7 @@ Plug 'omnisharp/omnisharp-vim'
 -- LaTeX
 Plug 'lervag/vimtex'
 
---Plug 'vim-scripts/Improved-AnsiEsc'
+-- Plug 'vim-scripts/Improved-AnsiEsc'
 
 -- Hashicorp tools
 Plug 'hashivim/vim-terraform'
@@ -139,12 +145,11 @@ Plug 'dzeban/vim-log-syntax'
 -- Gitignore syntax
 Plug 'gisphm/vim-gitignore'
 
---Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+-- Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 Plug 'samsaga2/vim-z80'
 Plug 'vim-scripts/avr8bit.vim'
 
---}}}
-
+-- }}}
 
 vim.call('plug#end')
