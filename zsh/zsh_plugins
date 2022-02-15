@@ -14,12 +14,12 @@ if ! zgenom saved; then
 
 	zgenom compdef
 	zgenom ohmyzsh											# https://github.com/ohmyzsh/oh-my-zsh
-	alias
-	unalias l
-	unalias la
-	unalias ll
-	unalias ls
-	unalias lsa
+#	alias
+#	unalias l
+#	unalias la
+#	unalias ll
+#	unalias ls
+#	unalias lsa
 
 	zgenom ohmyzsh plugins/git								# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/git
 	zgenom ohmyzsh plugins/git-flow							# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/git-flow

@@ -25,3 +25,9 @@
 [submodule "awesome/modalawesome"]
 	path = awesome/modalawesome
 	url = https://github.com/potamides/modalawesome
+[submodule "awesome/awesome-switcher"]
+	path = awesome/awesome-switcher
+	url = https://github.com/berlam/awesome-switcher.git
+[submodule "awesome/lain"]
+	path = awesome/lain
+	url = https://github.com/lcpz/lain.git

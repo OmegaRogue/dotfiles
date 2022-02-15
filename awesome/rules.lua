@@ -3,7 +3,6 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local wibox = require("wibox")
 local hotkeys_popup = require("awful.hotkeys_popup")
--- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -46,7 +45,7 @@ awful.rules.rules = {
             -- and the name shown there might not match defined rules here.
             name = {
                 "Event Tester", -- xev.
-                "dragon"
+                "dragon",
             },
             role = {
                 "AlarmWindow", -- Thunderbird's calendar.
@@ -91,7 +90,13 @@ awful.rules.rules = {
     {
         rule = {class = "Gimp", role = "gimp-image-window"},
         properties = {maximized = true}
-    }
+    },
+	{
+            rule = {
+                class = "jetbrains-.*",
+                name = "win.*"
+            }, properties = { titlebars_enabled = false, focusable = false, focus = true, floating = true, placement = awful.placement.restore }
+        },
     -- Add titlebars to normal clients and dialogs
     --	{
     -- rule_any = { requests_no_titlebar = { true } },
@@ -104,4 +109,3 @@ awful.rules.rules = {
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
 }
--- }}}

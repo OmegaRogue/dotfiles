@@ -15,7 +15,7 @@ local themes_path = gfs.get_themes_dir()
 local theme = {}
 
 theme.font = "JetBrainsMono Nerd Font Mono 12"
-theme.dir = os.getenv("HOME") .. "/.config/awesome"
+--theme.dir = os.getenv("HOME") .. "/.config/awesome"
 theme.hotkeys_font = "JetBrainsMono Nerd Font Mono ExtraBold 12"
 theme.hotkeys_description_font = theme.font
 theme.bg_normal = "#222222"
@@ -36,65 +36,65 @@ theme.border_normal = "#626262"
 theme.border_focus = "#535d6c"
 theme.border_marked = "#91231c"
 
-theme.widget_mem = theme.dir .. "/icons/mem.png"
-theme.widget_cpu = theme.dir .. "/icons/cpu.png"
+theme.widget_mem = "\u{f85a} " --
+theme.widget_cpu = "\u{e266} " --
+theme.widget_ac = "\u{f492} " --
+theme.widget_battery = "\u{f578} " --
+theme.widget_battery_low = "\u{f492} " --
+theme.widget_battery_empty = "\u{f492} " --
+theme.widget_battery_percent = function(charge, status)
+    if status == "N/A" then
+        return "\u{f590}" --
+    elseif status == "Full" then
+        return "\u{f578} " --
+    elseif status == "Discharging" then
+        if charge == "N/A" then
+            return "\u{f590}" --
+        elseif charge <= 5 then
+            return "\u{f582}" --
+        elseif charge <= 10 then
+            return "\u{f579}" --
+        elseif charge <= 20 then
+            return "\u{f57a}" --
+        elseif charge <= 30 then
+            return "\u{f57b}" --
+        elseif charge <= 40 then
+            return "\u{f57c}" --
+        elseif charge <= 50 then
+            return "\u{f57d}" --
+        elseif charge <= 60 then
+            return "\u{f57e}" --
+        elseif charge <= 70 then
+            return "\u{f57f}" --
+        elseif charge <= 80 then
+            return "\u{f580}" --
+        elseif charge <= 90 then
+            return "\u{f581}" --
+        elseif charge <= 100 then
+            return "\u{f578}" --
+        end
+    elseif status == "Charging" then
+        if charge == "N/A" then
+            return "\u{f590}" --
+        elseif charge <= 20 then
+            return "\u{f585}" --
+        elseif charge <= 30 then
+            return "\u{f586}" --
+        elseif charge <= 40 then
+            return "\u{f587}" --
+        elseif charge <= 60 then
+            return "\u{f587}" --
+        elseif charge <= 80 then
+            return "\u{f589}" --
+        elseif charge <= 90 then
+            return "\u{f58a}" --
+        elseif charge <= 100 then
+            return "\u{f584}" --
+        end
+    end
+end
 
 theme.powerline_font = "JetBrainsMono Nerd Font Mono 18"
-powerline_hard = {}
-powerline_soft = {}
-
-function powerline_hard.left(col1, col2)
-    local text = ''
-    if col1 ~= "alpha" then
-        text = markup.fg.color(col1,text)
-    end
-    if col2 ~= "alpha" then
-        text = markup.bg.color(col2,text)
-    end
-    local wid = wibox.widget.textbox(text)
-    wid.font = theme.powerline_font
-    return wid
-end
-
-function powerline_soft.left(col1, col2)
-    local text = ''
-    if col1 ~= "alpha" then
-        text = markup.fg.color(col1,text)
-    end
-    if col2 ~= "alpha" then
-        text = markup.bg.color(col2,text)
-    end
-    local wid = wibox.widget.textbox(text)
-    wid.font = theme.powerline_font
-    return wid
-end
-function powerline_hard.right(col1, col2)
-    local text = ''
-    if col2 ~= "alpha" then
-        text = markup.fg.color(col2,text)
-    end
-    if col1 ~= "alpha" then
-        text = markup.bg.color(col1,text)
-    end
-    local wid = wibox.widget.textbox(text)
-    wid.font = theme.powerline_font
-    return wid
-end
-function powerline_soft.right(col1, col2)
-    local text = ''
-    if col2 ~= "alpha" then
-        text = markup.fg.color(col2,text)
-    end
-    if col1 ~= "alpha" then
-        text = markup.bg.color(col1,text)
-    end
-    local wid = wibox.widget.textbox(text)
-    wid.font = theme.powerline_font
-    return wid
-end
-
-theme.powerline_hard = powerline_hard
-theme.powerline_soft = powerline_soft
 
 -- There are other variable sets
 -- overriding the default one when
@@ -112,9 +112,9 @@ theme.powerline_soft = powerline_soft
 -- Generate taglist squares:
 local taglist_square_size = dpi(20)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-                                taglist_square_size, theme.fg_normal)
+        taglist_square_size, theme.fg_normal)
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-                                  taglist_square_size, theme.fg_normal)
+        taglist_square_size, theme.fg_normal)
 
 -- Variables set for theming notifications:
 
@@ -138,12 +138,12 @@ theme.menu_width = dpi(200)
 
 theme.wibar_height = dpi(30)
 
-theme.taglist_fg_focus      = '#197600'
-theme.taglist_bg_focus      = '#aedd00'
-theme.taglist_font          = theme.font
-theme.taglist_fg_normal     = "#DCDCCC"
-theme.taglist_bg_normal     = theme.bg_normal
-theme.taglist_squares_sel   = theme_assets.taglist_squares_unsel(4, theme.taglist_fg_focus)
+theme.taglist_fg_focus = '#197600'
+theme.taglist_bg_focus = '#aedd00'
+theme.taglist_font = theme.font
+theme.taglist_fg_normal = "#DCDCCC"
+theme.taglist_bg_normal = theme.bg_normal
+theme.taglist_squares_sel = theme_assets.taglist_squares_unsel(4, theme.taglist_fg_focus)
 theme.taglist_squares_unsel = theme.taglist_squares_sel
 
 -- theme.tasklist_shape = gears.shape.powerline
@@ -174,53 +174,53 @@ require('smart_borders') {
     border_width = dpi(6),
     color_close_normal = {
         type = "linear",
-        from = {0, 0},
-        to = {dpi(60), 0},
-        stops = {{0, "#fd8489"}, {1, "#555555"}}
+        from = { 0, 0 },
+        to = { dpi(60), 0 },
+        stops = { { 0, "#fd8489" }, { 1, "#555555" } }
     },
     color_close_focus = {
         type = "linear",
-        from = {0, 0},
-        to = {dpi(60), 0},
-        stops = {{0, "#fd8489"}, {1, "#666666"}}
+        from = { 0, 0 },
+        to = { dpi(60), 0 },
+        stops = { { 0, "#fd8489" }, { 1, "#666666" } }
     },
     color_close_hover = {
         type = "linear",
-        from = {0, 0},
-        to = {dpi(60), 0},
-        stops = {{0, "#FF9EA3"}, {1, "#666666"}}
+        from = { 0, 0 },
+        to = { dpi(60), 0 },
+        stops = { { 0, "#FF9EA3" }, { 1, "#666666" } }
     },
     color_floating_normal = {
         type = "linear",
-        from = {0, 0},
-        to = {dpi(40), 0},
-        stops = {{0, "#555555"}, {1, "#ddace7"}}
+        from = { 0, 0 },
+        to = { dpi(40), 0 },
+        stops = { { 0, "#555555" }, { 1, "#ddace7" } }
     },
     color_floating_focus = {
         type = "linear",
-        from = {0, 0},
-        to = {dpi(40), 0},
-        stops = {{0, "#666666"}, {1, "#ddace7"}}
+        from = { 0, 0 },
+        to = { dpi(40), 0 },
+        stops = { { 0, "#666666" }, { 1, "#ddace7" } }
     },
     color_floating_hover = {
         type = "linear",
-        from = {0, 0},
-        to = {dpi(40), 0},
-        stops = {{0, "#666666"}, {1, "#F7C6FF"}}
+        from = { 0, 0 },
+        to = { dpi(40), 0 },
+        stops = { { 0, "#666666" }, { 1, "#F7C6FF" } }
     }
 
 }
 
 local switcher = require("awesome-switcher")
-switcher.settings.preview_box_bg = theme.bg_focus.."aa"                       -- background color
-switcher.settings.preview_box_border = theme.border_focus.."00"
-switcher.settings.preview_box_title_color = { 1,1,1,1 }
-switcher.settings.preview_box_title_font = {theme.font, "sans","italic","normal"}
+switcher.settings.preview_box_bg = theme.bg_focus .. "aa"                       -- background color
+switcher.settings.preview_box_border = theme.border_focus .. "00"
+switcher.settings.preview_box_title_color = { 1, 1, 1, 1 }
+switcher.settings.preview_box_title_font = { theme.font, "sans", "italic", "normal" }
 switcher.settings.client_opacity = true
 theme.switcher = switcher
 
 theme.wallpaper = os.getenv("HOME") ..
-                      "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-4-1920x1080.jpg"
+        "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-4-1920x1080.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
@@ -242,7 +242,7 @@ theme.layout_cornerse = themes_path .. "default/layouts/cornersew.png"
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height,
-                                               theme.bg_focus, theme.fg_focus)
+        theme.bg_focus, theme.fg_focus)
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.

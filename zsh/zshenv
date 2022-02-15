@@ -49,4 +49,3 @@ fi
 export ANDROID_HOME=$HOME/Android/Sdk
 export SH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 export TMUX_AUTOSTART=false
-source $HOME/.zsh_plugins
