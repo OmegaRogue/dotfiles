@@ -16,5 +16,7 @@
     ~/.config/awesome/modalawesome: awesome/modalawesome
     ~/.config/awesome/smart_borders: awesome/smart_borders
     ~/.config/awesome/awesome-switcher: awesome/awesome-switcher
+    ~/.config/awesome/foggy: awesome/foggy
     ~/.config/awesome/lain: awesome/lain
+    ~/.config/awesome/amh: awesome/amh
 

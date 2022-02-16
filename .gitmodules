@@ -31,3 +31,12 @@
 [submodule "awesome/lain"]
 	path = awesome/lain
 	url = https://github.com/lcpz/lain.git
+[submodule "awesome/omegavoid"]
+	path = awesome/omegavoid
+	url = https://github.com/OmegaRogue/omegavoid-awesomewm.git
+[submodule "awesome/foggy"]
+	path = awesome/foggy
+	url = https://gitlab.com/k3rni/foggy
+[submodule "awesome/amh"]
+	path = awesome/amh
+	url = https://github.com/sim590/amh.git
