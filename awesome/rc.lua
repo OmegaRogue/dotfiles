@@ -103,9 +103,6 @@ local mybattery = lain.widget.bat({
     settings = function()
         if bat_now.status and bat_now.status ~= "N/A" then
             baticon:set_text(beautiful.widget_battery_percent(bat_now.perc, bat_now.status).." ")
-            if bat_now.ac_status == 1 then
-                baticon:set_text(baticon.text .. beautiful.widget_ac)
-            end
 
             widget:set_markup(markup.font(beautiful.font, bat_now.perc .. "% "))
         else
