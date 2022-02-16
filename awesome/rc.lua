@@ -102,7 +102,7 @@ baticon.font = "JetBrainsMono Nerd Font 18"
 local mybattery = lain.widget.bat({
     settings = function()
         if bat_now.status and bat_now.status ~= "N/A" then
-            baticon:set_text(beautiful.widget_battery_percent(bat_now.perc, bat_now.status.." "))
+            baticon:set_text(beautiful.widget_battery_percent(bat_now.perc, bat_now.status).." ")
             if bat_now.ac_status == 1 then
                 baticon:set_text(baticon.text .. beautiful.widget_ac)
             end
@@ -197,6 +197,21 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
+
+flags = {
+	webcam = true,
+	touchpad = true
+}
+awful.spawn.easy_async_with_shell([[synclient | grep -Pio "TouchpadOff.*?(\\d)" | grep -Eo "[01]"]], 
+function(stdout) 
+	flags.touchpad = stdout == 1
+end)
+
+awful.spawn.easy_async_with_shell([[synclient | grep -Pio "TouchpadOff.*?(\\d)" | grep -Eo "[01]"]], 
+function(stdout) 
+	flags.touchpad = stdout == 1
+end)
+
 -- }}}
 
 -- {{{ Menu
@@ -633,11 +648,14 @@ globalkeys = gears.table.join(awful.key({ modkey }, "s", hotkeys_popup.show_help
 		end),
 		awful.key({ }, "XF86WebCam", function()
 		end),
-		awful.key({ }, "XF86RaiseVolume", function()
+		awful.key({ }, "XF86AudioRaiseVolume", function()
+			awful.spawn.with_shell("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%")
 		end),
-		awful.key({ }, "XF86LowerVolume", function()
+		awful.key({ }, "XF86AudioLowerVolume", function()
+			awful.spawn.with_shell("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%")
 		end),
 		awful.key({ }, "XF86AudioMute", function()
+			awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
 		end)
 )
 
