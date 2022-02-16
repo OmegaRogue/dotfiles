@@ -78,6 +78,8 @@ local markup = lain.util.markup
 
 local omegavoid = require('omegavoid')
 local powerline = omegavoid.widget.powerline
+local foggy = require('foggy')
+
 
 --require('powerline')
 powerline_widget = wibox.widget {
@@ -91,25 +93,24 @@ time = wibox.widget {
     widget = wibox.widget.textclock
 }
 
- local baticon = wibox.widget.textbox(beautiful.widget_battery)
+local baticon = wibox.widget.textbox(beautiful.widget_battery)
 baticon.font = "JetBrainsMono Nerd Font 18"
 
- local mybattery = lain.widget.bat({
-     settings = function()
-         if bat_now.status and bat_now.status ~= "N/A" then
-             baticon:set_text(beautiful.widget_battery_percent(batnow_perc,bat_now.status))
-             if bat_now.ac_status == 1 then
-                 baticon:set_text(baticon.text..beautiful.widget_ac)
-             end
+local mybattery = lain.widget.bat({
+    settings = function()
+        if bat_now.status and bat_now.status ~= "N/A" then
+            baticon:set_text(beautiful.widget_battery_percent(batnow_perc, bat_now.status))
+            if bat_now.ac_status == 1 then
+                baticon:set_text(baticon.text .. beautiful.widget_ac)
+            end
 
-             widget:set_markup(markup.font(beautiful.font, " " .. bat_now.perc .. "% "))
-         else
-             widget:set_markup(markup.font(beautiful.font, " AC "))
-             baticon:set_text(beautiful.widget_ac)
-         end
-     end
- })
-
+            widget:set_markup(markup.font(beautiful.font, " " .. bat_now.perc .. "% "))
+        else
+            widget:set_markup(markup.font(beautiful.font, " AC "))
+            baticon:set_text(beautiful.widget_ac)
+        end
+    end
+})
 
 local cal = lain.widget.cal({
     attach_to = { powerline_widget, time },
@@ -122,8 +123,8 @@ cpuicon.font = "JetBrainsMono Nerd Font 18"
 
 local mycpu = lain.widget.cpu({
     settings = function()
-        -- widget:set_markup(markup.font(beautiful.font, " " .. string.format("%3s",cpu_now.usage) .. "% "))
-        widget:set_markup(markup.font(beautiful.font, " " .. cpu_now.usage .. "% "))
+        widget:set_markup(markup.font(beautiful.font, "" .. string.format("%3s", cpu_now.usage) .. "% "))
+        --widget:set_markup(markup.font(beautiful.font, " " .. cpu_now.usage .. "% "))
     end
 })
 --local memicon = wibox.widget.imagebox(beautiful.widget_mem)
@@ -131,10 +132,9 @@ local memicon = wibox.widget.textbox(beautiful.widget_mem)
 memicon.font = "JetBrainsMono Nerd Font 18"
 local mymem = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.font(beautiful.font, " " .. mem_now.used .. "MB "))
+        widget:set_markup(markup.font(beautiful.font, "" .. mem_now.used .. "MB "))
     end
 })
-
 
 local separators = lain.util.separators
 -- -- Separators
@@ -330,10 +330,13 @@ end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
+local arrow = lain.util.separators.arrow_left(beautiful.fg_normal, beautiful.bg_focus)
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
+
+
 
     -- freedesktop.desktop.add_icons({screen = s})
 
@@ -366,85 +369,12 @@ awful.screen.connect_for_each_screen(function(s)
                         awful.layout.inc(-1)
                     end)))
     -- Create a taglist widget
-    --s.taglist = awful.widget.taglist {
-    --    screen = s,
-    --    filter = awful.widget.taglist.filter.all,
-    --    buttons = taglist_buttons,
-    --    --shape = gears.shape.powerline
-    --}
     s.taglist = awful.widget.taglist {
         screen = s,
         filter = awful.widget.taglist.filter.all,
-        style = {
-            shape = gears.shape.powerline
-        },
-        layout = {
-            spacing = -12,
-            spacing_widget = {
-                color = "#dddddd",
-                shape = gears.shape.powerline,
-                widget = wibox.widget.separator,
-            },
-            layout = wibox.layout.fixed.horizontal
-        },
-        widget_template = {
-            {
-                {
-                    { { id = "index_role", widget = wibox.widget.textbox, }, margins = 4, widget = wibox.container.margin, },
-                    { { id = "icon_role", widget = wibox.widget.imagebox, }, margins = 2, widget = wibox.container.margin, },
-                    { id = "text_role", widget = wibox.widget.textbox, },
-                    layout = wibox.layout.fixed.horizontal,
-                },
-                left = 18,
-                right = 18,
-                widget = wibox.container.margin
-            },
-            id = "background_role",
-            widget = wibox.container.background,
-            -- Add support for hover colors and an index label
-            create_callback = function(self, c3, index, objects)
-                --luacheck: no unused args
-                self:get_children_by_id("index_role")[1].markup = "<b> " .. c3.index .. " </b>"
-                self:connect_signal("mouse::enter", function()
-                    if self.bg ~= beautiful.bg_focus then
-                        self.backup_fg = self.fg
-                        self.backup_bg = self.bg
-                        self.has_backup = true
-                    end
-                    self.bg = beautiful.bg_focus
-                    self.fg = beautiful.fg_focus
-                end)
-                self:connect_signal("mouse::leave", function()
-                    if self.has_backup then
-                        self.bg = self.backup_bg
-                        self.fg = self.backup_fg
-                    end
-                end)
-            end,
-            update_callback = function(self, c3, index, objects)
-                --luacheck: no unused args
-                self:get_children_by_id("index_role")[1].markup = "<b> " .. c3.index .. " </b>"
-            end,
-        },
-        buttons = taglist_buttons
+        buttons = taglist_buttons,
+        --shape = gears.shape.powerline
     }
-
-
-    -- Create a tasklist widget
-    --[[s.mytasklist = awful.widget.tasklist {
-        screen = s,
-        filter = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons,
-        layout = {
-            spacing = -12,
-            spacing_widget = {
-                color = '#dddddd',
-                shape = gears.shape.powerline,
-                widget = wibox.widget.separator
-            },
-            layout = wibox.layout.fixed.horizontal
-        }
-    }]]
     s.tasklist = awful.widget.tasklist {
         screen = s,
         filter = awful.widget.tasklist.filter.currenttags,
@@ -493,7 +423,7 @@ awful.screen.connect_for_each_screen(function(s)
         icon = 'power',
         color = '#f88',
         onclick = function()
-            awful.spawn.with_shell("rofi -show p -modi p:rofi-power-menu")
+            awful.spawn.with_shell("rofi -show power-menu")
         end
     }
     --modalawesome.active_mode.text = "s"
@@ -501,14 +431,17 @@ awful.screen.connect_for_each_screen(function(s)
     s.topbar:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
+            id = "topbar_left",
             layout = wibox.layout.fixed.horizontal,
             -- statuslinew(<widget>, <fontcolor>, <bg-left-shape>, <bg-color>, <bg-right-shape>)
             --powl,
-            --powerline.segment(true, beautiful.bg_focus, nil, nil, mylauncher),
-            mylauncher,
+            powerline.segment(true, beautiful.bg_focus, "#afd700", nil, mylauncher),
+            --mylauncher,
             --powerline.segment(true, nil, "#afd700", nil, s.taglist),
             s.taglist,
+            wibox.widget.textbox(markup.fontbg(beautiful.powerline_font, "#afd700", " ")),
             powerline.segment(true, "#afd700", nil, "#005f00", modalawesome.active_mode),
+            --powerline.segment(true, "#afd700", nil, "#005f00", wibox.widget.textbox("test")),
             s.mypromptbox,
         },
         nil,
@@ -518,6 +451,7 @@ awful.screen.connect_for_each_screen(function(s)
         -- s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            modalawesome.sequence,
             --powerline.segment(false, nil, nil, nil, modalawesome.sequence),
             powerline.segment(false, nil, nil, nil, memicon, mymem),
             powerline.segment(false, nil, nil, nil, cpuicon, mycpu),
@@ -531,15 +465,23 @@ awful.screen.connect_for_each_screen(function(s)
                 widget = wibox.widget.textclock
             }),
             powerline.segment(false, "#121212", "#303030", nil, s.powerbutton),
+            --awful.widget.watch('bash -c "echo Hello world! | grep Hello"', 15)
         }
 
     }
     s.bottombar:setup {
         layout = wibox.layout.fixed.horizontal,
-        s.tasklist,
+        {
+            layout = wibox.layout.fixed.horizontal,
+            s.tasklist,
+        },
+        -- {
+        -- layout = wibox.layout.fixed.horizontal,
+        -- }
     }
-end)
 
+end)
+gears.debug.dump(screen[1])
 -- }}}
 
 -- {{{ Mouse bindings
@@ -676,7 +618,15 @@ globalkeys = gears.table.join(awful.key({ modkey }, "s", hotkeys_popup.show_help
         awful.key({ "Mod1", "Shift" }, "Tab",
                 function()
                     beautiful.switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
-                end)
+                end),
+        awful.key({ modkey }, "d", foggy.menu),
+        awful.key({ }, "XF86MonBrightnessUp", function()
+            foggy.shortcuts.inc_backlight(10)
+        end),
+        awful.key({ }, "XF86MonBrightnessDown", function()
+            foggy.shortuts.inc_backlight(-10)
+        end)
+
 )
 
 clientkeys = gears.table.join(awful.key({ modkey }, "f", function(c)
@@ -813,9 +763,9 @@ end)
 
 -- }}}
 
-for s in screen do
-    freedesktop.desktop.add_icons({ screen = s })
-end
+-- for s in screen do
+-- freedesktop.desktop.add_icons({ screen = s })
+-- end
 
 awful.spawn.with_shell('powerline wm.awesome')
 --bmodalawesome.init()

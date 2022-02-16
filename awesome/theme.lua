@@ -115,6 +115,10 @@ theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
         taglist_square_size, theme.fg_normal)
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
         taglist_square_size, theme.fg_normal)
+--theme.taglist_shape =  function(cr, width, height)
+--    return gears.shape.powerline(cr,18,30)
+--end
+
 
 -- Variables set for theming notifications:
 

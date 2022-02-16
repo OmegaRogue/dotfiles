@@ -78,7 +78,9 @@ source /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null
 
 
 function my_custom_widget() {
-  echo 'Hello, ZSH!'
+  echo ""
+  ls
+  echo ""
 }
 
 # The plugin will auto execute this zvm_after_lazy_keybindings function
