@@ -642,7 +642,7 @@ globalkeys = gears.table.join(awful.key({ modkey }, "s", hotkeys_popup.show_help
             foggy.shortcuts.inc_backlight(10)
         end),
         awful.key({ }, "XF86MonBrightnessDown", function()
-            foggy.shortuts.inc_backlight(-10)
+            foggy.shortcuts.inc_backlight(-10)
         end),
 		awful.key({ }, "XF86TouchpadToggle", function()
 		end),
