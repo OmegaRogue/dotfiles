@@ -1,6 +1,6 @@
 - link:
-    ~/.config/nvim/init.vim: neovim/init.vim
-    # ~/.config/nvim/init.lua: neovim/init.lua
+    #~/.config/nvim/init.vim: neovim/init.vim
+     ~/.config/nvim/init.lua: neovim/init.lua
     # ~/.config/nvim/plugins.vim: neovim/plugins.vim
     ~/.config/nvim/lua/plugins.lua: neovim/lua/plugins.lua
     # ~/.config/nvim/vscode.vim: neovim/vscode.vim
