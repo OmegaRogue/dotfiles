@@ -100,6 +100,7 @@ local baticon = wibox.widget.textbox(beautiful.widget_battery)
 baticon.font = "JetBrainsMono Nerd Font 18"
 
 local mybattery = lain.widget.bat({
+	battery = "BAT1",
     settings = function()
         if bat_now.status and bat_now.status ~= "N/A" then
             baticon:set_text(beautiful.widget_battery_percent(bat_now.perc, bat_now.status).." ")
