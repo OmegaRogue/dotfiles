@@ -509,16 +509,19 @@ root.buttons(gears.table.join(awful.button({}, 3,
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = gears.table.join(awful.key({ modkey }, "s", hotkeys_popup.show_help,
+globalkeys = gears.table.join(
+		awful.key({ modkey }, "s", hotkeys_popup.show_help,
         {
             description = "show help",
             group = "awesome"
-        }), awful.key({ modkey }, "Left", awful.tag.viewprev,
+        }), 
+		awful.key({ modkey }, "Left", awful.tag.viewprev,
         { description = "view previous", group = "tag" }),
         awful.key({ modkey }, "Right", awful.tag.viewnext, {
             description = "view next",
             group = "tag"
-        }), awful.key({ modkey }, "Escape", awful.tag.history.restore,
+        }), 
+		awful.key({ modkey }, "Escape", awful.tag.history.restore,
                 { description = "go back", group = "tag" }),
         awful.key({ modkey }, "j", function()
             awful.client.focus.byidx(1)
@@ -603,9 +606,8 @@ globalkeys = gears.table.join(awful.key({ modkey }, "s", hotkeys_popup.show_help
                 c:emit_signal("request::activate", "key.unminimize", { raise = true })
             end
         end, { description = "restore minimized", group = "client" }), -- Prompt
-        awful.key({ modkey }, "r", function()
-            awful.spawn.with_shell("~/.config/rofi/bin/launcher_misc")
-        end, { description = "run prompt", group = "launcher" }),
+        awful.key({ modkey }, "r", function() awful.spawn("rofi -show run")end, { description = "run prompt", group = "launcher" }),
+        awful.key({}, "#+120", function() awful.spawn("rofi -show run")end),
         awful.key({ modkey }, "x", function()
             awful.prompt.run {
                 prompt = markup.fontcolor(beautiful.powerline_font, beautiful.bg_normal, beautiful.bg_focus, "\u{E0B0}") ..
@@ -621,9 +623,8 @@ globalkeys = gears.table.join(awful.key({ modkey }, "s", hotkeys_popup.show_help
         awful.key({ modkey }, "d", function()
             menubar.show()
         end,
-                { description = "show the menubar", group = "launcher" }), awful.key({},
-                "Print",
-                function()
+                { description = "show the menubar", group = "launcher" }), 
+		awful.key({}, "Print", function()
                     awful.util.spawn("flameshot gui", false)
                 end), awful.key({ "Mod1", }, "Tab",
                 function()
@@ -636,10 +637,10 @@ globalkeys = gears.table.join(awful.key({ modkey }, "s", hotkeys_popup.show_help
                 end),
         awful.key({ modkey }, "p", foggy.menu),
         awful.key({ }, "XF86MonBrightnessUp", function()
-            foggy.shortcuts.inc_backlight(10)
+            foggy.shortcuts.inc_backlight(10, 1)
         end),
         awful.key({ }, "XF86MonBrightnessDown", function()
-            foggy.shortcuts.inc_backlight(-10)
+            foggy.shortcuts.inc_backlight(-10, 1)
         end),
 		awful.key({ }, "XF86TouchpadToggle", function()
 		end),
