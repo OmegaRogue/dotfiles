@@ -23,6 +23,9 @@ local appmenu = require("appmenu")
 package.path = package.path .. ';' .. os.getenv("HOME") ..
         '/.local/lib/python3.10/site-packages/powerline/bindings/awesome/?.lua'
 
+
+
+-- flags.touchpad = 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -99,12 +102,12 @@ baticon.font = "JetBrainsMono Nerd Font 18"
 local mybattery = lain.widget.bat({
     settings = function()
         if bat_now.status and bat_now.status ~= "N/A" then
-            baticon:set_text(beautiful.widget_battery_percent(batnow_perc, bat_now.status))
+            baticon:set_text(beautiful.widget_battery_percent(bat_now.perc, bat_now.status.." "))
             if bat_now.ac_status == 1 then
                 baticon:set_text(baticon.text .. beautiful.widget_ac)
             end
 
-            widget:set_markup(markup.font(beautiful.font, " " .. bat_now.perc .. "% "))
+            widget:set_markup(markup.font(beautiful.font, bat_now.perc .. "% "))
         else
             widget:set_markup(markup.font(beautiful.font, " AC "))
             baticon:set_text(beautiful.widget_ac)
@@ -603,7 +606,7 @@ globalkeys = gears.table.join(awful.key({ modkey }, "s", hotkeys_popup.show_help
                 history_path = awful.util.get_cache_dir() .. "/history_eval"
             }
         end, { description = "lua execute prompt", group = "awesome" }), -- Menubar
-        awful.key({ modkey }, "p", function()
+        awful.key({ modkey }, "d", function()
             menubar.show()
         end,
                 { description = "show the menubar", group = "launcher" }), awful.key({},
@@ -619,14 +622,23 @@ globalkeys = gears.table.join(awful.key({ modkey }, "s", hotkeys_popup.show_help
                 function()
                     beautiful.switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
                 end),
-        awful.key({ modkey }, "d", foggy.menu),
+        awful.key({ modkey }, "p", foggy.menu),
         awful.key({ }, "XF86MonBrightnessUp", function()
             foggy.shortcuts.inc_backlight(10)
         end),
         awful.key({ }, "XF86MonBrightnessDown", function()
             foggy.shortuts.inc_backlight(-10)
-        end)
-
+        end),
+		awful.key({ }, "XF86TouchpadToggle", function()
+		end),
+		awful.key({ }, "XF86WebCam", function()
+		end),
+		awful.key({ }, "XF86RaiseVolume", function()
+		end),
+		awful.key({ }, "XF86LowerVolume", function()
+		end),
+		awful.key({ }, "XF86AudioMute", function()
+		end)
 )
 
 clientkeys = gears.table.join(awful.key({ modkey }, "f", function(c)

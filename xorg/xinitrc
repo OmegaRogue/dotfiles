@@ -16,6 +16,7 @@ flameshot &
 #xrdb -load ~/.config/X11/xresources &
 $HOME/.dotfiles/screenlayout/screens.sh &
 #gpgconf --launch gpg-agent &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1&
 evolution &
 exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
 #exec awesome
