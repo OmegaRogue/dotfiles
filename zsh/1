@@ -22,12 +22,9 @@ if ! zgenom saved; then
 #	unalias lsa
 
 	zgenom ohmyzsh plugins/git								# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/git
-	zgenom ohmyzsh plugins/git-flow							# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/git-flow
 	zgenom ohmyzsh plugins/colored-man-pages				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/colored-man-pages
 	zgenom ohmyzsh plugins/sudo								# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/sudo
 	zgenom ohmyzsh plugins/magic-enter						# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/magic-enter
-#	zgenom ohmyzsh plugins/command-not-found				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/command-not-found
-	zgenom ohmyzsh plugins/virtualenv						# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/virtualenv
 	zgenom load desyncr/auto-ls								# https://github.com/desyncr/auto-ls
 	zgenom load zpm-zsh/colors								# https://github.com/zpm-zsh/colors
 	zgenom load hlissner/zsh-autopair						# https://github.com/hlissner/zsh-autopair
@@ -39,62 +36,30 @@ if ! zgenom saved; then
 	zgenom load MichaelAquilina/zsh-you-should-use			# https://github.com/MichaelAquilina/zsh-you-should-use
 	zgenom load zsh-users/zsh-completions					# https://github.com/zsh-users/zsh-completions
 	zgenom load zpm-zsh/ls									# https://github.com/zpm-zsh/ls
-	zgenom load elstgav/branch-manager						# https://github.com/elstgav/branch-manager
 	zgenom load bartboy011/cd-reminder						# https://github.com/bartboy011/cd-reminder
 	zgenom load peterhurford/git-it-on.zsh					# https://github.com/peterhurford/git-it-on.zsh
 	zgenom load laggardkernel/git-ignore					# https://github.com/laggardkernel/git-ignore
-	zgenom load reegnz/jq-zsh-plugin						# https://github.com/reegnz/jq-zsh-plugin
 	zgenom load knu/zsh-manydots-magic						# https://github.com/knu/zsh-manydots-magic
 	zgenom load zpm-zsh/template							# https://github.com/zpm-zsh/template
-	zgenom load marcossegovia/open-create-projects			# https://github.com/marcossegovia/open-create-projects
 	zgenom load jgogstad/passwordless-history				# https://github.com/jgogstad/passwordless-history
-	#zgenom load jimhester/per-directory-history			# https://github.com/jimhester/per-directory-history
-	zgenom load idadzie/zsh-presenter-mode					# https://github.com/idadzie/zsh-presenter-mode
 	zgenom load voronkovich/project.plugin.zsh				# https://github.com/voronkovich/project.plugin.zsh
-	zgenom load michaelmcallister/razer-status-code			# https://github.com/michaelmcallister/razer-status-code
 	zgenom load aubreypwd/zsh-plugin-reload					# https://github.com/aubreypwd/zsh-plugin-reload
 	zgenom load mattmc3/zsh-safe-rm						# https://github.com/mattmc3/zsh-safe-rm
 	zgenom load gko/ssh-connect								# https://github.com/gko/ssh-connect
-	zgenom load NorthIsMirror/zsh-startify					# https://github.com/NorthIsMirror/zsh-startify
 	#zgenom load zshzoo/magic-enter							# https://github.com/zshzoo/magic-enter
+	zgenom load Aloxaf/fzf-tab								# https://github.com/Aloxaf/fzf-tab
+	zgenom load redxtech/zsh-fzf-utils						# https://github.com/redxtech/zsh-fzf-utils
+	zgenom ohmyzsh plugins/zsh-interactive-cd				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/zsh-interactive-cd
 	if hash tmux &>/dev/null; then
 		zgenom load MikeDacre/tmux-zsh-vim-titles			# https://github.com/MikeDacre/tmux-zsh-vim-titles
 		zgenom load zpm-zsh/tmux							# https://github.com/zpm-zsh/tmux
-	fi
-	if hash bw &>/dev/null; then
-
-		zgenom load Game4Move78/zsh-bitwarden				# https://github.com/Game4Move78/zsh-bitwarden
-	fi
-
-	if hash nmap &>/dev/null; then
-		zgenom ohmyzsh plugins/nmap							# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/nmap
-	fi
-
-	if hash systemctl &>/dev/null; then
-		zgenom ohmyzsh plugins/systemd						# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/systemd
-	fi
-	if hash terraform &>/dev/null; then
-		zgenom ohmyzsh plugins/terraform					# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/terraform
 	fi
 	if hash pacman &>/dev/null; then
 		zgenom ohmyzsh plugins/archlinux					# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/archlinux
 	fi
 
-	if hash fzf &>/dev/null; then
-		zgenom load Aloxaf/fzf-tab								# https://github.com/Aloxaf/fzf-tab
-		zgenom load redxtech/zsh-fzf-utils						# https://github.com/redxtech/zsh-fzf-utils
-		zgenom ohmyzsh plugins/zsh-interactive-cd				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/zsh-interactive-cd
-	fi
-	case $(tty) in 
-	/dev/tty[0-9]*);;
-	*)
-		zgenom load bric3/nice-exit-code					# https://github.com/bric3/nice-exit-code
-		zgenom load fshp/schroot.plugin.zsh					# https://github.com/fshp/schroot.plugin.zsh
-	;;
-	esac
-
 	zgenom save
 
-	zgenom compile $HOME/.zshrc
+	zgenom compile $HOME/.zshc
 fi
 

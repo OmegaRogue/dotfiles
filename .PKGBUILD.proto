@@ -1,6 +1,6 @@
 
 # Maintainer: OmegaRogue <omegarogue@omegavoid.codes>
-pkgname='OmegaVoid Desktop'
+pkgname='omegavoid-desktop'
 pkgver=0.1
 pkgrel=1
 epoch=
@@ -9,12 +9,22 @@ arch=()
 url="https://github.com/OmegaRogue/dotfiles"
 license=('unknown')
 groups=()
-depends=()
+depends=('dotbot' 'git')
 makedepends=()
 checkdepends=()
-optdepends=()
-provides=()
-conflicts=()
+optdepends=('tmux: tmux support'
+			'zsh: zsh support'
+			'awesome: awesomewm support'
+			'lf: lf support'
+			'neovim: neovim support'
+			'alacritty: alacritty support'
+			'wezterm: wezterm support'
+			'picom: picom support'
+			'powerline: powerline support'
+			'rofi: rofi support'
+			'ssh: ssh support')
+provides=('omegavoid-linux')
+conflicts=('omegavoid-server')
 replaces=()
 backup=()
 options=()

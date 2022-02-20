@@ -19,13 +19,11 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
-local appmenu = require("appmenu")
+
 package.path = package.path .. ';' .. os.getenv("HOME") ..
         '/.local/lib/python3.10/site-packages/powerline/bindings/awesome/?.lua'
 
 
-
--- flags.touchpad = 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -56,119 +54,29 @@ do
 end
 -- }}}
 
-local dpi = beautiful.xresources.apply_dpi
-awesome.set_preferred_icon_size(32)
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
 -- start powerline daemon
-awful.spawn.with_shell('powerline-daemon -q')
+--awful.spawn.with_shell('powerline-daemon -q')
 
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
-local logout_menu_widget = require(
-        "awesome-wm-widgets.logout-menu-widget.logout-menu")
 local awesomebuttons = require("awesome-buttons.awesome-buttons")
-local github_activity_widget = require(
-        "awesome-wm-widgets.github-activity-widget.github-activity-widget")
-local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
-local batteryarc_widget = require(
-        "awesome-wm-widgets.batteryarc-widget.batteryarc")
 
 local lain = require("lain")
 local markup = lain.util.markup
-
 local omegavoid = require('omegavoid')
 local powerline = omegavoid.widget.powerline
 local foggy = require('foggy')
-
-
---require('powerline')
-powerline_widget = wibox.widget {
-    align = 'right',
-    valign = 'center',
-    widget = wibox.widget.textbox,
-    divider_font = beautiful.powerline_font,
-}
-time = wibox.widget {
-    format = '<span foreground="#9e9e9e"> %Y-%m-%d </span>',
-    widget = wibox.widget.textclock
-}
-
-local baticon = wibox.widget.textbox(beautiful.widget_battery)
-baticon.font = "JetBrainsMono Nerd Font 18"
-
-local mybattery = lain.widget.bat({
-	battery = "BAT1",
-    settings = function()
-        if bat_now.status and bat_now.status ~= "N/A" then
-            baticon:set_text(beautiful.widget_battery_percent(bat_now.perc, bat_now.status).." ")
-
-            widget:set_markup(markup.font(beautiful.font, bat_now.perc .. "% "))
-        else
-            widget:set_markup(markup.font(beautiful.font, " AC "))
-            baticon:set_text(beautiful.widget_ac)
-        end
-    end
-})
-
-local cal = lain.widget.cal({
-    attach_to = { powerline_widget, time },
-    notification_preset = { font = beautiful.font, fg = beautiful.fg_normal, bg = beautiful.bg_normal },
-    cal = "/usr/bin/env TERM=linux /usr/bin/cal --color=always"
-})
---local cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
-local cpuicon = wibox.widget.textbox(beautiful.widget_cpu)
-cpuicon.font = "JetBrainsMono Nerd Font 18"
-
-local mycpu = lain.widget.cpu({
-    settings = function()
-        widget:set_markup(markup.font(beautiful.font, "" .. string.format("%3s", cpu_now.usage) .. "% "))
-        --widget:set_markup(markup.font(beautiful.font, " " .. cpu_now.usage .. "% "))
-    end
-})
---local memicon = wibox.widget.imagebox(beautiful.widget_mem)
-local memicon = wibox.widget.textbox(beautiful.widget_mem)
-memicon.font = "JetBrainsMono Nerd Font 18"
-local mymem = lain.widget.mem({
-    settings = function()
-        widget:set_markup(markup.font(beautiful.font, "" .. mem_now.used .. "MB "))
-    end
-})
-
+local dpi = beautiful.xresources.apply_dpi
+awesome.set_preferred_icon_size(dpi(32))
+local widgets = require('widgets')
 local separators = lain.util.separators
--- -- Separators
-local spr = wibox.widget.textbox(' ')
 local freedesktop = require("freedesktop")
-
 local modalawesome = require("modalawesome")
 local modes = require("modalawesome.modes")
-
-
--- autostart functionality for various desktop daemons 
--- needed since we're just using awesome rather than a full-blown DE
--- awful.spawn("nextcloud")
--- awful.spawn("picom --daemon") -- start compositor compton as a daemon
--- the following scans the /etc/xdg/autostart directory and starts anything
--- there
--- local pfile = io.popen("find /etc/xdg/autostart -maxdepth 1 -print0")
--- fileblob = pfile:read("*a")
--- pfile:close()
--- -- the find program returned a string with NULLs at the end of each file name
--- for file in fileblob:gmatch("[^\0]+") do
---     -- the first file in the list is just the /etc/xdg/autostart dir, so make 
---     -- sure we skip it
---     if file:find("/etc/xdg/autostart/.+") then
---         local f = io.open(file)
---         local text = f:read("*a")
---         f:close()
---         -- run the program
---         awful.spawn(text:match("[\r\n]Exec=(.-)[\r\n]"))
---     end
--- end
-
-
 
 -- This is used later as the default terminal and editor to run.
 terminal = "wezterm"
@@ -197,19 +105,31 @@ awful.layout.layouts = {
 }
 
 flags = {
-	webcam = true,
-	touchpad = true
+    webcam = true,
+    touchpad = true
 }
-awful.spawn.easy_async_with_shell([[synclient | grep -Pio "TouchpadOff.*?(\\d)" | grep -Eo "[01]"]], 
-function(stdout) 
-	flags.touchpad = stdout == 1
-end)
+-- }}}
 
-awful.spawn.easy_async_with_shell([[synclient | grep -Pio "TouchpadOff.*?(\\d)" | grep -Eo "[01]"]], 
-function(stdout) 
-	flags.touchpad = stdout == 1
-end)
-
+-- {{{ Autostart
+-- autostart functionality for various desktop daemons
+-- needed since we're just using awesome rather than a full-blown DE
+-- the following scans the /etc/xdg/autostart directory and starts anything
+-- there
+-- local pfile = io.popen("find /etc/xdg/autostart -maxdepth 1 -print0")
+-- fileblob = pfile:read("*a")
+-- pfile:close()
+-- -- the find program returned a string with NULLs at the end of each file name
+-- for file in fileblob:gmatch("[^\0]+") do
+--     -- the first file in the list is just the /etc/xdg/autostart dir, so make
+--     -- sure we skip it
+--     if file:find("/etc/xdg/autostart/.+") then
+--         local f = io.open(file)
+--         local text = f:read("*a")
+--         f:close()
+--         -- run the program
+--         awful.spawn(text:match("[\r\n]Exec=(.-)[\r\n]"))
+--     end
+-- end
 -- }}}
 
 -- {{{ Menu
@@ -289,8 +209,6 @@ mylauncher = awful.widget.launcher {
 --menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
---mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 
@@ -469,13 +387,13 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             modalawesome.sequence,
             --powerline.segment(false, nil, nil, nil, modalawesome.sequence),
-            powerline.segment(false, nil, nil, nil, memicon, mymem),
-            powerline.segment(false, nil, nil, nil, cpuicon, mycpu),
-            powerline.segment(false, nil, nil, nil, baticon, mybattery),
+            powerline.segment(false, nil, nil, nil, widgets.memicon, widgets.mem),
+            powerline.segment(false, nil, nil, nil, widgets.cpuicon, widgets.cpu),
+            powerline.segment(false, nil, nil, nil, widgets.baticon, widgets.bat),
             powerline.segment(false, nil, nil, nil, s.systray),
             powerline.segment(false, nil, nil, nil, volume_widget()),
             powerline.segment(false, beautiful.bg_focus, nil, nil, s.layoutbox),
-            powerline.segment(false, "#303030", beautiful.bg_focus, "#626262", time),
+            powerline.segment(false, "#303030", beautiful.bg_focus, "#626262", widgets.time),
             powerline.segment(false, "#303030", "#303030", "#626262", wibox.widget {
                 format = '<span foreground="#d0d0d0"> %H:%M </span>',
                 widget = wibox.widget.textclock
@@ -625,9 +543,8 @@ globalkeys = gears.table.join(
             menubar.show()
         end,
                 { description = "show the menubar", group = "launcher" }), 
-		awful.key({}, "Print", function()
-                    awful.util.spawn("flameshot gui", false)
-                end), awful.key({ "Mod1", }, "Tab",
+		awful.key({}, "Print", function() awful.util.spawn("flameshot gui", false) end),
+		awful.key({ "Mod1", }, "Tab",
                 function()
                     beautiful.switcher.switch(1, "Mod1", "Alt_L", "Shift", "Tab")
                 end),
@@ -759,7 +676,6 @@ end))
 root.keys(globalkeys)
 -- }}}
 
--- require("titlebar")
 require("rules")
 
 -- {{{ Signals
@@ -789,12 +705,4 @@ client.connect_signal("unfocus", function(c)
     c.border_color = beautiful.border_normal
 end)
 
-
 -- }}}
-
--- for s in screen do
--- freedesktop.desktop.add_icons({ screen = s })
--- end
-
-awful.spawn.with_shell('powerline wm.awesome')
---bmodalawesome.init()

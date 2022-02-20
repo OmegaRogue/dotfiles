@@ -38,7 +38,6 @@ vimp.nnoremap('<space>', 'za')
 
 vimp.nnoremap({'silent'}, '<C-M-L>', [[:NERDTreeToggle<CR>]])
 vimp.nmap('<C-M-F>', [[:TagbarToggle<CR>]])
-vimp.nnoremap('<C-M-T>', [[:botleft sp term://zsh<CR>]])
 -- }}}
 -- -----------------------------------------------------
 -- Sneak, s f https://github.com/justinmk/vim-sneak {{{
@@ -55,9 +54,8 @@ vimp.omap('F', '<Plug>Sneak_S')
 --------------------------------------------------------
 vimp.noremap({'silent'}, '<c-u>',
              [[:call smooth_scroll#up(&scroll*2, 0, 4)<CR>]])
-vim.cmd [[noremap <silent> <c-o> :call smooth_scoll#down(&scroll*2, 0, 4)<CR>]]
---vimp.noremap({'silent'}, '<c-o>',
---             [[:call smooth_scroll#down(&scroll*2, 0, 4)<CR>]])
+vimp.noremap({'silent'}, '<c-o>',
+             [[:call smooth_scroll#down(&scroll*2, 0, 4)<CR>]])
 -- }}}
 
 -------------------------------------------------------

@@ -94,7 +94,8 @@ theme.widget_battery_percent = function(charge, status)
     end
 end
 
-theme.powerline_font = "JetBrainsMono Nerd Font Mono 18"
+theme.powerline_font = "JetBrainsMono Nerd Font 18"
+theme.icon_font = "JetBrainsMono Nerd Font 18"
 
 -- There are other variable sets
 -- overriding the default one when

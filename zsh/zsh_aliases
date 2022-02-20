@@ -19,6 +19,12 @@ alias imgcat='wezterm imgcat'
 
 alias sudo='sudo '
 
+alias cp='cp -iv --reflink=auto --sparse=always'
+alias mv='mv -iv'
+#alias rm='rm -v'
+
+alias src='reload'
+
 #unalias l
 #unalias la
 #unalias ll

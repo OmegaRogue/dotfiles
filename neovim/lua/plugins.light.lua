@@ -29,19 +29,7 @@ Plug 'lambdalisue/vim-manpager'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'melonmanchan/vim-tmux-resizer'
 Plug 'MikeDacre/tmux-zsh-vim-titles'
-Plug 'skywind3000/vim-preview'
-Plug 'majutsushi/tagbar'
 Plug('tversteeg/registers.nvim', {branch = 'main'})
-Plug 'voldikss/vim-floaterm'
-Plug 'severin-lemaignan/vim-minimap'
-
--- }}}
-
--- ---------------------------------------------------------------------------------------------------------------------
--- Color Themes {{{
--- ---------------------------------------------------------------------------------------------------------------------
-
-Plug 'doums/darcula'
 
 -- }}}
 
@@ -106,16 +94,6 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug('neoclide/coc.nvim', {branch = 'release'})
 
--- HTML5 syntax
--- Plug 'othree/html5.vim'
-
--- Color highlighter
-Plug('lilydjwg/colorizer', {
-    ['for'] = {
-        'css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript',
-        'javascript.jsx'
-    }
-})
 
 -- Yaml indentation
 Plug 'martin-svk/vim-yaml'
@@ -125,11 +103,6 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-git'
 -- Dockerfile
 Plug 'honza/dockerfile.vim'
--- C# syntax
-Plug 'omnisharp/omnisharp-vim'
-
--- LaTeX
-Plug 'lervag/vimtex'
 
 -- Plug 'vim-scripts/Improved-AnsiEsc'
 
@@ -146,10 +119,7 @@ Plug 'dzeban/vim-log-syntax'
 -- Gitignore syntax
 Plug 'gisphm/vim-gitignore'
 
--- Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
-Plug 'samsaga2/vim-z80'
-Plug 'vim-scripts/avr8bit.vim'
 
 -- }}}
 
