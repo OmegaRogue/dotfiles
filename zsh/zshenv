@@ -5,7 +5,7 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 
 export TK_SILENCE_DEPRECATION=1
 export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$HOME/.dotnet:/usr/local/go/bin:$HOME/.local/bin:/mnt/d/Programs/mupdf-1.18.0-windows:~/.npm-global/bin:~/go/bin:/usr/local/vpnclient/:$HOME/.cargo/bin:$ANDROID_HOME/tools$:$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:${HOME}/kiri/submodules/KiCad-Diff/:${HOME}/kiri/bin
+export PATH=$PATH:$HOME/.dotnet:/usr/local/go/bin:$HOME/.local/bin:/mnt/d/Programs/mupdf-1.18.0-windows:~/.npm-global/bin:~/go/bin:/usr/local/vpnclient/:$HOME/.cargo/bin:$ANDROID_HOME/tools$:$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:${HOME}/kiri/submodules/KiCad-Diff/:${HOME}/kiri/bin:$HOME/.config/yarn/global/node_modules/.bin
 #export MANPAGER="nvim -c MANPAGER -"
 #export PAGER="nvim -c PAGER -"
 
@@ -49,3 +49,7 @@ fi
 export ANDROID_HOME=$HOME/Android/Sdk
 export SH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 export TMUX_AUTOSTART=false
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/bin/virtualenvwrapper.sh
+source /opt/zephyr-sdk-0.14.1/environment-setup-x86_64-pokysdk-linux

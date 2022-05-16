@@ -12,7 +12,6 @@ local executable = vim.fn.executable
 
 
 vim.g.home_path = os.getenv("HOME")
-require("compat53")
 vim.g.chassis = "undefined"
 vim.g.location = "undefined"
 vim.g.deployment = "undefined"
@@ -41,7 +40,7 @@ set.guicursor = {
 
 set.mouse = "a"
 set.clipboard = "unnamedplus"
-
+--vim.g.mapleader = ""
 -- Cursor line
 set.cursorline = true
 set.cursorcolumn = true

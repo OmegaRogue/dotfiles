@@ -110,12 +110,13 @@ Plug('neoclide/coc.nvim', {branch = 'release'})
 -- Plug 'othree/html5.vim'
 
 -- Color highlighter
-Plug('lilydjwg/colorizer', {
-    ['for'] = {
-        'css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript',
-        'javascript.jsx'
-    }
-})
+Plug 'chrisbra/colorizer'
+-- Plug('lilydjwg/colorizer', {
+--     ['for'] = {
+--         'css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript',
+--         'javascript.jsx'
+--     }
+-- })
 
 -- Yaml indentation
 Plug 'martin-svk/vim-yaml'

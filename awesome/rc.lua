@@ -23,7 +23,6 @@ require("awful.hotkeys_popup.keys")
 package.path = package.path .. ';' .. os.getenv("HOME") ..
         '/.local/lib/python3.10/site-packages/powerline/bindings/awesome/?.lua'
 
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -53,6 +52,27 @@ do
     end)
 end
 -- }}}
+
+
+
+screenorder = {1,2,3}
+for s in screen do
+	for k,v in pairs(s.outputs) do
+		if k == 'HDMI-0' then
+			screenorder[1] = v.viewport_id
+		elseif k == 'DP-3' then
+			screenorder[2] = v.viewport_id
+		elseif k == 'DP-5' then
+			screenorder[3] = v.viewport_id
+		end
+		-- naughty.notify({
+		-- 	preset = naughty.config.presets.critical,
+		-- 	title = gears.debug.dump_return(k),
+		-- 	text = gears.debug.dump_return(v),
+		-- })
+
+	end
+end
 
 
 -- {{{ Variable definitions
@@ -209,7 +229,7 @@ mylauncher = awful.widget.launcher {
 --menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- {{{ Wibar
+-- {{{ Wibar 
 -- Create a textclock widget
 
 -- Create a wibox for each screen and add it
@@ -417,7 +437,7 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 gears.debug.dump(screen[1])
 -- }}}
-
+ 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(awful.button({}, 3,
         function()
@@ -427,13 +447,14 @@ root.buttons(gears.table.join(awful.button({}, 3,
         awful.button({}, 5, awful.tag.viewprev)))
 -- }}}
 
--- {{{ Key bindings
+-- {{{ Key bindings 
 globalkeys = gears.table.join(
 		awful.key({ modkey }, "s", hotkeys_popup.show_help,
         {
             description = "show help",
             group = "awesome"
         }), 
+		awful.key({},"Help", hotkeys_popup.show_help),
 		awful.key({ modkey }, "Left", awful.tag.viewprev,
         { description = "view previous", group = "tag" }),
         awful.key({ modkey }, "Right", awful.tag.viewnext, {
@@ -454,7 +475,9 @@ globalkeys = gears.table.join(
                 end, {
                     description = "show main menu",
                     group = "awesome"
-                }), -- Layout manipulation
+                }), 
+		awful.key({}, "XF86HomePage", function()mymainmenu:show()end),
+		-- Layout manipulation
         awful.key({ modkey, "Shift" }, "j", function()
             awful.client.swap.byidx(1)
         end,
@@ -527,6 +550,8 @@ globalkeys = gears.table.join(
         end, { description = "restore minimized", group = "client" }), -- Prompt
         awful.key({ modkey }, "r", function() awful.spawn("rofi -show run")end, { description = "run prompt", group = "launcher" }),
         awful.key({}, "#+120", function() awful.spawn("rofi -show run")end),
+        awful.key({}, "XF86Search", function() awful.spawn("rofi -show run")end),
+        awful.key({}, "XF86Favorites", function() awful.spawn("rofi -show run")end),
         awful.key({ modkey }, "x", function()
             awful.prompt.run {
                 prompt = markup.fontcolor(beautiful.powerline_font, beautiful.bg_normal, beautiful.bg_focus, "\u{E0B0}") ..
@@ -619,27 +644,40 @@ end, { description = "toggle fullscreen", group = "client" }),
             c:raise()
         end, { description = "(un)maximize horizontally", group = "client" }))
 
+function switch_to_tag(i)
+	return function()
+		local screen = awful.screen.focused()
+		local tag = screen.tags[i]
+		if tag then
+			tag:view_only()
+		end
+	end
+end
+function toggle_tag(i)
+	return function()
+		local screen = awful.screen.focused()
+		local tag = screen.tags[i]
+		if tag then
+			tag:view_only()
+		end
+	end
+end
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
+for i = 1, 5 do
+	globalkeys = gears.table.join(globalkeys,
+			awful.key({}, "XF86Launch"..i+4, toggle_tag(i)))
+end
 for i = 1, 9 do
     globalkeys = gears.table.join(globalkeys, -- View tag only.
-            awful.key({ modkey }, "#" .. i + 9, function()
-                local screen = awful.screen.focused()
-                local tag = screen.tags[i]
-                if tag then
-                    tag:view_only()
-                end
-            end, { description = "view tag #" .. i, group = "tag" }),
+            awful.key({ modkey }, "#" .. i + 9, switch_to_tag(i), 
+			{ description = "view tag #" .. i, group = "tag" }),
     -- Toggle tag display.
             awful.key({ modkey, "Control" }, "#" .. i + 9,
-                    function()
-                        local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
-                        if tag then
-                            awful.tag.viewtoggle(tag)
-                        end
-                    end, { description = "toggle tag #" .. i, group = "tag" }),
+                    -- function()
+						toggle_tag(i)
+                    , { description = "toggle tag #" .. i, group = "tag" }),
     -- Move client to tag.
             awful.key({ modkey, "Shift" }, "#" .. i + 9,
                     function()
@@ -675,7 +713,7 @@ end))
 -- Set keys
 root.keys(globalkeys)
 -- }}}
-
+ 
 require("rules")
 
 -- {{{ Signals

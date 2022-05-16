@@ -73,18 +73,18 @@ awful.rules.rules = {
                 "TelegramDesktop"
             }
         },
-        properties = {tag = "6", floating = false}
+        properties = {tag = "6", floating = false, screen = screenorder[3]}
     }, {
         rule_any = {
             class = {"microsoft teams - preview", "Microsoft Teams - Preview"}
         },
-        properties = {tag = "7", floating = false}
+        properties = {tag = "7", floating = false, screen = screenorder[1]}
     }, {
         rule_any = {class = {"evolution", "Evolution"}},
-        properties = {tag = "8"}
+        properties = {tag = "8", screen = screenorder[2]}
     }, {
         rule = {class = "discord"},
-        properties = {tag = "9", floating = false, maximise = false}
+        properties = {tag = "9", floating = false, maximise = false, screen = screenorder[3]}
     },
     {rule = {role = "_NET_WM_STATE_FULLSCREEN"}, properties = {floating = true}},
     {
