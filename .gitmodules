@@ -1,42 +1,70 @@
 [submodule "meta/dotbot"]
 	path = meta/dotbot
 	url = https://github.com/anishathalye/dotbot
+	update = rebase
+	branch = master
 [submodule "meta/plugins/dotbot-yay"]
 	path = meta/plugins/dotbot-yay
 	url = https://github.com/oxson/dotbot-yay
+	update = rebase
+	branch = master
 [submodule "meta/plugins/dotbot-git"]
 	path = meta/plugins/dotbot-git
 	url = https://github.com/DrDynamic/dotbot-git.git
+	update = rebase
+	branch = master
 [submodule "meta/plugins/dotbot-ifplatform"]
 	path = meta/plugins/dotbot-ifplatform
 	url = https://github.com/OmegaRogue/dotbot-ifplatform
+	update = rebase
+	branch = master
 [submodule "awesome/awesome-buttons"]
 	path = awesome/awesome-buttons
 	url = https://github.com/streetturtle/awesome-buttons.git
+	update = rebase
+	branch = master
 [submodule "awesome/smart_borders"]
 	path = awesome/smart_borders
 	url = https://github.com/intrntbrn/smart_borders.git
+	update = rebase
+	branch = master
 [submodule "awesome/freedesktop"]
 	path = awesome/freedesktop
 	url = https://github.com/lcpz/awesome-freedesktop.git
+	update = rebase
+	branch = master
 [submodule "awesome/awesome-wm-widgets"]
 	path = awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets.git
+	update = rebase
+	branch = master
 [submodule "awesome/modalawesome"]
 	path = awesome/modalawesome
 	url = https://github.com/potamides/modalawesome
+	update = rebase
+	branch = master
 [submodule "awesome/awesome-switcher"]
 	path = awesome/awesome-switcher
 	url = https://github.com/berlam/awesome-switcher.git
+	update = rebase
+	branch = master
 [submodule "awesome/lain"]
 	path = awesome/lain
 	url = https://github.com/lcpz/lain.git
+	update = rebase
+	branch = master
 [submodule "awesome/omegavoid"]
 	path = awesome/omegavoid
 	url = https://github.com/OmegaRogue/omegavoid-awesomewm.git
+	update = rebase
+	branch = master
 [submodule "awesome/foggy"]
 	path = awesome/foggy
 	url = https://gitlab.com/k3rni/foggy
+	branch = master
+	update = rebase
 [submodule "awesome/amh"]
 	path = awesome/amh
 	url = https://github.com/sim590/amh.git
+	branch = master
+	update = rebase
