@@ -43,12 +43,12 @@ widgets.time = wibox.widget {
     widget = wibox.widget.textclock
 }
 
-widgets.cal = lain.widget.cal({
-    --attach_to = { powerline_widget, time },
-    attach_to = { widgets.time },
-    notification_preset = { font = beautiful.font, fg = beautiful.fg_normal, bg = beautiful.bg_normal },
-    cal = "/usr/bin/env TERM=linux /usr/bin/cal --color=always"
-})
+-- widgets.cal = lain.widget.cal({
+--     --attach_to = { powerline_widget, time },
+--     attach_to = { widgets.time },
+--     notification_preset = { font = beautiful.font, fg = beautiful.fg_normal, bg = beautiful.bg_normal },
+--     cal = "/usr/bin/env TERM=linux /usr/bin/cal --color=always"
+-- })
 --widgets.cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
 widgets.cpuicon = wibox.widget.textbox(beautiful.widget_cpu)
 widgets.cpuicon.font = beautiful.icon_font
@@ -68,8 +68,21 @@ widgets.mem = lain.widget.mem({
         --widget:set_markup(markup.font(beautiful.font, "" .. mem_now.used .. "MB "))
     end
 })
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 
+widgets.calendar = calendar_widget({
+    theme = 'outrun',
+    placement = 'top_right',
+    start_sunday = true,
+    radius = 8,
+-- with customized next/previous (see table above)
+    previous_month_button = 1,
+    next_month_button = 3,
+})
 
-
+widgets.time:connect_signal("button::press",
+    function(_, _, _, button)
+        if button == 1 then widgets.calendar.toggle() end
+    end)
 
 return widgets

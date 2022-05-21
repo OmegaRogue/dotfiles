@@ -251,7 +251,7 @@ theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height,
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = "Adwaita"
+theme.icon_theme = "Ambiant-MATE"
 
 return theme
 

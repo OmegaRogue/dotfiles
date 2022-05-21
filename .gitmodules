@@ -1,23 +1,16 @@
 [submodule "meta/dotbot"]
 	path = meta/dotbot
 	url = https://github.com/anishathalye/dotbot
-	update = rebase
-	branch = master
+	ignore = dirty
 [submodule "meta/plugins/dotbot-yay"]
 	path = meta/plugins/dotbot-yay
 	url = https://github.com/oxson/dotbot-yay
-	update = rebase
-	branch = master
 [submodule "meta/plugins/dotbot-git"]
 	path = meta/plugins/dotbot-git
 	url = https://github.com/DrDynamic/dotbot-git.git
-	update = rebase
-	branch = master
 [submodule "meta/plugins/dotbot-ifplatform"]
 	path = meta/plugins/dotbot-ifplatform
 	url = https://github.com/OmegaRogue/dotbot-ifplatform
-	update = rebase
-	branch = master
 [submodule "awesome/awesome-buttons"]
 	path = awesome/awesome-buttons
 	url = https://github.com/streetturtle/awesome-buttons.git
@@ -57,7 +50,7 @@
 	path = awesome/omegavoid
 	url = https://github.com/OmegaRogue/omegavoid-awesomewm.git
 	update = rebase
-	branch = master
+	branch = main
 [submodule "awesome/foggy"]
 	path = awesome/foggy
 	url = https://gitlab.com/k3rni/foggy

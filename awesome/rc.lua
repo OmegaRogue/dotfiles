@@ -22,6 +22,8 @@ require("awful.hotkeys_popup.keys")
 
 package.path = package.path .. ';' .. os.getenv("HOME") ..
         '/.local/lib/python3.10/site-packages/powerline/bindings/awesome/?.lua'
+local appmenu = require("appmenu")
+
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -166,16 +168,27 @@ local myawesomemenu = {
         awesome.quit()
     end }
 }
-local mymainmenu = freedesktop.menu.build({
-    before = {
-        { "Awesome", myawesomemenu, beautiful.awesome_icon }
-        -- other triads can be put here
-    },
-    after = {
-        { "Open terminal", terminal }
-        -- other triads can be put here
-    }
-})
+-- local mydevmenu = {
+-- 	{
+-- 		"Segger",
+-- 	},
+-- 	{
+-- 		"QT5",
+-- 	},
+-- 	{
+-- 		"QT4",
+-- 	}
+-- }
+-- local mymainmenu = freedesktop.menu.build({
+--     before = {
+--         { "Awesome", myawesomemenu, beautiful.awesome_icon }
+--         -- other triads can be put here
+--     },
+--     after = {
+--         { "Open terminal", terminal }
+--         -- other triads can be put here
+--     }
+-- })
 
 --[[-- Create the rule that we will use to match for the application.
 for group_name, group_data in pairs({
@@ -212,10 +225,25 @@ hotkeys_popup.widget.add_hotkeys(wezterm)]]
 -- DESKTOP_SESSION
 -- mymainmenu.
 
--- mymainmenu = awful.menu({ items = { {"applications", appmenu.Appmenu}, { "awesome", myawesomemenu, beautiful.awesome_icon },
---                                     { "open terminal", terminal }
---                                   }
---                         })
+mymainmenu = awful.menu(
+	{ 
+		items = { 
+			{ "awesome", myawesomemenu, beautiful.awesome_icon },
+			{ 'Accessories', appmenu.Accessories },
+			{ 'Development', appmenu.Development },
+			{ 'Education', appmenu.Education },
+			{ 'Science', appmenu.Science },
+			{ 'Games', appmenu.Games },
+			{ 'Graphics', appmenu.Graphics, '/usr/share/icons/Ambiant-MATE/categories/16/applications-graphics.svg' },
+			{ 'Internet', appmenu.Internet, '/usr/share/icons/Ambiant-MATE/categories/16/applications-internet.svg' },
+			{ 'Office', appmenu.Office },
+			{ 'MultiMedia', appmenu.MultiMedia, '/usr/share/icons/Ambiant-MATE/categories/24/applications-multimedia.svg' },
+			{ 'Settings', appmenu.Settings },
+			{ 'System', appmenu.System },
+			{ 'Miscellaneous', appmenu.Miscellaneous },
+			{ "open terminal", terminal },
+		}
+    })
 
 launcher_shape = gears.shape.transform(gears.shape.squircle):rotate_at(32, 32, math.pi / 2)
 mylauncher = awful.widget.launcher {
@@ -410,6 +438,7 @@ awful.screen.connect_for_each_screen(function(s)
             powerline.segment(false, nil, nil, nil, widgets.memicon, widgets.mem),
             powerline.segment(false, nil, nil, nil, widgets.cpuicon, widgets.cpu),
             powerline.segment(false, nil, nil, nil, widgets.baticon, widgets.bat),
+			awful.widget.keyboardlayout,
             powerline.segment(false, nil, nil, nil, s.systray),
             powerline.segment(false, nil, nil, nil, volume_widget()),
             powerline.segment(false, beautiful.bg_focus, nil, nil, s.layoutbox),
@@ -744,3 +773,4 @@ client.connect_signal("unfocus", function(c)
 end)
 
 -- }}}
+
