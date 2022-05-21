@@ -1,16 +1,9 @@
-[submodule "meta/dotbot"]
-	path = meta/dotbot
-	url = https://github.com/anishathalye/dotbot
-	ignore = dirty
 [submodule "meta/plugins/dotbot-yay"]
 	path = meta/plugins/dotbot-yay
 	url = https://github.com/oxson/dotbot-yay
 [submodule "meta/plugins/dotbot-git"]
 	path = meta/plugins/dotbot-git
 	url = https://github.com/DrDynamic/dotbot-git.git
-[submodule "meta/plugins/dotbot-ifplatform"]
-	path = meta/plugins/dotbot-ifplatform
-	url = https://github.com/OmegaRogue/dotbot-ifplatform
 [submodule "awesome/awesome-buttons"]
 	path = awesome/awesome-buttons
 	url = https://github.com/streetturtle/awesome-buttons.git
