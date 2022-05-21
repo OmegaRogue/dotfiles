@@ -54,3 +54,7 @@
 	url = https://github.com/sim590/amh.git
 	branch = master
 	update = rebase
+[submodule "meta/dotbot"]
+	path = meta/dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
