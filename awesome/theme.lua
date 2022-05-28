@@ -22,7 +22,7 @@ theme.bg_normal = "#222222"
 theme.bg_focus = "#585858"
 theme.bg_urgent = "#d75f00"
 theme.bg_minimize = "#444444"
-theme.bg_systray = theme.bg_normal
+theme.bg_systray = theme.bg_focus
 
 theme.fg_normal = "#aaaaaa"
 theme.fg_focus = "#d0d0d0"
@@ -225,7 +225,7 @@ switcher.settings.client_opacity = true
 theme.switcher = switcher
 
 theme.wallpaper = os.getenv("HOME") ..
-        "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-4-1920x1080.jpg"
+        "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-5-1920x1080.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
@@ -251,7 +251,7 @@ theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height,
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = "Ambiant-MATE"
+theme.icon_theme = "Yaru-MATE-light"
 
 return theme
 

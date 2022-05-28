@@ -17,7 +17,6 @@ endif
 call plug#begin('~/.config/nvim/plugins')
 
 
-Plug 'voldikss/vim-floaterm'
 Plug 'svermeulen/vimpeccable'
 " ---------------------------------------------------------------------------------------------------------------------
 " Interface {{{
@@ -32,6 +31,8 @@ Plug 'melonmanchan/vim-tmux-resizer'
 Plug 'MikeDacre/tmux-zsh-vim-titles'
 Plug 'skywind3000/vim-preview'
 Plug 'majutsushi/tagbar'
+Plug 'ptzz/lf.vim'
+Plug 'voldikss/vim-floaterm'
 
 "}}}
 

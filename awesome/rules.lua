@@ -14,7 +14,7 @@ awful.rules.rules = {
             focus = awful.client.focus.filter,
             raise = true,
             keys = clientkeys,
-            buttons = clientbuttons,
+            buttons = Clientbuttons,
             screen = awful.screen.preferred,
             placement = awful.placement.no_overlap +
                 awful.placement.no_offscreen
@@ -73,18 +73,18 @@ awful.rules.rules = {
                 "TelegramDesktop"
             }
         },
-        properties = {tag = "6", floating = false, screen = screenorder[3]}
+        properties = {tag = "6", floating = false, screen = Screenorder[3]}
     }, {
         rule_any = {
             class = {"microsoft teams - preview", "Microsoft Teams - Preview"}
         },
-        properties = {tag = "7", floating = false, screen = screenorder[1]}
+        properties = {tag = "7", floating = false, screen = Screenorder[1]}
     }, {
         rule_any = {class = {"evolution", "Evolution"}},
-        properties = {tag = "8", screen = screenorder[2]}
+        properties = {tag = "8", screen = Screenorder[2]}
     }, {
         rule = {class = "discord"},
-        properties = {tag = "9", floating = false, maximise = false, screen = screenorder[3]}
+        properties = {tag = "9", floating = false, maximise = false, screen = Screenorder[3]}
     },
     {rule = {role = "_NET_WM_STATE_FULLSCREEN"}, properties = {floating = true}},
     {

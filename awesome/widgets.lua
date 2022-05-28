@@ -9,6 +9,8 @@ local widgets = {}
 
 -- Widget and layout library
 local wibox = require("wibox")
+local awful = require("awful")
+local gears = require("gears")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -43,29 +45,20 @@ widgets.time = wibox.widget {
     widget = wibox.widget.textclock
 }
 
--- widgets.cal = lain.widget.cal({
---     --attach_to = { powerline_widget, time },
---     attach_to = { widgets.time },
---     notification_preset = { font = beautiful.font, fg = beautiful.fg_normal, bg = beautiful.bg_normal },
---     cal = "/usr/bin/env TERM=linux /usr/bin/cal --color=always"
--- })
---widgets.cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
+
 widgets.cpuicon = wibox.widget.textbox(beautiful.widget_cpu)
 widgets.cpuicon.font = beautiful.icon_font
 
 widgets.cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(markup.font(beautiful.font, "" .. string.format("%3s", cpu_now.usage) .. "% "))
-        --widget:set_markup(markup.font(beautiful.font, " " .. cpu_now.usage .. "% "))
     end
 })
---widgets.memicon = wibox.widget.imagebox(beautiful.widget_mem)
 widgets.memicon = wibox.widget.textbox(beautiful.widget_mem)
 widgets.memicon.font = beautiful.icon_font
 widgets.mem = lain.widget.mem({
     settings = function()
         widget:set_markup(markup.font(beautiful.font, "" .. string.format("%3s", mem_now.perc) .. "% "))
-        --widget:set_markup(markup.font(beautiful.font, "" .. mem_now.used .. "MB "))
     end
 })
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
@@ -84,5 +77,12 @@ widgets.time:connect_signal("button::press",
     function(_, _, _, button)
         if button == 1 then widgets.calendar.toggle() end
     end)
+
+
+widgets.launcher = awful.widget.launcher({
+    image = beautiful.awesome_icon,
+    clip_shape = gears.shape.powerline,
+    menu = require('menu')
+})
 
 return widgets

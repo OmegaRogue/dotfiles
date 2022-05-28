@@ -348,3 +348,6 @@ vim.cmd [[au BufNewFile,BufRead ssh_config,*/.ssh/config,*/ssh/config  setf sshc
 
 -- }}}
 
+vim.g.NERDTreeHijackNetrw = 0
+vim.g.lf_replace_netrw = 1
+

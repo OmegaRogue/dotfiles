@@ -53,7 +53,8 @@ fi
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-autoload -U +X bashcompinit && bashcompinit
+autoload -U compinit
+compinit
 #eval $(opam env)
 complete -o nospace -C /usr/bin/nomad nomad
 
@@ -77,23 +78,54 @@ source /usr/share/doc/pkgfile/command-not-found.zsh 2>/dev/null
 # <<< conda initialize <<<
 
 
-function dragon_source_widget() {
-  dragon -x
+# function dragon_source_widget() {
+#   dragon -x
+# }
+#
+# function dragon_target_widget() {
+#   dragon-drag-and-drop -x -t .
+# }
+# # The plugin will auto execute this zvm_after_lazy_keybindings function
+
+
+_zlf() {
+    emulate -L zsh
+    local d=$(mktemp -d) || return 1
+    {
+        mkfifo -m 600 $d/fifo || return 1
+		if (( ${+TMUX} )); then
+			tmux split -bf zsh -c "exec {ZLE_FIFO}>$d/fifo; export ZLE_FIFO; exec lf" || return 1
+		else
+			(wezterm cli split-pane -- zsh -c "exec {ZLE_FIFO}>$d/fifo; export ZLE_FIFO; exec lf")>/dev/null || return 1
+		fi
+        local fd
+        exec {fd}<$d/fifo
+        zle -Fw $fd _zlf_handler
+    } always {
+        rm -rf $d
+    }
 }
 
-function dragon_target_widget() {
-  dragon-drag-and-drop -x -t .
+_zlf_handler() {
+    emulate -L zsh
+    local line
+    if ! read -r line <&$1; then
+        zle -F $1
+        exec {1}<&-
+        return 1
+    fi
+    eval $line
+    zle -R
 }
-# The plugin will auto execute this zvm_after_lazy_keybindings function
+
 function zvm_after_lazy_keybindings() {
   # Here we define the custom widget
-  zvm_define_widget dragon_source_widget
-  zvm_define_widget dragon_target_widget
+  zvm_define_widget _zlf
+  zvm_define_widget _zlf_handler
 
   # In normal mode, press Ctrl-E to invoke this widget
-  zvm_bindkey vicmd '^E' dragon_source_widget
+  zvm_bindkey vicmd '^E' _zlf
 
-  zvm_bindkey vicmd '^T' dragon_target_widget
 }
 
 neofetch

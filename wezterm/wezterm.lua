@@ -25,6 +25,7 @@ return {
     top = 2,
     bottom = 2
   },
+  enable_kitty_graphics = true,
   --enable_wayland = true,
   --enable_scroll_bar = true,
   default_cursor_style = "BlinkingBar",

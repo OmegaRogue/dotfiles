@@ -32,9 +32,9 @@ Plug 'MikeDacre/tmux-zsh-vim-titles'
 Plug 'skywind3000/vim-preview'
 Plug 'majutsushi/tagbar'
 Plug('tversteeg/registers.nvim', {branch = 'main'})
-Plug 'voldikss/vim-floaterm'
 Plug 'severin-lemaignan/vim-minimap'
-
+Plug 'ptzz/lf.vim'
+Plug 'voldikss/vim-floaterm'
 -- }}}
 
 -- ---------------------------------------------------------------------------------------------------------------------

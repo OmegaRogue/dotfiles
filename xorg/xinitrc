@@ -1,10 +1,12 @@
 # vim: set ft=sh:
 
 nm-applet &
+pasystray &
 barriers --disable-crypto -l /var/log/barrier.log -c $HOME/.dotfiles/barrier/pc.conf &
 #barrierc -f --no-tray --debug INFO --name omegarogue-gl738sc --disable-crypto --daemon "[192.168.0.49]:24800" &
 setxkbmap -device `xinput list | grep "Virtual core XTEST keyboard" | sed -e 's/.\+=\([0-9]\+\).\+/\1/'` de
  
+setxkbmap -layout "de,us"
 bitwarden-desktop &
 #xfsettingsd -d --replace &
 eval $(gnome-keyring-daemon --start) &

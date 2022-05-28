@@ -12,6 +12,7 @@
     ~/.config/awesome/widgets.lua: awesome/widgets.lua
     ~/.config/awesome/popup.lua: awesome/popup.lua
     ~/.config/awesome/freedesktop: awesome/freedesktop
+    ~/.config/awesome/bling: awesome/bling
     ~/.config/awesome/awesome-buttons: awesome/awesome-buttons
     ~/.config/awesome/awesome-wm-widgets: awesome/awesome-wm-widgets
     ~/.config/awesome/modalawesome: awesome/modalawesome
