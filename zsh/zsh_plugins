@@ -57,6 +57,7 @@ if ! zgenom saved; then
 	zgenom load gko/ssh-connect								# https://github.com/gko/ssh-connect
 	zgenom load NorthIsMirror/zsh-startify					# https://github.com/NorthIsMirror/zsh-startify
 	#zgenom load zshzoo/magic-enter							# https://github.com/zshzoo/magic-enter
+	zgenom load nviennot/zsh-vim-plugin
 	if hash tmux &>/dev/null; then
 		zgenom load MikeDacre/tmux-zsh-vim-titles			# https://github.com/MikeDacre/tmux-zsh-vim-titles
 		zgenom load zpm-zsh/tmux							# https://github.com/zpm-zsh/tmux

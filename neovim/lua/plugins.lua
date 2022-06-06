@@ -27,6 +27,7 @@ Plug 'svermeulen/vimpeccable'
 Plug 'lambdalisue/vim-pager'
 Plug 'lambdalisue/vim-manpager'
 Plug 'christoomey/vim-tmux-navigator'
+--Plug 'intrntbrn/awesomewm-vim-tmux-navigator'
 Plug 'melonmanchan/vim-tmux-resizer'
 Plug 'MikeDacre/tmux-zsh-vim-titles'
 Plug 'skywind3000/vim-preview'
@@ -35,6 +36,7 @@ Plug('tversteeg/registers.nvim', {branch = 'main'})
 Plug 'severin-lemaignan/vim-minimap'
 Plug 'ptzz/lf.vim'
 Plug 'voldikss/vim-floaterm'
+Plug 'chrisbra/sudoedit.vim'
 -- }}}
 
 -- ---------------------------------------------------------------------------------------------------------------------

@@ -33,12 +33,13 @@ export LANG=en_US.UTF-8
 # Default Apps
 export TERMINAL='wezterm'
 export EDITOR='nvim'
+export SYSTEMD_EDITOR=$EDITOR
 export READER='zathura'
 export PAGER='less'
 export WM='awesome'
 
 # Uncomment the following line to disable colors in ls.
-DISABLE_LS_COLORS="true"
+#DISABLE_LS_COLORS="true"
 #LOAD set LS_COLORS from .dircolors
 if [ -f ~/.dircolors ]; then
   eval $(dircolors -b $HOME/.dircolors)
@@ -53,3 +54,5 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /usr/bin/virtualenvwrapper.sh
 source /opt/zephyr-sdk-0.14.1/environment-setup-x86_64-pokysdk-linux
+
+export LF_BOOKMARK_PATH=${HOME}/bookmarks

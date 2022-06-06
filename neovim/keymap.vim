@@ -126,4 +126,7 @@ tnoremap <F5> <C-\><C-n>
 "F12 Show F keys toggles
 nnoremap <F12> :call utils#showToggles()<CR>
 
+"Format file
+map <F7> gg=G<C-o><C-o>
+
 "}}}

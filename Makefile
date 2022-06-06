@@ -1,37 +1,45 @@
 default:
-	@echo "profiles: workstation, server"
-	@echo "configs: alacritty, antigen, awesomewm, fzf, git, ideavim, neovim, powerline, ssh, tmux, wezterm, xfce, zsh"
-profile_workstation:
-	./install-profile workstation
+	@echo 'profiles: server, workstation'
+	@echo 'configs: alacritty, antigen, awesomewm, fzf, git, ideavim, lf, neovim, paru, picom, powerline, rofi, ssh, tmux, wezterm, xfce, xorg, zsh'
+
 profile_server:
-	./install-profile server
+	/home/omegarogue/.dotfiles/install-profile server
+profile_workstation:
+	/home/omegarogue/.dotfiles/install-profile workstation
+
 config_alacritty:
-	./install-standalone alacritty
+	/home/omegarogue/.dotfiles/install-standalone alacritty
 config_antigen:
-	./install-standalone antigen
+	/home/omegarogue/.dotfiles/install-standalone antigen
 config_awesomewm:
-	./install-standalone awesomewm
+	/home/omegarogue/.dotfiles/install-standalone awesomewm
 config_fzf:
-	./install-standalone fzf
+	/home/omegarogue/.dotfiles/install-standalone fzf
 config_git:
-	./install-standalone git
+	/home/omegarogue/.dotfiles/install-standalone git
 config_ideavim:
-	./install-standalone ideavim
+	/home/omegarogue/.dotfiles/install-standalone ideavim
+config_lf:
+	/home/omegarogue/.dotfiles/install-standalone lf
 config_neovim:
-	./install-standalone neovim
-config_powerline:
-	./install-standalone powerline
-config_ssh:
-	./install-standalone ssh
-config_tmux:
-	./install-standalone tmux
-config_wezterm:
-	./install-standalone wezterm
-config_xfce:
-	./install-standalone xfce
-config_zsh:
-	./install-standalone zsh
-config_rofi:
-	./install-standalone rofi
+	/home/omegarogue/.dotfiles/install-standalone neovim
+config_paru:
+	/home/omegarogue/.dotfiles/install-standalone paru
 config_picom:
-	./install-standalone picom
+	/home/omegarogue/.dotfiles/install-standalone picom
+config_powerline:
+	/home/omegarogue/.dotfiles/install-standalone powerline
+config_rofi:
+	/home/omegarogue/.dotfiles/install-standalone rofi
+config_ssh:
+	/home/omegarogue/.dotfiles/install-standalone ssh
+config_tmux:
+	/home/omegarogue/.dotfiles/install-standalone tmux
+config_wezterm:
+	/home/omegarogue/.dotfiles/install-standalone wezterm
+config_xfce:
+	/home/omegarogue/.dotfiles/install-standalone xfce
+config_xorg:
+	/home/omegarogue/.dotfiles/install-standalone xorg
+config_zsh:
+	/home/omegarogue/.dotfiles/install-standalone zsh

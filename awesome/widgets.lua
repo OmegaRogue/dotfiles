@@ -30,7 +30,7 @@ widgets.bat = lain.widget.bat({
     battery = "BAT1",
     settings = function()
         if bat_now.status and bat_now.status ~= "N/A" then
-            widgets.baticon:set_text(beautiful.widget_battery_percent(bat_now.perc, bat_now.status).." ")
+            widgets.baticon:set_text(beautiful.widget_battery_percent(bat_now.perc, bat_now.status) .. " ")
 
             widget:set_markup(markup.font(beautiful.font, bat_now.perc .. "% "))
         else
@@ -44,7 +44,6 @@ widgets.time = wibox.widget {
     format = '<span foreground="#9e9e9e"> %Y-%m-%d </span>',
     widget = wibox.widget.textclock
 }
-
 
 widgets.cpuicon = wibox.widget.textbox(beautiful.widget_cpu)
 widgets.cpuicon.font = beautiful.icon_font
@@ -68,21 +67,24 @@ widgets.calendar = calendar_widget({
     placement = 'top_right',
     start_sunday = true,
     radius = 8,
--- with customized next/previous (see table above)
+    -- with customized next/previous (see table above)
     previous_month_button = 1,
     next_month_button = 3,
 })
 
 widgets.time:connect_signal("button::press",
-    function(_, _, _, button)
-        if button == 1 then widgets.calendar.toggle() end
-    end)
-
+        function(_, _, _, button)
+            if button == 1 then
+                widgets.calendar.toggle()
+            end
+        end)
 
 widgets.launcher = awful.widget.launcher({
     image = beautiful.awesome_icon,
     clip_shape = gears.shape.powerline,
     menu = require('menu')
 })
+
+
 
 return widgets

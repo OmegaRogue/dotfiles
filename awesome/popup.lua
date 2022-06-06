@@ -3,33 +3,33 @@ awful.popup {
     widget = {
         {
             {
-                text   = 'foobar',
+                text = 'foobar',
                 widget = wibox.widget.textbox
             },
             {
                 {
-                    text   = 'foobar',
+                    text = 'foobar',
                     widget = wibox.widget.textbox
                 },
-                bg     = '#ff00ff',
-                clip   = true,
-                shape  = gears.shape.rounded_bar,
+                bg = '#ff00ff',
+                clip = true,
+                shape = gears.shape.rounded_bar,
                 widget = wibox.widget.background
             },
             {
-                value         = 0.5,
+                value = 0.5,
                 forced_height = 30,
-                forced_width  = 100,
-                widget        = wibox.widget.progressbar
+                forced_width = 100,
+                widget = wibox.widget.progressbar
             },
             layout = wibox.layout.fixed.vertical,
         },
         margins = 10,
-        widget  = wibox.container.margin
+        widget = wibox.container.margin
     },
     border_color = '#00ff00',
     border_width = 5,
-    placement    = awful.placement.top_left,
-    shape        = gears.shape.rounded_rect,
-    visible      = true,
+    placement = awful.placement.top_left,
+    shape = gears.shape.rounded_rect,
+    visible = true,
 }

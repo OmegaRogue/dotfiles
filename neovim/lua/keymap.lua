@@ -110,7 +110,7 @@ vimp.tnoremap({'silent'}, '<Esc>l', '<C-W>:TmuxNavigateRight<cr>')
 -- }}}
 
 -- -----------------------------------------------------
--- F-key actions {{{
+-- F-key a ctions {{{
 -- =====================================================
 
 -- F1 Open/close Help
@@ -130,5 +130,8 @@ vimp.nnoremap('<F16>', [[:qa!<CR>]])
 vimp.tnoremap('<F5>', '<C-\\><C-n>')
 -- F12 Show F keys toggles
 vimp.nnoremap('<F12>', [[:call utils#showToggles()<CR>]])
+
+vimp.map('<F7>', 'gg=G<C-o><C-o>')
+vimp.map('<F8>', ':%s/\\s\\+$//e<CR>')
 
 -- }}}

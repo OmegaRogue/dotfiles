@@ -11,6 +11,10 @@
     ~/.config/awesome/DataDumper.lua: awesome/DataDumper.lua
     ~/.config/awesome/widgets.lua: awesome/widgets.lua
     ~/.config/awesome/popup.lua: awesome/popup.lua
+    ~/.config/awesome/errors.lua: awesome/errors.lua
+    ~/.config/awesome/menu.lua: awesome/menu.lua
+    ~/.config/awesome/settings.lua: awesome/settings.lua
+    ~/.config/awesome/hardware_compat.lua: awesome/hardware_compat.lua
     ~/.config/awesome/freedesktop: awesome/freedesktop
     ~/.config/awesome/bling: awesome/bling
     ~/.config/awesome/awesome-buttons: awesome/awesome-buttons
@@ -22,4 +26,6 @@
     ~/.config/awesome/lain: awesome/lain
     ~/.config/awesome/amh: awesome/amh
     ~/.config/awesome/omegavoid: awesome/omegavoid
+    ~/.config/awesome/collision: awesome/collision
+    ~/.config/awesome/layout-machi: awesome/layout-machi
 

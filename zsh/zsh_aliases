@@ -25,6 +25,7 @@ alias mv='mv -iv'
 
 alias src='reload'
 
+
 #unalias l
 #unalias la
 #unalias ll
@@ -58,3 +59,6 @@ if [[ -f /etc/pacman.conf ]] then
 fi
 
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
+
+
+alias lf='lfcd'

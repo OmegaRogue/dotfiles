@@ -119,5 +119,8 @@ return {
     -- {key="5", mods="LEADER", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
     -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   -- }
+  keys = {
+	  {key="Enter", mods="ALT", action="DisableDefaultAssignment"}
+  }
 
 }

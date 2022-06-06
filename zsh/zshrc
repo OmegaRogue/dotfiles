@@ -118,15 +118,35 @@ _zlf_handler() {
     zle -R
 }
 
+lfcd () {
+    tmp="$(mktemp)"
+    lfrun -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
+
 function zvm_after_lazy_keybindings() {
   # Here we define the custom widget
   zvm_define_widget _zlf
   zvm_define_widget _zlf_handler
+  zvm_define_widget lfcd
 
   # In normal mode, press Ctrl-E to invoke this widget
   zvm_bindkey vicmd '^E' _zlf
 
+  zvm_bindkey vicmd '^O' lfcd
+
 }
+
 
 neofetch
 #zsh-startify
+
+source /home/omegarogue/.config/broot/launcher/bash/br

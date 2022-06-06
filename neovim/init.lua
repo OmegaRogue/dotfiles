@@ -48,6 +48,16 @@ set.cursorcolumn = true
 set.splitbelow = true
 set.splitright = true
 
+
+set.number = true
+set.relativenumber = true
+
+vim.api.nvim_create_autocmd('filetype', {
+  pattern = 'startify',
+  command = 'setlocal nonumber'
+})
+
+
 -- }}}
 
 -----------------------------------------------------------------------------------------------------------------------
