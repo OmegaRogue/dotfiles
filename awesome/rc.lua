@@ -21,27 +21,24 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 
+
 local settings = require('settings')
 
 --local amh = require("amh")
 
 package.path = package.path .. ';' .. os.getenv("HOME") ..
         '/.local/lib/python3.10/site-packages/powerline/bindings/awesome/?.lua'
-
 naughty.config.icon_formats = { "png", "gif", "svg", "symbolic.png" }
 
 -- Error handling
 require('errors')
 
 
-
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
-
 local utils = require('utils')
-
 
 local bling = require("bling")
 
@@ -145,7 +142,6 @@ local tasklist_buttons = gears.table.join(
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", utils.set_wallpaper)
-
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     utils.set_wallpaper(s)
@@ -241,6 +237,7 @@ awful.screen.connect_for_each_screen(function(s)
             awful.spawn.with_shell(settings.power_menu_cmd)
         end
     }
+
     s.topbar:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
@@ -252,8 +249,7 @@ awful.screen.connect_for_each_screen(function(s)
             powerline.segment(true, "#afd700", nil, "#005f00", modalawesome.active_mode),
             s.mypromptbox,
         },
-        nil,
-
+nil,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             modalawesome.sequence,
@@ -442,7 +438,6 @@ end, { description = "toggle fullscreen", group = "client" }),
             c:raise()
         end, { description = "(un)maximize horizontally", group = "client" }))
 
-
 Globalkeys = gears.table.join(Globalkeys, hardware_compat.global_keys)
 
 
@@ -534,12 +529,9 @@ end)
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
 
 require("collision")()-- {
-    --        Normal        Xephyr         Vim      G510
-    -- up    = { "Up"    , "k"   --[[, "F15" ]]},
-    -- down  = { "Down"  , "j"   --[[, "F14" ]]},
-    -- left  = { "Left"  , "h"   --[[, "F13" ]]},
-    -- right = { "Right" , "l"   --[[, "F17" ]]},
+--        Normal        Xephyr         Vim      G510
+-- up    = { "Up"    , "k"   --[[, "F15" ]]},
+-- down  = { "Down"  , "j"   --[[, "F14" ]]},
+-- left  = { "Left"  , "h"   --[[, "F13" ]]},
+-- right = { "Right" , "l"   --[[, "F17" ]]},
 --}
-
-
-

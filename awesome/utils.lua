@@ -5,6 +5,7 @@ local markup = lain.util.markup
 local beautiful = require("beautiful")
 local settings = require('settings')
 local gears = require('gears')
+local menubar = require("menubar")
 
 utils.switch_to_tag = function(i)
     return function()
@@ -25,7 +26,6 @@ utils.toggle_tag = function(i)
         end
     end
 end
-
 
 utils.lua_prompt = function()
     awful.prompt.run {
@@ -53,11 +53,11 @@ utils.change_volume = function(amount)
     if amount >= 0 then
         amount_str = "+" .. amount_str
     end
-    awful.spawn.with_shell(settings.set_volume_cmd:gsub("%$v",amount_str))
+    awful.spawn.with_shell(settings.set_volume_cmd:gsub("%$v", amount_str))
 end
 
 utils.set_volume = function(amount)
-    awful.spawn.with_shell(settings.set_volume_cmd:gsub("%$v",tostring(amount)))
+    awful.spawn.with_shell(settings.set_volume_cmd:gsub("%$v", tostring(amount)))
 end
 
 utils.set_wallpaper = function(s)
@@ -72,5 +72,27 @@ utils.set_wallpaper = function(s)
     end
 end
 
+utils.handle_autostart = function()
+    menubar.utils.parse_dir("/etc/xdg/autostart", function(a)
+        local autostart_apps = {}
+        for v in a do
+            autostart_apps[v.Name] = v
+        end
+        menubar.utils.parse_dir("/home/omegarogue/.config/autostart", function(b)
+            for v in b do
+                autostart_apps[v.Name] = v
+            end
+            for v in autostart_apps do
+                if v.Hidden ~= true then
+                    awful.spawn(v.cmdline)
+                end
+            end
+        end)
+    end)
+
+
+end
+
+--debug_out = "" menubar.utils.parse_dir("/home/omegarogue/.config/autostart", function(a) local buffer = {} for k, v in ipairs(a) do if v.Exec ~= v.cmdline then buffer[k] = v end end debug_out = debug_out .. gears.debug.dump_return(buffer) end)
 
 return utils

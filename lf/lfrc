@@ -49,7 +49,8 @@ cmd on-cd &{{
 	git=${git//'>'/"↑"}
 	fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f$git\033[0m"
 	lf -remote "send $id set promptfmt \"$fmt\""
-}}
+
+#}}
 
 cmd paste_try_cow &{{
 # # This was very helpful for debugging:
@@ -69,69 +70,64 @@ cmd paste_try_cow &{{
 # same mount point and it is CoW fs.
 # (to make sure reflink never fails in first place, so we don't have to
 # clean up)
-
 		src_targets="$(df --output=target -- "$@" | sed '1d' | sort -u)"
-
 		if [ "$(df --output=target -- "$PWD" | tail -n 1)" = \
 			"$(echo "$src_targets" | tail -n 1)" ] && \
-				(( "$(echo "$src_targets" | wc -l)" == 1 )) && \
-				[[ "$(df --output=fstype -- "$PWD" | tail -n 1)" =~ ^(btrfs|xfs|zfs)$ ]]; then
-
-			echo 'selected copy and cp reflink paste'
-
-			start=$(date '+%s')
+			(( "$(echo "$src_targets" | wc -l)" == 1 )) && \
+			[[ "$(df --output=fstype -- "$PWD" | tail -n 1)" =~ ^(btrfs|xfs|zfs)$ ]]; then
+				echo 'selected copy and cp reflink paste'
+				start=$(date '+%s')
 
 # Handle same names in dst
 # TODO parallelism, idk - but exit/return/break won't stop the loop from subshell...
-							for i in "$@"; do
-								name="${i##*/}"
-									original="$name"
+				for i in "$@"; do
+					name="${i##*/}"
+					original="$name"
+					count=0
+					while [ -w "$PWD/$name" ]; do
+						count=$((count+1))
+						name="$original.~$count~"
+					done
 
-									count=0
-									while [ -w "$PWD/$name" ]; do
-										count=$((count+1))
-											name="$original.~$count~"
-											done
+					set +e
+					cp_out="$(cp -rn --reflink=always -- "$i" "$PWD/$name" 2>&1)"
+					set -e
 
-											set +e
-											cp_out="$(cp -rn --reflink=always -- "$i" "$PWD/$name" 2>&1)"
-											set -e
+					if [ ! -z "$cp_out" ]; then
+						lf -remote "send $id echoerr $cp_out"
+						exit 0
+					fi
+				done
 
-											if [ ! -z "$cp_out" ]; then
-												lf -remote "send $id echoerr $cp_out"
-													exit 0
-													fi
-													done
-
-													finish=$(( $(date '+%s') - $start ))
-													t=''
-													if (( $finish > 2 )); then
-														t="${finish}s"
-															fi
+				finish=$(( $(date '+%s') - $start ))
+				t=''
+				if (( $finish > 2 )); then
+					t="${finish}s"
+				fi
 
 # Or just skip a file when names are the same.
 # (A LOT faster if you e.g. pasting selection of 10k files)
 # cp -rn --reflink=always -- "$@" .
 
-															lf -remote "send clear"
+				lf -remote "send clear"
 
-															green=$'\u001b[32m'
-															reset=$'\u001b[0m'
-															lf -remote "send $id echo ${green}reflinked!${reset} $t"
-													else
-														echo 'selected copy and lf native paste'
-															lf -remote "send $id paste"
-															fi
+				green=$'\u001b[32m'
+				reset=$'\u001b[0m'
+				lf -remote "send $id echo ${green}reflinked!${reset} $t"
+				else
+				echo 'selected copy and lf native paste'
+				lf -remote "send $id paste"
+			fi
 
-															elif [ $mode = 'move' ]; then
-															echo 'selected move and lf native paste'
-															lf -remote "send $id paste"
-															fi
+		elif [ $mode = 'move' ]; then
+			echo 'selected move and lf native paste'
+			lf -remote "send $id paste"
+	fi
 
 # # for debug
 # set +x
 
-															lf -remote "send load"
+	lf -remote "send load"
 }}
 
 cmd link %{{
@@ -156,62 +152,76 @@ cmd link %{{
 cmd open ${{
 	case $(file --mime-type "$f" -bL) in
 		text/*|application/json) $EDITOR "$f";;
-			 *) xdg-open "$f" ;;
+		*)
+			 case "$f" in
+				*.tar.bz|*.tar.bz2|*.tbz|*.tbz2|*.tar.gz|*.tgz|*.tar.xz|*.txz|*.zip|*.rar|*.iso)
+					mntdir="$f-archivemount"
+					[ ! -d "$mntdir" ] && {
+						mkdir "$mntdir"
+						archivemount "$f" "$mntdir"
+						echo "$mntdir" >> "/tmp/__lf_archivemount_$id"
+					}
+					lf -remote "send $id cd \"$mntdir\""
+					lf -remote "send $id reload"
+					;;
+				*)xdg-open "$f" ;;
 			 esac
-			 }}
 
-			 cmd mkdir ${{
-			 printf "Directory Name: "
-			 read ans
-			 mkdir $ans
-			 }}
+	esac
+}}
 
-			 cmd mkfile ${{
-			 printf "File Name: "
-			 read ans
-			 $EDITOR $ans
-			 }}
+cmd mkdir ${{
+	printf "Directory Name: "
+	read ans
+	mkdir $ans
+}}
 
-			 cmd chmod ${{
-			 printf "Mode Bits: "
-			 read ans
+cmd mkfile ${{
+	printf "File Name: "
+	read ans
+	$EDITOR $ans
+}}
 
-			 for file in "$fx"
-			 do
-			 chmod $ans $file
-			 done
+cmd chmod ${{
+	printf "Mode Bits: "
+	read ans
 
-			 lf -remote 'send reload'
-			 }}
+	for file in "$fx"
+	do
+	chmod $ans $file
+	done
 
-			 cmd sudomkfile ${{
-			 printf "File Name: "
-			 read ans
-			 sudo $EDITOR $ans
-			 }}
+	lf -remote 'send reload'
+}}
+
+cmd sudomkfile ${{
+	printf "File Name: "
+	read ans
+	sudo $EDITOR $ans
+}}
 
 # cmd setwallpaper %cp "$f" ~/.config/wall.png && xwallpaper --zoom "$f"
 
 cmd fzf_jump ${{
 	res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
 	if [ -f "$res" ]; then
-		cmd="select"
-		elif [ -d "$res" ]; then
-		cmd="cd"
+	cmd="select"
+	elif [ -d "$res" ]; then
+	cmd="cd"
 	fi
 	lf -remote "send $id $cmd \"$res\""
 }}
 
 cmd broot_jump ${{
-  f=$(mktemp)
-  res="$(broot --outcmd $f && cat $f | sed 's/cd //')"
-  rm -f "$f"
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
+	f=$(mktemp)
+	res="$(broot --outcmd $f && cat $f | sed 's/cd //')"
+	rm -f "$f"
+	if [ -f "$res" ]; then
+	cmd="select"
+	elif [ -d "$res" ]; then
+	cmd="cd"
+	fi
+	lf -remote "send $id $cmd \"$res\""
 }}
 
 cmd bookmark_jump ${{
@@ -219,32 +229,38 @@ cmd bookmark_jump ${{
 	lf -remote "send $id cd \"$res\""
 }}
 
+cmd bookmark_delete ${{
+	res="$(ls $LF_BOOKMARK_PATH | fzf)"
+	rm $LF_BOOKMARK_PATH/"$res"
+}}
+
+
 cmd bookmark_create ${{
 	read ans
-	echo $PWD > $LF_BOOKMARK_PATH/$ans
+	echo $PWD > $LF_BOOKMARK_PATH/${ans// /_}
 }}
 
 
 cmd dragon %dragon-drag-and-drop -a -x $fx
-		cmd dragon-stay %dragon-drag-and-drop -a $fx
-		cmd dragon-individual %dragon-drag-and-drop $fx
-		cmd cpdragon %cpdragon
-		cmd mvdragon %mvdragon
-		cmd dlfile %dlfile
+cmd dragon-stay %dragon-drag-and-drop -a $fx
+cmd dragon-individual %dragon-drag-and-drop $fx
+cmd cpdragon %cpdragon
+cmd mvdragon %mvdragon
+cmd dlfile %dlfile
 
 
 # extract the current file with the right command
 # (xkcd link: https://xkcd.com/1168/)
 cmd unarchive ${{
 	set -f
-	case $f in
+		case $f in
 		*.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f --one-top-level;;
-		*.tar.gz|*.tgz) tar xzvf $f --one-top-level;;
-		*.tar.xz|*.txz) tar xJvf $f --one-top-level;;
-		*.zip) unzip $f -d ${f//.zip/};;
-		*.rar) unrar x $f -d ${f//.rar/};;
-		*.7z) 7z x $f -o ${f//.7z/};;
-		*.*) 7z x $f -o ${f%.*};;
+	*.tar.gz|*.tgz) tar xzvf $f --one-top-level;;
+	*.tar.xz|*.txz) tar xJvf $f --one-top-level;;
+	*.zip) unzip $f -d ${f//.zip/};;
+	*.rar) unrar x $f -d ${f//.rar/};;
+	*.7z) 7z x $f -o ${f//.7z/};;
+	*.*) 7z x $f -o ${f%.*};;
 	esac
 }}
 cmd zip %zip -r "$f" "$f"
@@ -357,6 +373,10 @@ map di dragon-individual
 map dm mvdragon
 map dc cpdragon
 map dl dlfile
+
+map bc bookmark_create
+map bj bookmark_jump
+map bd bookmark_delete
 
 map ss stripspace
 
