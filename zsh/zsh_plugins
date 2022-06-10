@@ -58,30 +58,30 @@ if ! zgenom saved; then
 	zgenom load NorthIsMirror/zsh-startify					# https://github.com/NorthIsMirror/zsh-startify
 	#zgenom load zshzoo/magic-enter							# https://github.com/zshzoo/magic-enter
 	zgenom load nviennot/zsh-vim-plugin
-	if hash tmux &>/dev/null; then
+	if (( $+commands[tmux] )); then
 		zgenom load MikeDacre/tmux-zsh-vim-titles			# https://github.com/MikeDacre/tmux-zsh-vim-titles
 		zgenom load zpm-zsh/tmux							# https://github.com/zpm-zsh/tmux
 	fi
-	if hash bw &>/dev/null; then
+	if (( $+commands[bw] )); then
 
 		zgenom load Game4Move78/zsh-bitwarden				# https://github.com/Game4Move78/zsh-bitwarden
 	fi
 
-	if hash nmap &>/dev/null; then
+	if (( $+commands[nmap] )); then
 		zgenom ohmyzsh plugins/nmap							# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/nmap
 	fi
 
-	if hash systemctl &>/dev/null; then
+	if  (( $+commands[systemctl] )); then
 		zgenom ohmyzsh plugins/systemd						# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/systemd
 	fi
-	if hash terraform &>/dev/null; then
+	if  (( $+commands[terraform] )); then
 		zgenom ohmyzsh plugins/terraform					# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/terraform
 	fi
-	if hash pacman &>/dev/null; then
+	if  (( $+commands[pacman] )); then
 		zgenom ohmyzsh plugins/archlinux					# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/archlinux
 	fi
 
-	if hash fzf &>/dev/null; then
+	if (( $+commands[fzf] )); then
 		zgenom load Aloxaf/fzf-tab								# https://github.com/Aloxaf/fzf-tab
 		zgenom load redxtech/zsh-fzf-utils						# https://github.com/redxtech/zsh-fzf-utils
 		zgenom ohmyzsh plugins/zsh-interactive-cd				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/zsh-interactive-cd

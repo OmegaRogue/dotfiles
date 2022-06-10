@@ -234,7 +234,7 @@ awful.screen.connect_for_each_screen(function(s)
         icon = 'power',
         color = '#f88',
         onclick = function()
-            awful.spawn.with_shell(settings.power_menu_cmd)
+            awful.spawn.with_shell("rofi -show power-menu")
         end
     }
 
