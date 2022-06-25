@@ -1,3 +1,5 @@
+- shell:
+  - [git submodule update --init --recursive awesome/*, Installing submodules]
 - link:
     ~/.config/awesome/rc.lua: awesome/rc.lua
     ~/.config/awesome/xrandr.lua: awesome/xrandr.lua
