@@ -224,6 +224,18 @@ cmd broot_jump ${{
 	lf -remote "send $id $cmd \"$res\""
 }}
 
+cmd fzf_search ${{
+    res="$( \
+        RG_PREFIX="rga --column --line-number --no-heading --color=always \
+            --smart-case "
+        FZF_DEFAULT_COMMAND="$RG_PREFIX ''" \
+            fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+            --ansi --layout=reverse --header 'Search in files' \
+            | cut -d':' -f1
+    )"
+    [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
+}}
+
 cmd bookmark_jump ${{
 	res="$(cat $LF_BOOKMARK_PATH/$(ls $LF_BOOKMARK_PATH | fzf))"
 	lf -remote "send $id cd \"$res\""
@@ -326,7 +338,7 @@ cmd cpdragon %cpdragon
 cmd mvdragon %mvdragon
 cmd dlfile %dlfile
 
-
+#cmd paste $cp-p --lf-paste $id
 
 # map <delete> delete
 # Bindings
@@ -410,9 +422,17 @@ map U unselect
 # Movement
 map gtr cd ~/.local/share/Trash/files
 map gus cd /run/media/omegarogue
-map gmn cd /mnt
+map gm. cd /mnt
+map gmb cd /mnt/butter
+map gmc cd /mnt/c
+map gmda cd /mnt/omegadata
+map gmdr cd /mnt/omegadrive
+map gmm cd /mnt/movies
+map gmr cd /mnt/rpg_stuff
+map gmt cd /mnt/tv_shows
 
 map gv. cd ~/Videos
+map gva cd ~/Videos/anime
 
 map gp. cd ~/Pictures
 map gps cd ~/Pictures/screenshots

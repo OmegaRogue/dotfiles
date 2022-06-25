@@ -79,11 +79,11 @@ widgets.time:connect_signal("button::press",
             end
         end)
 
-widgets.launcher = awful.widget.launcher({
-    image = beautiful.awesome_icon,
-    clip_shape = gears.shape.powerline,
-    menu = require('menu')
-})
+widgets.launcher =	awful.widget.launcher({
+		image = beautiful.awesome_icon,
+		clip_shape = gears.shape.transform(gears.shape.rectangular_tag):rotate_at(15,15,math.pi),
+		menu = require('menu')
+	})
 
 
 

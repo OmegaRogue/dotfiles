@@ -58,34 +58,35 @@ if ! zgenom saved; then
 	zgenom load NorthIsMirror/zsh-startify					# https://github.com/NorthIsMirror/zsh-startify
 	#zgenom load zshzoo/magic-enter							# https://github.com/zshzoo/magic-enter
 	zgenom load nviennot/zsh-vim-plugin
-	if (( $+commands[tmux] )); then
+	zgenom load jandamm/instant-repl.zsh
+	# if (( $+commands[tmux] )); then
 		zgenom load MikeDacre/tmux-zsh-vim-titles			# https://github.com/MikeDacre/tmux-zsh-vim-titles
 		zgenom load zpm-zsh/tmux							# https://github.com/zpm-zsh/tmux
-	fi
-	if (( $+commands[bw] )); then
+	# fi
+	# if (( $+commands[bw] )); then
 
 		zgenom load Game4Move78/zsh-bitwarden				# https://github.com/Game4Move78/zsh-bitwarden
-	fi
+	# fi
 
-	if (( $+commands[nmap] )); then
+	# if (( $+commands[nmap] )); then
 		zgenom ohmyzsh plugins/nmap							# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/nmap
-	fi
+	# fi
 
-	if  (( $+commands[systemctl] )); then
+	# if  (( $+commands[systemctl] )); then
 		zgenom ohmyzsh plugins/systemd						# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/systemd
-	fi
-	if  (( $+commands[terraform] )); then
+	# fi
+	# if  (( $+commands[terraform] )); then
 		zgenom ohmyzsh plugins/terraform					# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/terraform
-	fi
-	if  (( $+commands[pacman] )); then
+	# fi
+	# if  (( $+commands[pacman] )); then
 		zgenom ohmyzsh plugins/archlinux					# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/archlinux
-	fi
+	# fi
 
-	if (( $+commands[fzf] )); then
+	# if (( $+commands[fzf] )); then
 		zgenom load Aloxaf/fzf-tab								# https://github.com/Aloxaf/fzf-tab
 		zgenom load redxtech/zsh-fzf-utils						# https://github.com/redxtech/zsh-fzf-utils
 		zgenom ohmyzsh plugins/zsh-interactive-cd				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/zsh-interactive-cd
-	fi
+	# fi
 	case $(tty) in 
 	/dev/tty[0-9]*);;
 	*)

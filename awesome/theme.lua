@@ -29,6 +29,14 @@ theme.fg_focus = "#d0d0d0"
 theme.fg_urgent = "#ffd700"
 theme.fg_minimize = "#ffffff"
 
+theme.task_preview_widget_border_radius = dpi(10)
+theme.task_preview_widget_border_color = "#555555"
+theme.tag_preview_widget_border_radius = dpi(10)
+-- theme.tag_preview_client_border_radius = 10
+theme.tag_preview_widget_border_color = "#555555"
+theme.tag_preview_client_border_color = "#555555"
+theme.tag_preview_client_opacity = 1
+
 theme.useless_gap = dpi(6)
 theme.snapper_gap = theme.useless_gap
 theme.border_width = 0
@@ -225,7 +233,7 @@ switcher.settings.client_opacity = true
 theme.switcher = switcher
 
 theme.wallpaper = os.getenv("HOME") ..
-        "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-5-1920x1080.jpg"
+        "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-2-1920x1080.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"

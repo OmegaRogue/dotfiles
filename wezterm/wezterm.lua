@@ -6,7 +6,7 @@ return {
     -- The default text color
     foreground = "#DFDBD2",
     -- The default background color
-    --background = "#41403B",
+    -- background = "#41403B",
     -- Overrides the cell background color when the current cell is occupied by the
     -- cursor and the cursor style is set to Block
     cursor_bg = "#DFDBD2",

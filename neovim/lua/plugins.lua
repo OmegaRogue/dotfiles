@@ -154,6 +154,8 @@ Plug 'gisphm/vim-gitignore'
 Plug 'samsaga2/vim-z80'
 Plug 'vim-scripts/avr8bit.vim'
 
+Plug 'rid9/vim-fstab'
+
 -- }}}
 
 vim.call('plug#end')

@@ -42,6 +42,74 @@ local utils = require('utils')
 
 local bling = require("bling")
 
+bling.widget.task_preview.enable {
+    height = 300,              -- The height of the popup
+    width = 500,               -- The width of the popup
+    placement_fn = function(c, args) -- Place the widget using awful.placement (this overrides x & y)
+		local f = awful.placement.next_to + awful.placement.no_offscreen
+		f(c, {
+			bounding_rect=args.bounding_rect,
+			screen=mouse.screen,
+			preferred_positions = "left",
+			preferred_anchors = "middle",
+		})
+		-- naughty.notify({
+        --     preset = naughty.config.presets.critical,
+        --     title = "Oops, an error happened!",
+        --     text = gears.debug.dump_return(args),
+        -- })
+
+    end,
+	widget_structure = {
+        {
+            {
+                {
+                    id = 'icon_role',
+                    widget = awful.widget.clienticon, -- The client icon
+                },
+                {
+                    id = 'name_role', -- The client name / title
+                    widget = wibox.widget.textbox,
+                },
+                layout = wibox.layout.flex.horizontal
+            },
+            widget = wibox.container.margin,
+            margins = 5
+        },
+        {
+            id = 'image_role', -- The client preview
+            resize = true,
+            valign = 'center',
+            halign = 'center',
+            widget = wibox.widget.imagebox,
+        },
+		nil,
+        layout = wibox.layout.fixed.vertical
+    }
+}
+bling.widget.tag_preview.enable {
+    show_client_content = true,  -- Whether or not to show the client content
+    scale = 0.25,                 -- The scale of the previews compared to the screen
+    honor_padding = true,        -- Honor padding when creating widget size
+    honor_workarea = true,       -- Honor work area when creating widget size
+    placement_fn = function(c, args)    -- Place the widget using awful.placement (this overrides x & y)
+        local f = awful.placement.next_to + awful.placement.no_offscreen
+        f(c, {
+			bounding_rect=args.bounding_rect,
+			screen=mouse.screen,
+			preferred_positions = "left",
+			preferred_anchors = "middle",
+		})
+    end,
+    background_widget = wibox.widget {    -- Set a background image (like a wallpaper) for the widget
+        image = beautiful.wallpaper,
+        horizontal_fit_policy = "fit",
+        vertical_fit_policy   = "fit",
+        widget = wibox.widget.imagebox
+    }
+}
+
+
 local machi = require("layout-machi")
 
 beautiful.layout_machi = machi.get_icon()
@@ -183,6 +251,107 @@ awful.screen.connect_for_each_screen(function(s)
         screen = s,
         filter = awful.widget.taglist.filter.all,
         buttons = taglist_buttons,
+		style   = {
+			shape = gears.shape.powerline
+		},
+		layout   = {
+			spacing = -14,
+		    layout  = wibox.layout.fixed.horizontal
+		},
+
+    widget_template = {
+        {
+            {
+				-- 				{
+				-- 	widget = wibox.widget.separator,
+				-- 	color = "#ffffff00",
+				-- 	forced_width = 10,
+				-- },
+                --
+				{
+                    id     = "text_role",
+                    widget = wibox.widget.textbox,
+                },
+				{
+					id = "seperator_role",
+					widget = wibox.widget.separator,
+					color  = beautiful.bg_focus,
+					shape  = gears.shape.powerline,
+					forced_width = 18,
+				},
+
+				layout = wibox.layout.fixed.horizontal,
+            },
+            left  = 24,
+            -- right = 24,
+            widget = wibox.container.margin
+        },
+        id     = "background_role",
+        widget = wibox.container.background,
+        -- Add support for hover colors and an index label
+        create_callback = function(self, c3, index, objects) --luacheck: no unused args
+			self:get_children_by_id("text_role")[1].markup = "<b> "..c3.name.." </b>"
+
+			if c3.selected and index < 9 and root.tags()[index+1].selected then
+				self:get_children_by_id("seperator_role")[1].color = beautiful.taglist_fg_focus
+				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+
+			elseif not c3.selected and index < 9 and not root.tags()[index+1].selected then
+				self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
+				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+			elseif not c3.selected and index == 9 then
+				self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
+				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+			else
+				self:get_children_by_id("seperator_role")[1].color = "#ffffff00"
+				self:get_children_by_id("seperator_role")[1].shape = gears.shape.rectangle
+			end
+			-- self:connect_signal('mouse::enter', function()
+            --
+            --     -- BLING: Only show widget when there are clients in the tag
+            --     if #c3:clients() > 0 then
+            --         -- BLING: Update the widget with the new tag
+            --         awesome.emit_signal("bling::tag_preview::update", c3)
+            --         -- BLING: Show the widget
+            --         awesome.emit_signal("bling::tag_preview::visibility", s, true)
+            --     end
+            --
+            --     -- if self.bg ~= '#ff0000' then
+            --     --     self.backup     = self.bg
+            --     --     self.has_backup = true
+            --     -- end
+            --     -- self.bg = '#ff0000'
+            -- end)
+            -- self:connect_signal('mouse::leave', function()
+            --
+            --     -- BLING: Turn the widget off
+            --     awesome.emit_signal("bling::tag_preview::visibility", s, false)
+            --
+            --     -- if self.has_backup then self.bg = self.backup end
+            -- end)
+
+        end,
+        update_callback = function(self, c3, index, objects) --luacheck: no unused args
+            self:get_children_by_id("text_role")[1].markup = "<b> "..c3.name.." </b>"
+
+			if c3.selected and index < 9 and root.tags()[index+1].selected then
+				self:get_children_by_id("seperator_role")[1].color = beautiful.taglist_fg_focus
+				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+
+			elseif not c3.selected and index < 9 and not root.tags()[index+1].selected then
+				self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
+				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+			elseif not c3.selected and index == 9 then
+				self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
+				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+
+			else
+				self:get_children_by_id("seperator_role")[1].color = "#ffffff00"
+				self:get_children_by_id("seperator_role")[1].shape = gears.shape.rectangle
+			end
+
+        end,
+    },
     }
     s.tasklist = awful.widget.tasklist {
         screen = s,
@@ -193,6 +362,20 @@ awful.screen.connect_for_each_screen(function(s)
             shape_border_color = '#777777',
             shape = gears.shape.powerline,
         },
+		layout   = {
+			spacing = 10,
+			spacing_widget = {
+				{
+					forced_width = 5,
+					shape        = gears.shape.circle,
+					widget       = wibox.widget.separator
+				},
+				valign = "center",
+				halign = "center",
+				widget = wibox.container.place,
+			},
+			layout  = wibox.layout.flex.horizontal
+		},
         -- Notice that there is *NO* wibox.wibox prefix, it is a template,
         -- not a widget instance.
         widget_template = {
@@ -207,23 +390,39 @@ awful.screen.connect_for_each_screen(function(s)
                             margins = 2,
                             widget = wibox.container.margin,
                         },
-                        {
-                            id = "text_role",
-                            widget = wibox.widget.textbox,
-                        },
+						{
+							id = "text_role",
+							widget = wibox.widget.textbox,
+						},
                         layout = wibox.layout.fixed.horizontal,
                     },
                     left = 10,
                     right = 10,
                     widget = wibox.container.margin
                 },
-                id = "background_role",
-                widget = wibox.container.background,
-            },
+				id = "background_role",
+				widget = wibox.container.background,
 
-            layout = wibox.layout.align.vertical,
+			},
+			layout= wibox.layout.align.vertical,
+
+			create_callback = function(self, c, index, objects) --luacheck: no unused args
+				self:get_children_by_id('icon_role')[1].client = c
+
+
+				-- BLING: Toggle the popup on hover and disable it off hover
+				self:connect_signal('mouse::enter', function()
+					awesome.emit_signal("bling::task_preview::visibility", s,
+                                        true, c)
+                end)
+                self:connect_signal('mouse::leave', function()
+                    awesome.emit_signal("bling::task_preview::visibility", s,
+                                        false, c)
+                end)
+			end,
+
         },
-    }
+	}
     -- Create the wibox
     s.topbar = awful.wibar({ position = "top", screen = s })
     s.bottombar = awful.wibar({ position = "bottom", screen = s })
@@ -243,17 +442,22 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             id = "topbar_left",
             layout = wibox.layout.fixed.horizontal,
-            powerline.segment(true, beautiful.bg_focus, "#afd700", nil, widgets.launcher),
+            widgets.launcher,
+			-- spacing_widget = {
+			-- 	color  = '#aaffff',
+			-- 	shape  = gears.shape.powerline,
+			-- 	widget = wibox.widget.separator,
+			-- },
             s.taglist,
-            wibox.widget.textbox(markup.fontbg(beautiful.powerline_font, "#afd700", " ")),
-            powerline.segment(true, "#afd700", nil, "#005f00", modalawesome.active_mode),
+            -- wibox.widget.textbox(markup.fontbg(beautiful.powerline_font, "#afd700", " ")),
+            -- powerline.segment(true, "#afd700", nil, "#005f00", modalawesome.active_mode),
             s.mypromptbox,
         },
 nil,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             modalawesome.sequence,
-            powerline.segment(false, beautiful.bg_focus, nil, nil, widgets.memicon, widgets.mem),
+			powerline.segment(false, beautiful.bg_focus, nil, nil, widgets.memicon, widgets.mem),
             powerline.segment(false, nil, beautiful.bg_focus, nil, widgets.cpuicon, widgets.cpu),
             powerline.segment(false, beautiful.bg_focus, nil, nil, widgets.baticon, widgets.bat),
             powerline.segment(false, nil, beautiful.bg_focus, nil, awful.widget.keyboardlayout),
@@ -391,7 +595,9 @@ Globalkeys = gears.table.join(
         awful.key({ settings.modkey }, "p", foggy.menu),
         awful.key({ settings.modkey, "Shift" }, "g", function()
             utils.toggle_gaps()
-        end)
+        end),
+		awful.key({settings.modkey, "Control"}, "p", function() bling.module.tabbed.pop() end),
+		awful.key({settings.modkey, "Shift"}, "p", function() bling.module.tabbed.pick_with_dmenu() end)
 )
 
 Clientkeys = gears.table.join(awful.key({ settings.modkey }, "f", function(c)
