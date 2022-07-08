@@ -1,3 +1,4 @@
+# vim: set ft=zsh:
 if [[ "$(tty)" = "/dev/tty1" ]]; then
 	if pgrep awesome; then
 		nm-applet &
@@ -13,6 +14,6 @@ if [[ "$(tty)" = "/dev/tty1" ]]; then
 
 		gpgconf --launch gpg-agent &
 	else
-		startx "/home/omegarogue/.dotfiles/xorg/xinitrc"
+		startx "$HOME/.dotfiles/xorg/xinitrc"
 	fi
 fi

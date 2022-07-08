@@ -19,11 +19,6 @@
 	url = https://github.com/lcpz/awesome-freedesktop.git
 	update = rebase
 	branch = master
-[submodule "awesome/awesome-wm-widgets"]
-	path = awesome/awesome-wm-widgets
-	url = https://github.com/streetturtle/awesome-wm-widgets.git
-	update = rebase
-	branch = master
 [submodule "awesome/modalawesome"]
 	path = awesome/modalawesome
 	url = https://github.com/potamides/modalawesome
@@ -67,3 +62,6 @@
 [submodule "awesome/collision"]
 	path = awesome/collision
 	url = https://github.com/Elv13/collision.git
+[submodule "awesome/awesome-wm-widgets"]
+	path = awesome/awesome-wm-widgets
+	url = https://github.com/streetturtle/awesome-wm-widgets.git

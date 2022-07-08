@@ -78,7 +78,7 @@ utils.handle_autostart = function()
         for v in a do
             autostart_apps[v.Name] = v
         end
-        menubar.utils.parse_dir("/home/omegarogue/.config/autostart", function(b)
+        menubar.utils.parse_dir(os.getenv("XDG_CONFIG_HOME").."/autostart", function(b)
             for v in b do
                 autostart_apps[v.Name] = v
             end
@@ -93,6 +93,6 @@ utils.handle_autostart = function()
 
 end
 
---debug_out = "" menubar.utils.parse_dir("/home/omegarogue/.config/autostart", function(a) local buffer = {} for k, v in ipairs(a) do if v.Exec ~= v.cmdline then buffer[k] = v end end debug_out = debug_out .. gears.debug.dump_return(buffer) end)
+--debug_out = "" menubar.utils.parse_dir(os.getenv("XDG_CONFIG_HOME").."/autostart", function(a) local buffer = {} for k, v in ipairs(a) do if v.Exec ~= v.cmdline then buffer[k] = v end end debug_out = debug_out .. gears.debug.dump_return(buffer) end)
 
 return utils

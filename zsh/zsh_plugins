@@ -1,10 +1,10 @@
 # Check if zgen load is installed
-if [[ ! -d ~/.zgenom ]]; then
+if [[ ! -d $HOME/.zgenom ]]; then
 	git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
 fi
 
 # Essential
-source ~/.zgenom/zgenom.zsh
+source $HOME/.zgenom/zgenom.zsh
 
 
 zgenom autoupdate
@@ -51,7 +51,7 @@ if ! zgenom saved; then
 	#zgenom load jimhester/per-directory-history			# https://github.com/jimhester/per-directory-history
 	zgenom load idadzie/zsh-presenter-mode					# https://github.com/idadzie/zsh-presenter-mode
 	zgenom load voronkovich/project.plugin.zsh				# https://github.com/voronkovich/project.plugin.zsh
-	zgenom load michaelmcallister/razer-status-code			# https://github.com/michaelmcallister/razer-status-code
+	#zgenom load michaelmcallister/razer-status-code			# https://github.com/michaelmcallister/razer-status-code
 	zgenom load aubreypwd/zsh-plugin-reload					# https://github.com/aubreypwd/zsh-plugin-reload
 	zgenom load mattmc3/zsh-safe-rm						# https://github.com/mattmc3/zsh-safe-rm
 	zgenom load gko/ssh-connect								# https://github.com/gko/ssh-connect

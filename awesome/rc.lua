@@ -741,3 +741,6 @@ require("collision")()-- {
 -- left  = { "Left"  , "h"   --[[, "F13" ]]},
 -- right = { "Right" , "l"   --[[, "F17" ]]},
 --}
+
+client.connect_signal("property::urgent", function(c) c:jump_to() end)
+

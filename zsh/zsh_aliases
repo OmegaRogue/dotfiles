@@ -55,7 +55,7 @@ fi
 
 
 if [[ -f /etc/pacman.conf ]] then
-	alias dragon='dragon-drag-and-drop'
+	alias dragon='dragon-drop'
 fi
 
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
