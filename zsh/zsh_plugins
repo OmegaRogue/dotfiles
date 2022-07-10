@@ -25,7 +25,7 @@ if ! zgenom saved; then
 	zgenom ohmyzsh plugins/git-flow							# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/git-flow
 	zgenom ohmyzsh plugins/colored-man-pages				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/colored-man-pages
 	zgenom ohmyzsh plugins/sudo								# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/sudo
-	zgenom ohmyzsh plugins/magic-enter						# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/magic-enter
+	# zgenom ohmyzsh plugins/magic-enter						# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/magic-enter
 #	zgenom ohmyzsh plugins/command-not-found				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/command-not-found
 	zgenom ohmyzsh plugins/virtualenv						# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/virtualenv
 	zgenom load desyncr/auto-ls								# https://github.com/desyncr/auto-ls
@@ -53,20 +53,20 @@ if ! zgenom saved; then
 	zgenom load voronkovich/project.plugin.zsh				# https://github.com/voronkovich/project.plugin.zsh
 	#zgenom load michaelmcallister/razer-status-code			# https://github.com/michaelmcallister/razer-status-code
 	zgenom load aubreypwd/zsh-plugin-reload					# https://github.com/aubreypwd/zsh-plugin-reload
-	zgenom load mattmc3/zsh-safe-rm						# https://github.com/mattmc3/zsh-safe-rm
+	#zgenom load mattmc3/zsh-safe-rm						# https://github.com/mattmc3/zsh-safe-rm
 	zgenom load gko/ssh-connect								# https://github.com/gko/ssh-connect
 	zgenom load NorthIsMirror/zsh-startify					# https://github.com/NorthIsMirror/zsh-startify
-	#zgenom load zshzoo/magic-enter							# https://github.com/zshzoo/magic-enter
+	zgenom load zshzoo/magic-enter							# https://github.com/zshzoo/magic-enter
 	zgenom load nviennot/zsh-vim-plugin
 	zgenom load jandamm/instant-repl.zsh
 	# if (( $+commands[tmux] )); then
 		zgenom load MikeDacre/tmux-zsh-vim-titles			# https://github.com/MikeDacre/tmux-zsh-vim-titles
 		zgenom load zpm-zsh/tmux							# https://github.com/zpm-zsh/tmux
 	# fi
-	# if (( $+commands[bw] )); then
-
+	if (( $+commands[bw] )); then
+		echo "test"
 		zgenom load Game4Move78/zsh-bitwarden				# https://github.com/Game4Move78/zsh-bitwarden
-	# fi
+	fi
 
 	# if (( $+commands[nmap] )); then
 		zgenom ohmyzsh plugins/nmap							# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/nmap
@@ -97,6 +97,6 @@ if ! zgenom saved; then
 
 	zgenom save
 
-	zgenom compile $HOME/.zshrc
+	# zgenom compile $HOME/.zshrc
 fi
 

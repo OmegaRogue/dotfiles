@@ -1,7 +1,7 @@
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 
-export MAGIC_ENTER_OTHER_COMMAND='[[ $(ls . | wc -l) -le 30 ]] && ls -lh . || ls .'
-export MAGIC_ENTER_GIT_COMMAND='git status -u .'
+# export MAGIC_ENTER_OTHER_COMMAND='[[ $(ls . | wc -l) -le 30 ]] && ls -lh . || ls .'
+# export MAGIC_ENTER_GIT_COMMAND='git status -u .'
 
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 
@@ -61,10 +61,10 @@ export SH_SYSTEM_CLIPBOARD_TMUX_SUPPORT=true
 export TMUX_AUTOSTART=false
 export WORKON_HOME="$HOME/.virtualenvs"
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-if [[ -f /usr/bin/virtualenvwrapper.sh ]]
+if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
 	source /usr/bin/virtualenvwrapper.sh
 fi
-if [[ -d /opt/zephyr-sdk-0.14.1 ]]
+if [[ -d /opt/zephyr-sdk-0.14.1 ]]; then
 	source /opt/zephyr-sdk-0.14.1/environment-setup-x86_64-pokysdk-linux
 fi
 export LF_BOOKMARK_PATH=${HOME}/bookmarks

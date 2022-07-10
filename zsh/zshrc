@@ -129,6 +129,6 @@ function zvm_after_lazy_keybindings() {
 }
 
 
-neofetch
+#neofetch
 #zsh-startify
 
