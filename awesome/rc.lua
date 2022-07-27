@@ -139,9 +139,9 @@ for s in screen do
     for k, v in pairs(s.outputs) do
         if k == 'HDMI-0' then
             Screenorder[1] = v.viewport_id
-        elseif k == 'DP-3' then
-            Screenorder[2] = v.viewport_id
         elseif k == 'DP-5' then
+            Screenorder[2] = v.viewport_id
+        elseif k == 'DP-3' then
             Screenorder[3] = v.viewport_id
         end
     end

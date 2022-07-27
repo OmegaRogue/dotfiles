@@ -69,5 +69,6 @@ if [[ -d /opt/zephyr-sdk-0.14.1 ]]; then
 fi
 export LF_BOOKMARK_PATH=${HOME}/bookmarks
 
+export QT_QPA_PLATFORMTHEME=gtk2
 
 export PATH

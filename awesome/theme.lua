@@ -233,7 +233,7 @@ switcher.settings.client_opacity = true
 theme.switcher = switcher
 
 theme.wallpaper = os.getenv("HOME") ..
-        "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-2-1920x1080.jpg"
+        "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-3-1920x1080.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"

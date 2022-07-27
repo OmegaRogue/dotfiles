@@ -253,9 +253,9 @@ cmd bookmark_create ${{
 }}
 
 
-cmd dragon %dragon-drag-and-drop -a -x $fx
-cmd dragon-stay %dragon-drag-and-drop -a $fx
-cmd dragon-individual %dragon-drag-and-drop $fx
+cmd dragon %dragon-drop -a -x $fx
+cmd dragon-stay %dragon-drop -a $fx
+cmd dragon-individual %dragon-drop $fx
 cmd cpdragon %cpdragon
 cmd mvdragon %mvdragon
 cmd dlfile %dlfile
@@ -331,12 +331,6 @@ cmd zle-init :{{
 &[[ -n "$ZLE_FIFO" ]] && lf -remote "send $id zle-init"
 
 
-cmd dragon %dragon-drag-and-drop -a -x $fx
-cmd dragon-stay %dragon-drag-and-drop -a $fx
-cmd dragon-individual %dragon-drag-and-drop $fx
-cmd cpdragon %cpdragon
-cmd mvdragon %mvdragon
-cmd dlfile %dlfile
 
 #cmd paste $cp-p --lf-paste $id
 

@@ -1,5 +1,7 @@
 # vim: set ft=sh:
 
+rofi-polkit-agent &
+export QT_QPA_PLATFORMTHEME=gtk2
 #nm-applet &
 #pasystray & 
 #blueman-applet &
@@ -17,10 +19,9 @@ export SSH_AUTH_SOCK &
 #flameshot &
 #dunst &
 #xrdb -load ~/.config/X11/xresources &
-$HOME/.dotfiles/screenlayout/screens.sh &
+#$HOME/.dotfiles/screenlayout/screens.sh &
 #picom -b --experimental-backends&
 #gpgconf --launch gpg-agent &
-#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1&
 #evolution &
 #signal-desktop &
 #flatpak run org.telegram.desktop &
