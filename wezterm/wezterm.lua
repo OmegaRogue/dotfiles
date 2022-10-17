@@ -1,12 +1,12 @@
 local wezterm = require "wezterm"
 
 return {
-  font = wezterm.font("JetBrainsMono Nerd Font Mono"),
+  font = wezterm.font("JetBrainsMono Nerd Font"),
   colors = {
     -- The default text color
     foreground = "#DFDBD2",
     -- The default background color
-    -- background = "#41403B",
+    --background = "#41403B",
     -- Overrides the cell background color when the current cell is occupied by the
     -- cursor and the cursor style is set to Block
     cursor_bg = "#DFDBD2",
@@ -17,7 +17,18 @@ return {
     ansi = {"#2E3436", "#CC0000", "#4E9A06", "#C4A000", "#3465A4", "#75507B", "#06989A", "#D3D7CF"},
     brights = {"#555753", "#EF2929", "#8AE234", "#FCE94F", "#729FCF", "#AD7FA8", "#34E2E2", "#EEEEEC"},
     -- Arbitrary colors of the palette in the range from 16 to 255
-    indexed = {[136] = "#af8700"}
+    indexed = {[136] = "#af8700"},
+	tab_bar = {
+	  background = "#3f3e3a",
+	  active_tab = {
+		  bg_color = "#4e4c46",
+		  fg_color = "#ebebeb",
+	  },
+	  inactive_tab = {
+		  bg_color = "#3f3e3a",
+		  fg_color = "#bcbcbc"
+	  },
+	},
   },
   window_padding = {
     left = 2,
@@ -27,7 +38,7 @@ return {
   },
   enable_kitty_graphics = true,
   --enable_wayland = true,
-  --enable_scroll_bar = true,
+  enable_scroll_bar = true,
   default_cursor_style = "BlinkingBar",
   warn_about_missing_glyphs = false,
 --  ssh_domains = {

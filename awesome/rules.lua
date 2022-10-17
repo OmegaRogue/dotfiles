@@ -23,6 +23,11 @@ ruled.client.append_rule {
     }
 }
 ruled.client.append_rule {
+	rule = { name = "splash" },
+	properties = { floating = true }
+}
+
+ruled.client.append_rule {
     rule_any = {
         type = {
             "normal", "dialog"
@@ -131,7 +136,7 @@ ruled.client.append_rule {
         }
     },
     properties = {
-        tag = "6",
+        tag = "Messenger",
     }
 }
 ruled.client.append_rule {
@@ -141,7 +146,7 @@ ruled.client.append_rule {
         }
     },
     properties = {
-        tag = "7",
+        tag = "Teams",
         floating = false,
         screen = Screenorder[1]
     }
@@ -153,7 +158,7 @@ ruled.client.append_rule {
         }
     },
     properties = {
-        tag = "8", screen = Screenorder[2]
+        tag = "Mail", screen = Screenorder[2]
     }
 }
 ruled.client.append_rule {
@@ -161,7 +166,7 @@ ruled.client.append_rule {
         class = "discord"
     },
     properties = {
-        tag = "9",
+        tag = "Discord",
         maximise = false,
     }
 }

@@ -14,15 +14,19 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font = "JetBrainsMono Nerd Font Mono 12"
+theme.font = "JetBrainsMono Nerd Font 12"
 --theme.dir = os.getenv("HOME") .. "/.config/awesome"
-theme.hotkeys_font = "JetBrainsMono Nerd Font Mono ExtraBold 12"
+theme.hotkeys_font = "JetBrainsMono Nerd Font ExtraBold 12"
 theme.hotkeys_description_font = theme.font
-theme.bg_normal = "#222222"
-theme.bg_focus = "#585858"
+--theme.bg_normal = "#222222"
+theme.bg_normal = "#4e4c46"
+--theme.bg_focus = "#585858"
+theme.bg_focus = "#3c3b38"
 theme.bg_urgent = "#d75f00"
 theme.bg_minimize = "#444444"
 theme.bg_systray = theme.bg_focus
+theme.bg_selected = "#87a556"
+theme.fg_selected = "#ebebeb"
 
 theme.fg_normal = "#aaaaaa"
 theme.fg_focus = "#d0d0d0"
@@ -37,15 +41,15 @@ theme.tag_preview_widget_border_color = "#555555"
 theme.tag_preview_client_border_color = "#555555"
 theme.tag_preview_client_opacity = 1
 
-theme.useless_gap = dpi(6)
+theme.useless_gap = dpi(3)
 theme.snapper_gap = theme.useless_gap
 theme.border_width = 0
 theme.border_normal = "#626262"
 theme.border_focus = "#535d6c"
 theme.border_marked = "#91231c"
 
-theme.widget_mem = "\u{f85a} " --
-theme.widget_cpu = "\u{e266} " --
+theme.widget_mem = "\u{e266} " --
+theme.widget_cpu = "\u{f85a} " --
 theme.widget_ac = "\u{f492} " --
 theme.widget_battery = "\u{f578} " --
 theme.widget_battery_low = "\u{f492} " --
@@ -151,8 +155,10 @@ theme.menu_width = dpi(250)
 
 theme.wibar_height = dpi(30)
 
-theme.taglist_fg_focus = '#197600'
+--theme.taglist_fg_focus = '#197600'
+theme.taglist_fg_focus = theme.fg_selected
 theme.taglist_bg_focus = '#aedd00'
+theme.taglist_bg_focus = theme.bg_selected
 theme.taglist_font = theme.font
 theme.taglist_fg_normal = "#DCDCCC"
 theme.taglist_bg_normal = theme.bg_normal
@@ -173,6 +179,7 @@ theme.tasklist_shape_border_width_focus = 0
 -- theme.bg_widget = "#cc0000"
 
 require('smart_borders') {
+    stealth = false,
     show_button_tooltips = false,
     align_horizontal = "center",
     color_normal = "#555555",
@@ -233,7 +240,7 @@ switcher.settings.client_opacity = true
 theme.switcher = switcher
 
 theme.wallpaper = os.getenv("HOME") ..
-        "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-3-1920x1080.jpg"
+        "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-4-1920x1080.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
@@ -259,7 +266,7 @@ theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height,
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = "Yaru-MATE-light"
+theme.icon_theme = "gnome"
 
 theme.widget_margin = dpi(6)
 
