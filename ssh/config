@@ -1,3 +1,6 @@
+KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group14-sha1
+
+
 Match user "omegarogue"
     PermitLocalCommand yes
     # Unfortunately ssh does not support line breaks in config files

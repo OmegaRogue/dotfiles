@@ -7,6 +7,7 @@
     ~/.config/awesome/rules.lua: awesome/rules.lua
     ~/.config/awesome/json.lua: awesome/json.lua
     ~/.config/awesome/appmenu.lua: awesome/appmenu.lua 
+    ~/.config/awesome/archmenu.lua: awesome/archmenu.lua
     ~/.config/awesome/dummy.lua: awesome/dummy.lua
     ~/.config/awesome/titlebar.lua: awesome/titlebar.lua
     ~/.config/awesome/utils.lua: awesome/utils.lua
