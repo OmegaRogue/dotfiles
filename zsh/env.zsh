@@ -29,6 +29,8 @@ if [[ -z $SSH_CONNECTION ]]; then
 	export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 fi
 
+
+
 export DEFAULT_USER=$USER
 
 

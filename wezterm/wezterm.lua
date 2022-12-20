@@ -32,7 +32,7 @@ return {
   },
   window_padding = {
     left = 2,
-    right = 2,
+    right = 0,
     top = 2,
     bottom = 2
   },

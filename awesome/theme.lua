@@ -227,7 +227,18 @@ require('smart_borders') {
         from = { 0, 0 },
         to = { dpi(40), 0 },
         stops = { { 0, "#666666" }, { 1, "#F7C6FF" } }
+    },
+custom_menu_entries = {
+       -- for every client:
+    [".*"] = {
+        {
+            text = "toggle titlebar",
+            func = function(c)
+c.disable_smart_borders = not c.disable_smart_borders
+                           end
+        }
     }
+}
 
 }
 

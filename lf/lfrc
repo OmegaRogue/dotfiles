@@ -19,6 +19,9 @@ set icons true
 set ignorecase true
 set number true
 set tabstop 4
+set sortby ctime
+set info ctime
+set reverse true
 
 #set promptfmt ${{/home/omegarogue/.local/bin/powerline-render shell left}}
 #format string of the prompt shown in the top line. Special expansions are provided, '%u' as the user name, '%h' as the host name, '%w' as the working  directory,  '%d'  as  the
@@ -264,16 +267,8 @@ cmd dlfile %dlfile
 # extract the current file with the right command
 # (xkcd link: https://xkcd.com/1168/)
 cmd unarchive ${{
-	set -f
-		case $f in
-		*.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f --one-top-level;;
-	*.tar.gz|*.tgz) tar xzvf $f --one-top-level;;
-	*.tar.xz|*.txz) tar xJvf $f --one-top-level;;
-	*.zip) unzip $f -d ${f//.zip/};;
-	*.rar) unrar x $f -d ${f//.rar/};;
-	*.7z) 7z x $f -o ${f//.7z/};;
-	*.*) 7z x $f -o ${f%.*};;
-	esac
+	source $HOME/.dotfiles/zsh/functions.zsh
+	unarchive $f && exit 0 || exit 1
 }}
 cmd zip %zip -r "$f" "$f"
 cmd tar %tar cvf "$f.tar" "$f"

@@ -5,6 +5,7 @@ local wibox = require("wibox")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local ruled = require('ruled')
 local naughty = require('naughty')
+local dpi = require("beautiful.xresources").apply_dpi
 -- Rules to apply to new clients (through the "manage" signal).
 
 -- All clients will match this rule.
@@ -80,6 +81,16 @@ ruled.client.append_rule {
     callback = function(c)
         awful.placement.centered(c, nil)
     end
+}
+ruled.client.append_rule {
+	rule = {
+		class = {
+			"Navigator", "firefox"
+		}
+	},
+	properties = {
+		floating = false
+	}
 }
 ruled.client.append_rule {
     rule_any = {
@@ -234,7 +245,49 @@ ruled.client.append_rule {
         floating = true
     }
 }
-
+ruled.client.append_rule {
+	id = "dont_show_smart_borders",
+    rule_any = {
+        class = {
+			"gnome-disks", "Gnome-disks",
+			"peek", "Peek",
+			"bottles", "bottles",
+		},
+    },
+    properties = {
+		disable_smart_borders = true,
+		titlebars_enabled = false,
+		border_width = dpi(1),
+    }
+}
+-- ruled.client.append_rule {
+-- 	rule = {
+-- 		fullscreen = true
+-- 	},
+-- 	properties = {
+-- 		disable_smart_borders = true,
+-- 		had_smart_borders_disabled = false
+-- 	},
+-- 	callback = function(c)
+-- 		if c.fullscreen then
+-- 			c.fullscreen = false
+-- 			c.fullscreen = true
+-- 		end
+-- 	end
+-- }
+ruled.client.append_rule {
+	rule_any = {
+		class = {
+			"steam_app_1296610"
+		}
+	},
+	properties = {
+		floating = true,
+		fullscreen = true,
+		disable_smart_borders = true,
+		suspend_notifications = true,
+	}
+}
 -- ruled.client.append_rule {
 -- 	rule_any = {
 -- 		class = {

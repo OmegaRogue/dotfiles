@@ -40,9 +40,14 @@ widgets.bat = lain.widget.bat({
     end
 })
 
-widgets.time = wibox.widget {
+widgets.date = wibox.widget {
     format = '<span foreground="#9e9e9e"> %Y-%m-%d </span>',
     widget = wibox.widget.textclock
+}
+
+widgets.time = wibox.widget {
+	format = '<span foreground="#d0d0d0"> %H:%M </span>',
+	widget = wibox.widget.textclock
 }
 
 widgets.cpuicon = wibox.widget.textbox(beautiful.widget_cpu)
@@ -60,16 +65,15 @@ widgets.mem = lain.widget.mem({
         widget:set_markup(markup.font(beautiful.font, "" .. string.format("%3s", mem_now.perc) .. "% "))
     end
 })
+
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 
 widgets.calendar = calendar_widget({
-    theme = 'outrun',
     placement = 'top_right',
-    start_sunday = true,
+    start_sunday = false,
     radius = 8,
-    -- with customized next/previous (see table above)
-    previous_month_button = 1,
-    next_month_button = 3,
+    previous_month_button = 3,
+    next_month_button = 1,
 })
 
 widgets.time:connect_signal("button::press",
@@ -78,7 +82,12 @@ widgets.time:connect_signal("button::press",
                 widgets.calendar.toggle()
             end
         end)
-
+widgets.date:connect_signal("button::press",
+        function(_, _, _, button)
+            if button == 1 then
+                widgets.calendar.toggle()
+            end
+        end)
 widgets.launcher =	awful.widget.launcher({
 		image = beautiful.awesome_icon,
 		clip_shape = gears.shape.transform(gears.shape.rectangular_tag):rotate_at(15,15,math.pi),

@@ -21,7 +21,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 
-
 local settings = require('settings')
 
 --local amh = require("amh")
@@ -131,7 +130,8 @@ awful.layout.layouts = {
 
 Flags = {
     webcam = true,
-    touchpad = true
+    touchpad = true,
+	notif_suspend = false,
 }
 
 Screenorder = { 1, 2, 3 }
@@ -461,12 +461,9 @@ nil,
             powerline.segment(false, nil, beautiful.bg_focus, nil, awful.widget.keyboardlayout),
             powerline.segment(false, beautiful.bg_focus, nil, nil, s.systray),
             powerline.segment(false, nil, beautiful.bg_focus, nil, s.layoutbox),
-            powerline.segment(false, "#303030", nil, "#626262", widgets.time),
-            powerline.segment(false, "#303030", "#303030", "#626262", wibox.widget {
-                format = '<span foreground="#d0d0d0"> %H:%M </span>',
-                widget = wibox.widget.textclock
-            }),
-            powerline.segment(false, "#121212", "#303030", nil, s.powerbutton),
+            powerline.segment(false, "#303030", nil, "#626262", widgets.date),
+            powerline.segment(false, "#303030", "#303030", "#626262", widgets.time),
+			powerline.segment(false, "#121212", "#303030", nil, s.powerbutton),
         }
 
     }
@@ -580,22 +577,53 @@ Globalkeys = gears.table.join(
 	awful.key({ settings.modkey, "Shift" }, "g", function()
 		utils.toggle_gaps()
 	end, {description = "toggle gaps", group = "awesome"}),
-	awful.key({settings.modkey, "Control"}, "p", function() 
-		bling.module.tabbed.pop() 
+	awful.key({settings.modkey, "Control"}, "p", function()
+		bling.module.tabbed.pop()
 	end, {description = "remove client from tabbed", group = "client"}),
-	awful.key({settings.modkey, "Shift"}, "p", function() 
-		bling.module.tabbed.pick_with_dmenu() 
-	end, {description = "pick client to add to tabbed", group = "client"})
+	awful.key({settings.modkey, "Shift"}, "p", function()
+		bling.module.tabbed.pick_with_dmenu()
+	end, {description = "pick client to add to tabbed", group = "client"}),
+	awful.key({settings.modkey, "Shift"}, "n", function()
+		if naughty.suspended then
+			Flags.notif_suspend = false
+			local c = client.focus
+			if c and not c.fullscreen then
+				naughty.resume()
+				naughty.notification {
+					title   = "Notifications Resumed",
+					message = "You'll get notifications again",
+					timeout = 5,
+					ignore_suspend = true
+				}
+			end
+		else
+			Flags.notif_suspend = true
+			naughty.notification {
+				title   = "Notifications Suspended",
+				message = "You'll no longer get notifications",
+				timeout = 5,
+				ignore_suspend = true
+			}
+			naughty.suspend()
+		end
+	end, {description = "suspend notifications", group = "awesome"})
 )
 
 Clientkeys = gears.table.join(
 	awful.key({ settings.modkey }, "f", function(c)
+		if not c.fullscreen then
+			c.had_smart_borders_disabled = c.disable_smart_borders
+			c.disable_smart_borders = true
+		elseif c.fullscreen then
+			c.disable_smart_borders = c.had_smart_borders_disabled
+		end
+
 		c.fullscreen = not c.fullscreen
 		c:raise()
 	end, { description = "toggle fullscreen", group = "client" }),
 	awful.key({ settings.modkey, "Shift" }, "c", function(c)
 				c:kill()
-	end, {description = "close",group = "client"}), 
+	end, {description = "close",group = "client"}),
 	awful.key({ settings.modkey, "Control" }, "space", awful.client.floating.toggle,
 		{ description = "toggle floating", group = "client" }),
 	awful.key({ settings.modkey, "Control" }, "Return",function(c)
@@ -603,7 +631,7 @@ Clientkeys = gears.table.join(
 	end, { description = "move to master", group = "client" }),
 	awful.key({ settings.modkey }, "o",function(c)
 		c:move_to_screen()
-	end, {description = "move to screen",group = "client"}), 
+	end, {description = "move to screen",group = "client"}),
 	awful.key({ settings.modkey }, "t", function(c)
 		c.ontop = not c.ontop
 	end,{ description = "toggle keep on top", group = "client" }),
@@ -624,11 +652,8 @@ Clientkeys = gears.table.join(
 		c.maximized_horizontal = not c.maximized_horizontal
 		c:raise()
 	end, { description = "(un)maximize horizontally", group = "client" }),
-	awful.key({ settings.modkey, 'Control' }, 't', function (c) 
-		awful.titlebar.toggle(c,"left")
-		awful.titlebar.toggle(c,"right")
-		awful.titlebar.toggle(c,"top")
-		awful.titlebar.toggle(c,"bottom")
+	awful.key({ settings.modkey, 'Control' }, 't', function (c)
+		c.disable_smart_borders = not c.disable_smart_borders
 	end,
 	{description = 'toggle title bar', group = 'client'})
 	)
@@ -695,12 +720,16 @@ client.connect_signal("manage", function(c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
-	if c.class == "peek" or c.class == "Peek" then
-		awful.titlebar.hide(c,"left")
-		awful.titlebar.hide(c,"right")
-		awful.titlebar.hide(c,"top")
-		awful.titlebar.hide(c,"bottom")
-	end
+	-- if c.class == "peek" or c.class == "Peek" or c.class == "gnome-disks" or c.class == "Gnome-disks" then
+	-- 	awful.titlebar.hide(c,"left")
+	-- 	awful.titlebar.hide(c,"right")
+	-- 	awful.titlebar.hide(c,"top")
+	-- 	awful.titlebar.hide(c,"bottom")
+	-- end
+
+end)
+
+client.connect_signal("request::titlebars", function(c) 
 
 end)
 
@@ -734,8 +763,14 @@ require("collision")()-- {
 -- right = { "Right" , "l"   --[[, "F17" ]]},
 --}
 
-client.connect_signal("property::urgent", function(c) c:jump_to() end)
-
+client.connect_signal("property::urgent", function(c) 
+	if c.class ~= "microsoft teams - preview" 
+		or c.class ~= "Microsoft Teams - Preview"
+		or c.class ~= "microsoft teams - insiders" 
+		or c.class ~= "Microsoft Teams - Insiders" then
+		c:jump_to()
+    end
+end)
 -- naughty.connect_signal("request::display", function(n)
 --     naughty.layout.box {
 --         notification = n,
@@ -773,3 +808,39 @@ client.connect_signal("property::urgent", function(c) c:jump_to() end)
 -- 		},
 --     }
 -- end)
+local function update_naughty_suspended()
+	local c = client.focus
+	if c and ((c.fullscreen and not naughty.suspended) or c.suspend_notifications) then
+		-- naughty.notification {
+		-- 	title   = "Notifications Suspended",
+		-- 	message = "You'll no longer get notifications",
+		-- 	timeout = 5
+		-- }
+		naughty.suspend()
+		return
+	end
+	if naughty.suspended and not Flags.notif_suspend then
+		naughty.resume()
+		-- naughty.notification {
+		-- 	title   = "Notifications Resumed",
+		-- 	message = "You'll get notifications again",
+		-- 	timeout = 5
+		-- }
+	end
+end
+
+local function update_fullscreen_titlebar(c)
+	if c.fullscreen then
+		c.had_smart_borders_disabled = c.disable_smart_borders
+		c.disable_smart_borders = true
+	elseif not c.fullscreen then
+		c.disable_smart_borders = c.had_smart_borders_disabled
+	end
+end
+
+client.connect_signal("property::fullscreen", update_naughty_suspended)
+-- client.connect_signal("property::fullscreen", update_fullscreen_titlebar)
+client.connect_signal("focus", update_naughty_suspended)
+client.connect_signal("unfocus", update_naughty_suspended)
+tag.connect_signal("tagged", update_naughty_suspended)
+tag.connect_signal("property::selected", update_naughty_suspended)
