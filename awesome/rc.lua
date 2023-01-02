@@ -41,73 +41,6 @@ local utils = require('utils')
 
 local bling = require("bling")
 
-bling.widget.task_preview.enable {
-    height = 300,              -- The height of the popup
-    width = 500,               -- The width of the popup
-    placement_fn = function(c, args) -- Place the widget using awful.placement (this overrides x & y)
-		local f = awful.placement.next_to + awful.placement.no_offscreen
-		f(c, {
-			bounding_rect=args.bounding_rect,
-			screen=mouse.screen,
-			preferred_positions = "left",
-			preferred_anchors = "middle",
-		})
-		-- naughty.notify({
-        --     preset = naughty.config.presets.critical,
-        --     title = "Oops, an error happened!",
-        --     text = gears.debug.dump_return(args),
-        -- })
-
-    end,
-	widget_structure = {
-        {
-            {
-                {
-                    id = 'icon_role',
-                    widget = awful.widget.clienticon, -- The client icon
-                },
-                {
-                    id = 'name_role', -- The client name / title
-                    widget = wibox.widget.textbox,
-                },
-                layout = wibox.layout.flex.horizontal
-            },
-            widget = wibox.container.margin,
-            margins = 5
-        },
-        {
-            id = 'image_role', -- The client preview
-            resize = true,
-            valign = 'center',
-            halign = 'center',
-            widget = wibox.widget.imagebox,
-        },
-		nil,
-        layout = wibox.layout.fixed.vertical
-    }
-}
-bling.widget.tag_preview.enable {
-    show_client_content = true,  -- Whether or not to show the client content
-    scale = 0.25,                 -- The scale of the previews compared to the screen
-    honor_padding = true,        -- Honor padding when creating widget size
-    honor_workarea = true,       -- Honor work area when creating widget size
-    placement_fn = function(c, args)    -- Place the widget using awful.placement (this overrides x & y)
-        local f = awful.placement.next_to + awful.placement.no_offscreen
-        f(c, {
-			bounding_rect=args.bounding_rect,
-			screen=mouse.screen,
-			preferred_positions = "left",
-			preferred_anchors = "middle",
-		})
-    end,
-    background_widget = wibox.widget {    -- Set a background image (like a wallpaper) for the widget
-        image = beautiful.wallpaper,
-        horizontal_fit_policy = "fit",
-        vertical_fit_policy   = "fit",
-        widget = wibox.widget.imagebox
-    }
-}
-
 
 local machi = require("layout-machi")
 
@@ -303,31 +236,7 @@ awful.screen.connect_for_each_screen(function(s)
 			else
 				self:get_children_by_id("seperator_role")[1].color = "#ffffff00"
 				self:get_children_by_id("seperator_role")[1].shape = gears.shape.rectangle
-			end
-			-- self:connect_signal('mouse::enter', function()
-            --
-            --     -- BLING: Only show widget when there are clients in the tag
-            --     if #c3:clients() > 0 then
-            --         -- BLING: Update the widget with the new tag
-            --         awesome.emit_signal("bling::tag_preview::update", c3)
-            --         -- BLING: Show the widget
-            --         awesome.emit_signal("bling::tag_preview::visibility", s, true)
-            --     end
-            --
-            --     -- if self.bg ~= '#ff0000' then
-            --     --     self.backup     = self.bg
-            --     --     self.has_backup = true
-            --     -- end
-            --     -- self.bg = '#ff0000'
-            -- end)
-            -- self:connect_signal('mouse::leave', function()
-            --
-            --     -- BLING: Turn the widget off
-            --     awesome.emit_signal("bling::tag_preview::visibility", s, false)
-            --
-            --     -- if self.has_backup then self.bg = self.backup end
-            -- end)
-
+			end	
         end,
         update_callback = function(self, c3, index, objects) --luacheck: no unused args
             self:get_children_by_id("text_role")[1].markup = "<b> "..c3.name.." </b>"
@@ -406,19 +315,7 @@ awful.screen.connect_for_each_screen(function(s)
 
 			create_callback = function(self, c, index, objects) --luacheck: no unused args
 				self:get_children_by_id('icon_role')[1].client = c
-
-
-				-- BLING: Toggle the popup on hover and disable it off hover
-				self:connect_signal('mouse::enter', function()
-					awesome.emit_signal("bling::task_preview::visibility", s,
-                                        true, c)
-                end)
-                self:connect_signal('mouse::leave', function()
-                    awesome.emit_signal("bling::task_preview::visibility", s,
-                                        false, c)
-                end)
 			end,
-
         },
 	}
     -- Create the wibox
@@ -435,7 +332,7 @@ awful.screen.connect_for_each_screen(function(s)
         end
     }
 
-    s.topbar:setup {
+	s.topbar:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             id = "topbar_left",
@@ -451,9 +348,10 @@ awful.screen.connect_for_each_screen(function(s)
             -- powerline.segment(true, "#afd700", nil, "#005f00", modalawesome.active_mode),
             s.mypromptbox,
         },
-nil,
+		nil,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+			bg = beautiful.bg_normal,
             modalawesome.sequence,
 			powerline.segment(false, beautiful.bg_focus, nil, nil, widgets.memicon, widgets.mem),
             powerline.segment(false, nil, beautiful.bg_focus, nil, widgets.cpuicon, widgets.cpu),
@@ -747,12 +645,7 @@ end)
 
 -- }}}
 
--- awful.spawn.single_instance("signal-desktop", {class={"signal", "Signal"}})
--- awful.spawn.single_instance("telegram-desktop", {class={"telegram-desktop", "TelegramDesktop"}})
--- awful.spawn.single_instance("discord", {class="discord"})
--- awful.spawn.single_instance("fluffychat", {class={"fluffychat", "Fluffychat"}})
--- awful.spawn.single_instance("whatsapp-nativefier", {class={"whatsapp-nativefier-d40211","whatsapp-for-linux","Whatsapp-for-linux","WhatsAppQT"}})
---
+
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
 
 require("collision")()-- {
@@ -763,51 +656,18 @@ require("collision")()-- {
 -- right = { "Right" , "l"   --[[, "F17" ]]},
 --}
 
-client.connect_signal("property::urgent", function(c) 
-	if c.class ~= "microsoft teams - preview" 
-		or c.class ~= "Microsoft Teams - Preview"
-		or c.class ~= "microsoft teams - insiders" 
-		or c.class ~= "Microsoft Teams - Insiders" then
+
+
+client.connect_signal("property::urgent", function(c)
+	if c.class ~= "microsoft teams - preview"
+		and c.class ~= "Microsoft Teams - Preview"
+	then
 		c:jump_to()
+	else
+		c.urgent = false
     end
 end)
--- naughty.connect_signal("request::display", function(n)
---     naughty.layout.box {
---         notification = n,
---         widget_template = 
--- 		{
--- 			{
--- 				{
--- 					{
--- 						{
--- 							naughty.widget.icon,
--- 							{
--- 								naughty.widget.title,
--- 								naughty.widget.message,
--- 								spacing = 4,
--- 								layout  = wibox.layout.fixed.vertical,
--- 							},
--- 							fill_space = true,
--- 							spacing    = 4,
--- 							layout     = wibox.layout.fixed.horizontal,
--- 						},
--- 						naughty.list.actions,
--- 						spacing = 10,
--- 						layout  = wibox.layout.fixed.vertical,
--- 					},
--- 					margins = beautiful.notification_margin,
--- 					widget  = wibox.container.margin,
--- 				},
--- 				id     = "background_role",
--- 				widget = naughty.container.background,
--- 			},
--- 			strategy = "max",
--- 			--forced_width = beautiful.notification_max_width or dpi(300),
--- 			width    = beautiful.notification_max_width or beautiful.xresources.apply_dpi(500),
---     		widget = wibox.container.constraint
--- 		},
---     }
--- end)
+
 local function update_naughty_suspended()
 	local c = client.focus
 	if c and ((c.fullscreen and not naughty.suspended) or c.suspend_notifications) then
@@ -844,3 +704,6 @@ client.connect_signal("focus", update_naughty_suspended)
 client.connect_signal("unfocus", update_naughty_suspended)
 tag.connect_signal("tagged", update_naughty_suspended)
 tag.connect_signal("property::selected", update_naughty_suspended)
+
+
+

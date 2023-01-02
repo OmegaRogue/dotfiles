@@ -5,6 +5,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local beautiful = require("beautiful")
 local settings = require('settings')
 local awesome = awesome
+local radical = require("radical")
 
 --menubar.menu_gen.all_menu_dirs = { "/usr/share/applications/", "~/.local/share/applications/" }
 

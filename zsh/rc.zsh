@@ -11,6 +11,7 @@ setopt share_history          # share command history data
 setopt extended_glob
 
 # ensure correct PATH zshenv
+alias -g egrep='grep -E '
 source $HOME/.zshenv
 
 if [[ $(uname -r) == *WSL* ]]; then

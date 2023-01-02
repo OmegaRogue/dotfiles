@@ -23,6 +23,9 @@ local omegavoid = require('omegavoid')
 local powerline = omegavoid.widget.powerline
 local foggy = require('foggy')
 
+
+local markup = lain.util.markup
+
 widgets.baticon = wibox.widget.textbox(beautiful.widget_battery)
 widgets.baticon.font = beautiful.icon_font
 

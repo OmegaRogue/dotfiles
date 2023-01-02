@@ -60,6 +60,5 @@ fi
 
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 
-alias egrep='grep -E '
 
 alias lf='lfcd'

@@ -132,6 +132,7 @@ return {
   -- }
   keys = {
 	  {key="Enter", mods="ALT", action="DisableDefaultAssignment"}
-  }
+  },
+  -- scrollback_lines = 1000000
 
 }

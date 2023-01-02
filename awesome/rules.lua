@@ -39,6 +39,16 @@ ruled.client.append_rule {
     }
 }
 ruled.client.append_rule {
+	rule = {
+		class = {
+			"microsoft teams - preview", "Microsoft Teams - Preview"
+		}
+	},
+	properties = {
+		minimized = true
+	}
+}
+ruled.client.append_rule {
     rule = {
         type = "dock"
     },
@@ -153,7 +163,8 @@ ruled.client.append_rule {
 ruled.client.append_rule {
     rule_any = {
         class = {
-            "microsoft teams - preview", "Microsoft Teams - Preview"
+            "microsoft teams - preview", "Microsoft Teams - Preview",
+			"teams-for-linux", "teams-for-linux"
         }
     },
     properties = {
