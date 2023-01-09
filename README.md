@@ -6,9 +6,6 @@
 
 [Awestore](https://github.com/K4rakara/awestore)
 ```
-sudo luarocks --lua-version 5.4 install awestore
+sudo luarocks install awestore
 ```
-[lain](https://github.com/lcpz/lain/wiki)
-```
-sudo luarocks install lcpz/lain
-```
+

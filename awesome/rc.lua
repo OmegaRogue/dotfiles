@@ -186,83 +186,83 @@ awful.screen.connect_for_each_screen(function(s)
         screen = s,
         filter = awful.widget.taglist.filter.all,
         buttons = taglist_buttons,
-		style   = {
-			shape = gears.shape.powerline
-		},
-		layout   = {
-			spacing = -14,
-		    layout  = wibox.layout.fixed.horizontal
-		},
-
-    widget_template = {
-        {
-            {
-				-- 				{
-				-- 	widget = wibox.widget.separator,
-				-- 	color = "#ffffff00",
-				-- 	forced_width = 10,
-				-- },
-                --
-				{
-                    id     = "text_role",
-                    widget = wibox.widget.textbox,
-                },
-				{
-					id = "seperator_role",
-					widget = wibox.widget.separator,
-					color  = beautiful.bg_focus,
-					shape  = gears.shape.powerline,
-					forced_width = 18,
-				},
-
-				layout = wibox.layout.fixed.horizontal,
-            },
-            left  = 24,
-            -- right = 24,
-            widget = wibox.container.margin
-        },
-        id     = "background_role",
-        widget = wibox.container.background,
-        -- Add support for hover colors and an index label
-        create_callback = function(self, c3, index, objects) --luacheck: no unused args
-			self:get_children_by_id("text_role")[1].markup = "<b> "..c3.name.." </b>"
-
-			if c3.selected and index < 9 and root.tags()[index+1].selected then
-				self:get_children_by_id("seperator_role")[1].color = beautiful.taglist_fg_focus
-				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
-
-			elseif not c3.selected and index < 9 and not root.tags()[index+1].selected then
-				self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
-				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
-			elseif not c3.selected and index == 9 then
-				self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
-				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
-			else
-				self:get_children_by_id("seperator_role")[1].color = "#ffffff00"
-				self:get_children_by_id("seperator_role")[1].shape = gears.shape.rectangle
-			end	
-        end,
-        update_callback = function(self, c3, index, objects) --luacheck: no unused args
-            self:get_children_by_id("text_role")[1].markup = "<b> "..c3.name.." </b>"
-
-			if c3.selected and index < 9 and root.tags()[index+1].selected then
-				self:get_children_by_id("seperator_role")[1].color = beautiful.taglist_fg_focus
-				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
-
-			elseif not c3.selected and index < 9 and not root.tags()[index+1].selected then
-				self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
-				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
-			elseif not c3.selected and index == 9 then
-				self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
-				self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
-
-			else
-				self:get_children_by_id("seperator_role")[1].color = "#ffffff00"
-				self:get_children_by_id("seperator_role")[1].shape = gears.shape.rectangle
-			end
-
-        end,
-    },
+	--	style   = {
+	--		shape = gears.shape.powerline
+	--	},
+	--	layout   = {
+	--		spacing = -14,
+	--	    layout  = wibox.layout.fixed.horizontal
+	--	},
+	--
+    --	widget_template = {
+    --    {
+    --        {
+	--			-- 				{
+	--			-- 	widget = wibox.widget.separator,
+	--			-- 	color = "#ffffff00",
+	--			-- 	forced_width = 10,
+	--			-- },
+    --            --
+	--			{
+    --                id     = "text_role",
+    --                widget = wibox.widget.textbox,
+    --            },
+	--			{
+	--				id = "seperator_role",
+	--				widget = wibox.widget.separator,
+	--				color  = beautiful.bg_focus,
+	--				shape  = gears.shape.powerline,
+	--				forced_width = 18,
+	--			},
+	--
+	--			layout = wibox.layout.fixed.horizontal,
+    --        },
+    --        left  = 24,
+    --        -- right = 24,
+    --        widget = wibox.container.margin
+    --    },
+    --    id     = "background_role",
+    --    widget = wibox.container.background,
+    --    -- Add support for hover colors and an index label
+    --    create_callback = function(self, c3, index, objects) --luacheck: no unused args
+	--		self:get_children_by_id("text_role")[1].markup = "<b> "..c3.name.." </b>"
+	--
+	--		if c3.selected and index < 9 and root.tags()[index+1].selected then
+	--			self:get_children_by_id("seperator_role")[1].color = beautiful.taglist_fg_focus
+	--			self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+	--
+	--		elseif not c3.selected and index < 9 and not root.tags()[index+1].selected then
+	--			self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
+	--			self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+	--		elseif not c3.selected and index == 9 then
+	--			self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
+	--			self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+	--		else
+	--			self:get_children_by_id("seperator_role")[1].color = "#ffffff00"
+	--			self:get_children_by_id("seperator_role")[1].shape = gears.shape.rectangle
+	--		end
+    --    end,
+    --    update_callback = function(self, c3, index, objects) --luacheck: no unused args
+    --        self:get_children_by_id("text_role")[1].markup = "<b> "..c3.name.." </b>"
+	--
+	--		if c3.selected and index < 9 and root.tags()[index+1].selected then
+	--			self:get_children_by_id("seperator_role")[1].color = beautiful.taglist_fg_focus
+	--			self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+	--
+	--		elseif not c3.selected and index < 9 and not root.tags()[index+1].selected then
+	--			self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
+	--			self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+	--		elseif not c3.selected and index == 9 then
+	--			self:get_children_by_id("seperator_role")[1].color = beautiful.bg_focus
+	--			self:get_children_by_id("seperator_role")[1].shape = gears.shape.powerline
+	--
+	--		else
+	--			self:get_children_by_id("seperator_role")[1].color = "#ffffff00"
+	--			self:get_children_by_id("seperator_role")[1].shape = gears.shape.rectangle
+	--		end
+	--
+    --    end,
+    --},
     }
     s.tasklist = awful.widget.tasklist {
         screen = s,
