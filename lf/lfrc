@@ -436,7 +436,8 @@ map grs cd ~/src
 
 map gDt cd ~/.dotfiles
 map gc cd ~/.config
-map gl cd ~/.local
+map gl. cd ~/.local
+map gls cd ~/.local/share
 map gE cd /etc
 map gU. cd /usr
 map gUs cd /usr/share

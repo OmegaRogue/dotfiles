@@ -2,6 +2,9 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+-- Error handling
+require('errors')
+
 local awesome = awesome
 
 -- Standard awesome library
@@ -21,6 +24,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 
+
 local settings = require('settings')
 
 --local amh = require("amh")
@@ -29,9 +33,8 @@ package.path = package.path .. ';' .. os.getenv("HOME") ..
         '/.local/lib/python3.10/site-packages/powerline/bindings/awesome/?.lua'
 naughty.config.icon_formats = { "png", "gif", "svg", "symbolic.png" }
 
--- Error handling
-require('errors')
 
+local awestore = require("awestore")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
@@ -61,6 +64,7 @@ awful.layout.layouts = {
     machi.default_layout,
 }
 
+-- TODO: use awestore
 Flags = {
     webcam = true,
     touchpad = true,
@@ -351,7 +355,6 @@ awful.screen.connect_for_each_screen(function(s)
 		nil,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-			bg = beautiful.bg_normal,
             modalawesome.sequence,
 			powerline.segment(false, beautiful.bg_focus, nil, nil, widgets.memicon, widgets.mem),
             powerline.segment(false, nil, beautiful.bg_focus, nil, widgets.cpuicon, widgets.cpu),
@@ -627,9 +630,6 @@ client.connect_signal("manage", function(c)
 
 end)
 
-client.connect_signal("request::titlebars", function(c) 
-
-end)
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::press", function(c)
@@ -667,6 +667,8 @@ client.connect_signal("property::urgent", function(c)
 		c.urgent = false
     end
 end)
+
+
 
 local function update_naughty_suspended()
 	local c = client.focus

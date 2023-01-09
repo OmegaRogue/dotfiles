@@ -29,11 +29,6 @@
 	url = https://github.com/berlam/awesome-switcher.git
 	update = rebase
 	branch = master
-[submodule "awesome/lain"]
-	path = awesome/lain
-	url = https://github.com/lcpz/lain.git
-	update = rebase
-	branch = master
 [submodule "awesome/omegavoid"]
 	path = awesome/omegavoid
 	url = https://github.com/OmegaRogue/omegavoid-awesomewm.git
