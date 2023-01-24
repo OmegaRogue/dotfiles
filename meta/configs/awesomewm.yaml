@@ -17,6 +17,7 @@
     ~/.config/awesome/errors.lua: awesome/errors.lua
     ~/.config/awesome/menu.lua: awesome/menu.lua
     ~/.config/awesome/settings.lua: awesome/settings.lua
+    ~/.config/awesome/tags.lua: awesome/tags.lua
     ~/.config/awesome/hardware_compat.lua: awesome/hardware_compat.lua
     ~/.config/awesome/freedesktop: awesome/freedesktop
     ~/.config/awesome/bling: awesome/bling
@@ -27,7 +28,6 @@
     ~/.config/awesome/awesome-switcher: awesome/awesome-switcher
     ~/.config/awesome/foggy: awesome/foggy
     ~/.config/awesome/lain: awesome/lain
-    ~/.config/awesome/awestore: awesome/awestore
     ~/.config/awesome/amh: awesome/amh
     ~/.config/awesome/omegavoid: awesome/omegavoid
     ~/.config/awesome/collision: awesome/collision
