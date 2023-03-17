@@ -59,6 +59,7 @@ if ! zgenom saved; then
 	zgenom load zshzoo/magic-enter							# https://github.com/zshzoo/magic-enter
 	zgenom load nviennot/zsh-vim-plugin
 	zgenom load jandamm/instant-repl.zsh
+	zgenom load ahmubashshir/zinsults
 	# if (( $+commands[tmux] )); then
 		zgenom load MikeDacre/tmux-zsh-vim-titles			# https://github.com/MikeDacre/tmux-zsh-vim-titles
 		zgenom load zpm-zsh/tmux							# https://github.com/zpm-zsh/tmux

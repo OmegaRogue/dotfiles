@@ -43,6 +43,7 @@ theme.tag_preview_client_opacity = 1
 
 theme.useless_gap = dpi(3)
 theme.snapper_gap = theme.useless_gap
+theme.gap_single_client = false
 theme.border_width = 0
 theme.border_normal = "#626262"
 theme.border_focus = "#535d6c"

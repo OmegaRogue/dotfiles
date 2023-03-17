@@ -437,7 +437,9 @@ map grs cd ~/src
 map gDt cd ~/.dotfiles
 map gc cd ~/.config
 map gl. cd ~/.local
-map gls cd ~/.local/share
+map gls. cd ~/.local/share
+map glsf10 cd ~/.local/share/FoundryVTTv10
+map glsf9 cd ~/.local/share/FoundryVTTv9
 map gE cd /etc
 map gU. cd /usr
 map gUs cd /usr/share

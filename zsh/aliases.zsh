@@ -26,11 +26,11 @@ alias mv='mv -iv'
 alias src='reload'
 
 
-#unalias l
-#unalias la
-#unalias ll
-#unalias ls
-#unalias lsa
+unalias l
+unalias la
+unalias ll
+unalias ls
+unalias lsa
 
 if (( $+commands[bat] && ! ${+ZSH_CAT_PREFER_CAT} )); then
   typeset -g bat_params; bat_params=()

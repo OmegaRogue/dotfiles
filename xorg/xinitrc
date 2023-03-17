@@ -14,7 +14,7 @@ setxkbmap -layout "de,us"
 #bitwarden-desktop &
 #xfsettingsd -d --replace &
 eval $(gnome-keyring-daemon --start) &
-export SSH_AUTH_SOCK &
+export SSH_AUTH_SOCK
 #xrdb ~/.Xresources &
 #flameshot &
 #dunst &
@@ -30,4 +30,8 @@ export SSH_AUTH_SOCK &
 #whatsapp-nativefier &
 xdg-autostart &
 #exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+#
+export LOL="test"
 exec /usr/bin/awesome 2>> ~/.cache/awesome/stderr
+
+

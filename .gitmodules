@@ -66,3 +66,6 @@
 [submodule "awesome/awestore"]
 	path = awesome/awestore
 	url = https://github.com/K4rakara/awestore.git
+[submodule "awesome/awesome-sharedtags"]
+	path = awesome/awesome-sharedtags
+	url = https://github.com/Drauthius/awesome-sharedtags.git

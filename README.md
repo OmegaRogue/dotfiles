@@ -1,4 +1,6 @@
-# Dotfiles
+# OmegaOS
+
+A dotfiles linux distro using awesomewm
 
 [Neofetch image](neofetch/xenia-neofetch2.png) source: http://xenia-linux-site.glitch.me/
 

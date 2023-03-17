@@ -25,8 +25,11 @@ ruled.client.append_rule {
 }
 ruled.client.append_rule {
 	rule = { name = "splash" },
-	properties = { floating = true }
+	properties = {
+		floating = true
+	}
 }
+
 
 ruled.client.append_rule {
     rule_any = {
@@ -78,6 +81,7 @@ ruled.client.append_rule {
         name = {
             "Event Tester", -- xev.
             "dragon",
+			"Signal Desktop Preferences",
         },
         role = {
             "AlarmWindow", -- Thunderbird's calendar.
@@ -86,7 +90,8 @@ ruled.client.append_rule {
         }
     },
     properties = {
-        floating = true
+        floating = true,
+		disable_smart_borders = false
     },
     callback = function(c)
         awful.placement.centered(c, nil)
@@ -94,14 +99,24 @@ ruled.client.append_rule {
 }
 ruled.client.append_rule {
 	rule = {
-		class = {
-			"Navigator", "firefox"
-		}
+		type = "normal"
 	},
 	properties = {
 		floating = false
 	}
 }
+ruled.client.append_rule {
+	rule_any = {
+		class = {
+			"Navigator", "firefox", "pcmanfm", "Pcmanfm"
+		},
+		type = "normal"
+	},
+	properties = {
+		floating = false
+	}
+}
+
 ruled.client.append_rule {
     rule_any = {
         type = {
@@ -116,9 +131,11 @@ ruled.client.append_rule {
         }
     },
     properties = {
-        ontop = true
+        ontop = true,
+		floating = true
     }
 }
+
 ruled.client.append_rule {
     rule_any = {
         class = {
@@ -137,9 +154,14 @@ ruled.client.append_rule {
             "Element",
         }
     },
+	rule_except_any = {
+		name = {
+			"Signal Desktop Preferences"
+		}
+	},
     properties = {
-        screen = Screenorder[3],
         floating = false,
+		disable_smart_borders = true,
     }
 }
 ruled.client.append_rule {
@@ -158,6 +180,7 @@ ruled.client.append_rule {
     },
     properties = {
         tag = "Messenger",
+        screen = Screenorder[3],
     }
 }
 ruled.client.append_rule {
@@ -170,7 +193,8 @@ ruled.client.append_rule {
     properties = {
         tag = "Teams",
         floating = false,
-        screen = Screenorder[1]
+        screen = Screenorder[1],
+		disable_smart_borders = true,
     }
 }
 ruled.client.append_rule {
@@ -188,6 +212,7 @@ ruled.client.append_rule {
         class = "discord"
     },
     properties = {
+        screen = Screenorder[3],
         tag = "Discord",
         maximise = false,
     }
@@ -263,8 +288,15 @@ ruled.client.append_rule {
 			"gnome-disks", "Gnome-disks",
 			"peek", "Peek",
 			"bottles", "bottles",
+			"evolution", "Evolution",
+			"file-roller", "File-roller",
 		},
     },
+	except_any = {
+		type = {
+            "dialog"
+        },
+	},
     properties = {
 		disable_smart_borders = true,
 		titlebars_enabled = false,
@@ -315,4 +347,59 @@ ruled.client.append_rule {
 -- 		end)
 -- 	end
 -- }
+ruled.client.append_rule {
+	rule = { name = "FreeCAD", type = "dialog", class = "FreeCAD" },
+	properties = {
+		disable_smart_borders = true
+	}
+}
+ruled.client.append_rule {
+	rule = { type = "dialog" },
+	properties = {
+		floating = true
+	}
+}
+-- ruled.client.append_rule {
+-- 	rule_any = {
+-- 		class = {"kdenlive"}
+-- 	},
+-- 	callback = function(c)
+-- 		naughty.notification{title=c.name,timeout=0,text=gears.debug.dump_return(c.class).."\n"..gears.debug.dump_return(c.window)}
+-- 	end
+-- }
+ruled.client.append_rule {
+	rule_any = {
+		type = {"splash"}
+	},
+	callback = function(c)
+		naughty.notification{title=c.name,timeout=0,text=gears.debug.dump_return(c.class).."\n"..gears.debug.dump_return(c.window)}
+	end
+}
+ruled.client.append_rule {
+	rule_any = {
+		class = {
+			"evolution", "Evolution",
+			"telegram-desktop", "TelegramDesktop",
+			"element", "Element",
+			"signal", "Signal",
+			"whatsapp-nativefier-d40211",
+            "whatsapp-for-linux",
+            "Whatsapp-for-linux",
+            "WhatsAppQT",
 
+		}
+	},
+	properties =  {
+		focus = false
+	}
+}
+ruled.client.append_rule {
+	rule = {
+		name = "Signal Desktop Preferences"
+	},
+	properties = {
+		floating = true,
+		disable_smart_borders = false,
+		titlebars_enabled = true,
+	}
+}

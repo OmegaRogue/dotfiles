@@ -37,6 +37,8 @@ local awestore = require("awestore")
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
+menubar.utils.terminal = settings.terminal
+
 local utils = require('utils')
 
 local bling = require("bling")
@@ -60,6 +62,8 @@ awful.layout.layouts = {
     machi.default_layout,
 }
 
+
+
 -- TODO: use awestore
 Flags = {
     webcam = true,
@@ -80,6 +84,8 @@ for s in screen do
     end
 end
 
+
+local tags = require('tags')
 local awesomebuttons = require("awesome-buttons.awesome-buttons")
 
 local lain = require("lain")
@@ -93,6 +99,7 @@ awesome.set_preferred_icon_size(dpi(32))
 local modalawesome = require("modalawesome")
 local widgets = require('widgets')
 
+local sharedtags = require("sharedtags")
 
 -- }}}
 
@@ -106,6 +113,7 @@ local menu = require('menu')
 local taglist_buttons = gears.table.join(
         awful.button({}, 1, function(t)
             t:view_only()
+			--sharedtags.viewonly(t)
         end),
         awful.button({ settings.modkey }, 1, function(t)
             if client.focus then
@@ -146,10 +154,23 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     utils.set_wallpaper(s)
 
+	 for k, v in pairs(s.outputs) do
+        if k == 'HDMI-0' then
+            Screenorder[1] = v.viewport_id
+        elseif k == 'DP-5' then
+            Screenorder[2] = v.viewport_id
+        elseif k == 'DP-3' then
+            Screenorder[3] = v.viewport_id
+        end
+    end
 
     -- Each screen has its own tag table.
-   local tags = require('tags')
    tags.maketags(s)
+   -- sharedtags.viewonly(tags.shared[1], s)
+   -- sharedtags.viewonly(tags.shared[2], s)
+   -- sharedtags.viewonly(tags.shared[3], s)
+   -- sharedtags.viewonly(tags.shared[4], s)
+   -- sharedtags.viewonly(tags.shared[5], s)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -642,35 +663,45 @@ require("collision")()-- {
 
 
 client.connect_signal("property::urgent", function(c)
+
     if c.class ~= "microsoft teams - preview"
             and c.class ~= "Microsoft Teams - Preview"
+			and c.class ~= "whatsapp-nativefier-d40211"
     then
+
+		-- awful.spawn.easy_async_with_shell("xprop -id "..c.window, function(out)
+		-- 	naughty.notification {
+		-- 		title = c.name,
+		-- 		text = out,
+		-- 		timeout = 0
+		-- 	}
+		-- end)
         c:jump_to()
     else
         c.urgent = false
     end
 end)
 
-local function update_naughty_suspended()
-    local c = client.focus
-    if c and ((c.fullscreen and not naughty.suspended) or c.suspend_notifications) then
-        -- naughty.notification {
-        -- 	title   = "Notifications Suspended",
-        -- 	message = "You'll no longer get notifications",
-        -- 	timeout = 5
-        -- }
-        naughty.suspend()
-        return
-    end
-    if naughty.suspended and not Flags.notif_suspend then
-        naughty.resume()
-        -- naughty.notification {
-        -- 	title   = "Notifications Resumed",
-        -- 	message = "You'll get notifications again",
-        -- 	timeout = 5
-        -- }
-    end
-end
+-- local function update_naughty_suspended()
+--     local c = client.focus
+--     if c and ((c.fullscreen and not naughty.suspended) or c.suspend_notifications) then
+--         -- naughty.notification {
+--         -- 	title   = "Notifications Suspended",
+--         -- 	message = "You'll no longer get notifications",
+--         -- 	timeout = 5
+--         -- }
+--         naughty.suspend()
+--         return
+--     end
+--     if naughty.suspended and not Flags.notif_suspend then
+--         naughty.resume()
+--         -- naughty.notification {
+--         -- 	title   = "Notifications Resumed",
+--         -- 	message = "You'll get notifications again",
+--         -- 	timeout = 5
+--         -- }
+--     end
+-- end
 
 local function update_fullscreen_titlebar(c)
     if c.fullscreen then
@@ -681,12 +712,16 @@ local function update_fullscreen_titlebar(c)
     end
 end
 
-client.connect_signal("property::fullscreen", update_naughty_suspended)
+--client.connect_signal("property::fullscreen", update_naughty_suspended)
 -- client.connect_signal("property::fullscreen", update_fullscreen_titlebar)
-client.connect_signal("focus", update_naughty_suspended)
-client.connect_signal("unfocus", update_naughty_suspended)
-tag.connect_signal("tagged", update_naughty_suspended)
-tag.connect_signal("property::selected", update_naughty_suspended)
+-- client.connect_signal("focus", update_naughty_suspended)
+-- client.connect_signal("unfocus", update_naughty_suspended)
+-- tag.connect_signal("tagged", update_naughty_suspended)
+-- tag.connect_signal("property::selected", update_naughty_suspended)
 
 
-
+naughty.config.defaults.screen = Screenorder[3]
+naughty.config.image_animations_enabled = true
+--naughty.config.persistence_enabled = true
+naughty.config.defaults.max_width = dpi(500)
+naughty.config.defaults.position = "top_left"

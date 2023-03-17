@@ -4,6 +4,7 @@
 --- DateTime: 06.06.22 16:42
 ---
 
+local menubar = require("menubar")
 
 local settings = {}
 
