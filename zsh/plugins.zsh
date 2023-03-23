@@ -96,6 +96,10 @@ if ! zgenom saved; then
 	;;
 	esac
 
+	zgenom load chisui/zsh-nix-shell
+	zgenom load nix-community/nix-zsh-completions
+
+
 	zgenom save
 
 	# zgenom compile $HOME/.zshrc

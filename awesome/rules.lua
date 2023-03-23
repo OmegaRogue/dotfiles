@@ -386,7 +386,7 @@ ruled.client.append_rule {
             "whatsapp-for-linux",
             "Whatsapp-for-linux",
             "WhatsAppQT",
-
+			"discord",
 		}
 	},
 	properties =  {

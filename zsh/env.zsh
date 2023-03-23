@@ -16,8 +16,11 @@ path+=$HOME/.cargo/bin
 path+=("$ANDROID_HOME/tools" "$ANDROID_HOME/emulator" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/platform-tools")
 path+=("$HOME/kiri/submodules/KiCad-Diff/" "$HOME/kiri/bin")
 path+=$HOME/.dotfiles/scripts
+path+=$HOME/.nix-profile/bin
 #export MANPAGER="nvim -c MANPAGER -"
 #export PAGER="nvim -c PAGER -"
+
+export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
 
 if [[ -n $(lspci | grep GeForce) ]]; then
 	path+=/usr/local/cuda-11.3/bin

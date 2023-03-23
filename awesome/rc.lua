@@ -74,6 +74,7 @@ Flags = {
 Screenorder = { 1, 2, 3 }
 for s in screen do
     for k, v in pairs(s.outputs) do
+		naughty.notify { title=k, text=gears.debug.dump_return(v), timeout=0}
         if k == 'HDMI-0' then
             Screenorder[1] = v.viewport_id
         elseif k == 'DP-5' then
@@ -667,6 +668,8 @@ client.connect_signal("property::urgent", function(c)
     if c.class ~= "microsoft teams - preview"
             and c.class ~= "Microsoft Teams - Preview"
 			and c.class ~= "whatsapp-nativefier-d40211"
+			and c.class ~= "signal" and c.class ~="Signal"
+			and c.class ~= "discord"
     then
 
 		-- awful.spawn.easy_async_with_shell("xprop -id "..c.window, function(out)
