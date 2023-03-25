@@ -1,4 +1,3 @@
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 
 # export MAGIC_ENTER_OTHER_COMMAND='[[ $(ls . | wc -l) -le 30 ]] && ls -lh . || ls .'
 # export MAGIC_ENTER_GIT_COMMAND='git status -u .'
@@ -7,6 +6,16 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 
 export TK_SILENCE_DEPRECATION=1
 export DOTNET_ROOT="$HOME/.dotnet"
+
+typeset -U path
+typeset -TUx XDG_CONFIG_HOME xdg_config_home
+typeset -TUx XDG_DATA_DIRS xdg_data_dirs
+
+
+xdg_config_home+=$HOME/.config
+
+xdg_data_dirs+=$HOME/.nix-profile/share
+
 path+=$HOME/.dotnet
 path+=("/usr/local/go/bin" "$HOME/go/bin")
 path+=$HOME/.local/bin
@@ -17,10 +26,15 @@ path+=("$ANDROID_HOME/tools" "$ANDROID_HOME/emulator" "$ANDROID_HOME/tools/bin" 
 path+=("$HOME/kiri/submodules/KiCad-Diff/" "$HOME/kiri/bin")
 path+=$HOME/.dotfiles/scripts
 path+=$HOME/.nix-profile/bin
+
+
+
+
+
 #export MANPAGER="nvim -c MANPAGER -"
 #export PAGER="nvim -c PAGER -"
 
-export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
+#export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
 
 if [[ -n $(lspci | grep GeForce) ]]; then
 	path+=/usr/local/cuda-11.3/bin
@@ -77,3 +91,7 @@ export LF_BOOKMARK_PATH=${HOME}/bookmarks
 export QT_QPA_PLATFORMTHEME=gtk2
 
 export PATH
+export XDG_DATA_DIRS
+export XDG_CONFIG_HOME
+export xdg_data_dirs
+export xdg_config_home

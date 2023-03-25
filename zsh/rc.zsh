@@ -8,7 +8,8 @@ setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt share_history          # share command history data
-setopt extended_glob
+setopt extended_glob          # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename generation, etc. (An initial unquoted ‘~’ always produces named directory expansion.)
+setopt AUTO_PUSHD			  # Make cd push the old directory onto the directory stack. 
 
 # ensure correct PATH zshenv
 alias -g egrep='grep -E '

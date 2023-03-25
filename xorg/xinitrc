@@ -33,5 +33,3 @@ xdg-autostart &
 #
 export LOL="test"
 exec /usr/bin/awesome 2>> ~/.cache/awesome/stderr
-
-

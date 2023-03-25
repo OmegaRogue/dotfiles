@@ -6,6 +6,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local ruled = require('ruled')
 local naughty = require('naughty')
 local dpi = require("beautiful.xresources").apply_dpi
+local utils = require("utils")
 -- Rules to apply to new clients (through the "manage" signal).
 
 -- All clients will match this rule.
@@ -180,7 +181,7 @@ ruled.client.append_rule {
     },
     properties = {
         tag = "Messenger",
-        screen = Screenorder[3],
+        screen = utils.screen_fallback(3),
     }
 }
 ruled.client.append_rule {
@@ -193,7 +194,7 @@ ruled.client.append_rule {
     properties = {
         tag = "Teams",
         floating = false,
-        screen = Screenorder[1],
+        screen = utils.screen_fallback(1),
 		disable_smart_borders = true,
     }
 }
@@ -204,7 +205,7 @@ ruled.client.append_rule {
         }
     },
     properties = {
-        tag = "Mail", screen = Screenorder[2]
+        tag = "Mail", screen = utils.screen_fallback(2)
     }
 }
 ruled.client.append_rule {
@@ -212,7 +213,7 @@ ruled.client.append_rule {
         class = "discord"
     },
     properties = {
-        screen = Screenorder[3],
+        screen = utils.screen_fallback(3),
         tag = "Discord",
         maximise = false,
     }

@@ -44,7 +44,7 @@ theme.tag_preview_client_opacity = 1
 theme.useless_gap = dpi(3)
 theme.snapper_gap = theme.useless_gap
 theme.gap_single_client = false
-theme.border_width = 0
+theme.border_width = dpi(0)
 theme.border_normal = "#626262"
 theme.border_focus = "#535d6c"
 theme.border_marked = "#91231c"
@@ -142,7 +142,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[border_color|border_width|shape|opacity]
 theme.notification_font = "Segoe UI Regular 18"
 theme.notification_shape = function(cr, width, height)
-    return gears.shape.rounded_rect(cr, width, height, 5)
+    return gears.shape.rounded_rect(cr, width, height, dpi(5))
 end
 
 -- Variables set for theming the menu:
@@ -163,7 +163,7 @@ theme.taglist_bg_focus = theme.bg_selected
 theme.taglist_font = theme.font
 theme.taglist_fg_normal = "#DCDCCC"
 theme.taglist_bg_normal = theme.bg_normal
-theme.taglist_squares_sel = theme_assets.taglist_squares_unsel(4, theme.taglist_fg_focus)
+theme.taglist_squares_sel = theme_assets.taglist_squares_unsel(dpi(4), theme.taglist_fg_focus)
 theme.taglist_squares_unsel = theme.taglist_squares_sel
 
 -- theme.tasklist_shape = gears.shape.powerline
@@ -252,7 +252,9 @@ switcher.settings.client_opacity = true
 theme.switcher = switcher
 
 theme.wallpaper = os.getenv("HOME") ..
-        "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-4-1920x1080.jpg"
+        -- "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-4-1920x1080.jpg"
+        "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-4-2560x1440.jpg"
+
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
