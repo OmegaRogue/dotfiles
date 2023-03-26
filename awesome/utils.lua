@@ -118,7 +118,68 @@ end
 utils.screen_fallback = function(x)
 	return math.min(screen.count(),x)
 end
-
+--- Get the config dirs according to the XDG basedir specification.
+-- @return the config dirs (XDG_CONFIG_DIRS) with a slash at the end.
+-- @staticfct utils.get_xdg_config_dirs
+utils.get_xdg_config_dirs = function()
+	local dirs={}
+	for _, v in ipairs(gears.string.split((os.getenv("XDG_CONFIG_DIRS") or "/etx/xdg"), ":")) do
+		dirs[#dirs+1]=v.."/"
+	end
+	return dirs
+end
+utils.dump_client = function(c)
+	local temp = {
+		name = c.name,
+		window = c.window,
+		skip_taskbar = c.skip_taskbar,
+		type = c.type,
+		class = c.class,
+		instance = c.instance,
+		pid = c.pid,
+		role = c.role,
+		machine = c.machine,
+		icon_name = c.icon_name,
+		icon_sizes = c.icon_sizes,
+		screen = c.screen.index,
+		hidden = c.hidden,
+		minimized = c.minimized,
+		size_hints_honor = c.size_hints_honor,
+		border_width                  = c.border_width,
+		urgent                        = c.urgent,
+		opacity                       = c.opacity,
+		ontop                         = c.ontop,
+		above                         = c.above,
+		below                         = c.below,
+		fullscreen                    = c.fullscreen,
+		maximized                     = c.maximized,
+		maximized_horizontal          = c.maximized_horizontal,
+		maximized_vertical            = c.maximized_vertical,
+		group_window                  = c.group_window,
+		leader_window                 = c.leader_window,
+		size_hints                    = c.size_hints,
+		motif_wm_hints                = c.motif_wm_hints,
+		sticky                        = c.sticky,
+		modal                         = c.modal,
+		focusable                     = c.focusable,
+		startup_id                    = c.startup_id,
+		transient_for = c.transient_for ~= nil,
+		valid                         = c.valid,
+		marked                        = c.marked,
+		is_fixed                      = c.is_fixed,
+		immobilized_horizontal        = c.immobilized_horizontal,
+		immobilized_vertical          = c.immobilized_vertical,
+		floating                      = c.floating,
+		x                             = c.x,
+		y                             = c.y,
+		width                         = c.width,
+		height                        = c.height,
+		dockable                      = c.dockable,
+		requests_no_titlebar          = c.requests_no_titlebar,
+		active                        = c.active
+	}
+	gears.debug.print_warning(gears.debug.dump_return(temp))
+end
 --debug_out = "" menubar.utils.parse_dir(os.getenv("XDG_CONFIG_HOME").."/autostart", function(a) local buffer = {} for k, v in ipairs(a) do if v.Exec ~= v.cmdline then buffer[k] = v end end debug_out = debug_out .. gears.debug.dump_return(buffer) end)
 
 return utils

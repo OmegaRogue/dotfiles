@@ -11,6 +11,8 @@ setopt share_history          # share command history data
 setopt extended_glob          # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename generation, etc. (An initial unquoted ‘~’ always produces named directory expansion.)
 setopt AUTO_PUSHD			  # Make cd push the old directory onto the directory stack. 
 
+zmodload zsh/mathfunc
+
 # ensure correct PATH zshenv
 alias -g egrep='grep -E '
 source $HOME/.zshenv

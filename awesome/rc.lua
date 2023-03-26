@@ -383,8 +383,10 @@ function()
 	menu:toggle()
 end),
 awful.button({}, 4, awful.tag.viewnext),
-awful.button({}, 5, awful.tag.viewprev)))
+awful.button({}, 5, awful.tag.viewprev)
+))
 -- }}}
+
 
 -- {{{ Key bindings
 
@@ -490,7 +492,27 @@ awful.key({ settings.modkey, "Shift" }, "n", function()
 		}
 		naughty.suspend()
 	end
-end, { description = "suspend notifications", group = "awesome" })
+end, { description = "suspend notifications", group = "awesome" }),
+awful.key({settings.modkey, "Shift"},"h", function()
+	mousegrabber.run(function(a)
+		local done = false
+		done = a.buttons[1] or done
+		if a.buttons[1] then
+			local c = mouse.object_under_pointer()
+			if type(c) == "client" then
+				done = true
+				utils.dump_client(c)
+				-- naughty.notify {
+				-- 	text = tempt,
+				-- 	timeout = 0,
+				-- 	position = "middle"
+				-- }
+			end
+		end
+		return not done
+	end,"crosshair")
+end,
+{description="get properties of client", group="client"})
 )
 
 Clientkeys = gears.table.join(
@@ -628,103 +650,103 @@ client.connect_signal("unfocus", function(c)
 	c.border_color = beautiful.border_normal
 end)
 -- screen.connect_signal("list", function(a)
--- 	naughty.notify{title="list",text=gears.debug.dump_return(a),timeout=0}
--- end)
---
--- screen.connect_signal("added", function(s)
--- 	naughty.notify{title="added",text=gears.debug.dump_return(s),timeout=0}
--- 	for k, v in pairs(s.outputs) do
--- 		naughty.notify { title=k, text=gears.debug.dump_return(v), timeout=0}
--- 	end
--- end)
--- screen.connect_signal("removed", function(s)
--- 	naughty.notify{title="removed",text=gears.debug.dump_return(s),timeout=0}
--- 	for k, v in pairs(s.outputs) do
--- 		naughty.notify { title=k, text=gears.debug.dump_return(v), timeout=0}
--- 	end
--- end)
--- }}}
-
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
-
-require("collision")()-- {
---        Normal        Xephyr         Vim      G510
--- up    = { "Up"    , "k"   --[[, "F15" ]]},
--- down  = { "Down"  , "j"   --[[, "F14" ]]},
--- left  = { "Left"  , "h"   --[[, "F13" ]]},
--- right = { "Right" , "l"   --[[, "F17" ]]},
---}
-
-
-
-client.connect_signal("property::urgent", function(c)
-	if c.class ~= "microsoft teams - preview"
-		and c.class ~= "Microsoft Teams - Preview"
-		and c.class ~= "whatsapp-nativefier-d40211"
-		and c.class ~= "signal" and c.class ~="Signal"
-		and c.class ~= "discord"
-		then
-
-			-- awful.spawn.easy_async_with_shell("xprop -id "..c.window, function(out)
-			-- 	naughty.notification {
-			-- 		title = c.name,
-			-- 		text = out,
-			-- 		timeout = 0
-			-- 	}
+	-- 	naughty.notify{title="list",text=gears.debug.dump_return(a),timeout=0}
+	-- end)
+	--
+	-- screen.connect_signal("added", function(s)
+		-- 	naughty.notify{title="added",text=gears.debug.dump_return(s),timeout=0}
+		-- 	for k, v in pairs(s.outputs) do
+		-- 		naughty.notify { title=k, text=gears.debug.dump_return(v), timeout=0}
+		-- 	end
+		-- end)
+		-- screen.connect_signal("removed", function(s)
+			-- 	naughty.notify{title="removed",text=gears.debug.dump_return(s),timeout=0}
+			-- 	for k, v in pairs(s.outputs) do
+			-- 		naughty.notify { title=k, text=gears.debug.dump_return(v), timeout=0}
+			-- 	end
 			-- end)
-			c:jump_to()
-		else
-			c.urgent = false
-	end
-end)
-
--- local function update_naughty_suspended()
---     local c = client.focus
---     if c and ((c.fullscreen and not naughty.suspended) or c.suspend_notifications) then
---         -- naughty.notification {
---         -- 	title   = "Notifications Suspended",
---         -- 	message = "You'll no longer get notifications",
---         -- 	timeout = 5
---         -- }
---         naughty.suspend()
---         return
---     end
---     if naughty.suspended and not Flags.notif_suspend then
---         naughty.resume()
---         -- naughty.notification {
---         -- 	title   = "Notifications Resumed",
---         -- 	message = "You'll get notifications again",
---         -- 	timeout = 5
---         -- }
---     end
--- end
-
-local function update_fullscreen_titlebar(c)
-	if c.fullscreen then
-		c.had_smart_borders_disabled = c.disable_smart_borders
-		c.disable_smart_borders = true
-	elseif not c.fullscreen then
-		c.disable_smart_borders = c.had_smart_borders_disabled
-	end
-end
-
---client.connect_signal("property::fullscreen", update_naughty_suspended)
--- client.connect_signal("property::fullscreen", update_fullscreen_titlebar)
--- client.connect_signal("focus", update_naughty_suspended)
--- client.connect_signal("unfocus", update_naughty_suspended)
--- tag.connect_signal("tagged", update_naughty_suspended)
--- tag.connect_signal("property::selected", update_naughty_suspended)
+			-- }}}
 
 
-naughty.config.defaults.screen = math.min(screen.count(),3)
-naughty.config.image_animations_enabled = true
---naughty.config.persistence_enabled = true
-naughty.config.defaults.max_width = dpi(500)
-naughty.config.defaults.position = "top_left"
--- screen[1]:split({((5120-1920)/2)/5120, 1920/5120, ((5120-1920)/2)/5120})
+			-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
 
-for s in screen do
-	tags.maketags(s)
-end
+			require("collision")()-- {
+				--        Normal        Xephyr         Vim      G510
+				-- up    = { "Up"    , "k"   --[[, "F15" ]]},
+				-- down  = { "Down"  , "j"   --[[, "F14" ]]},
+				-- left  = { "Left"  , "h"   --[[, "F13" ]]},
+				-- right = { "Right" , "l"   --[[, "F17" ]]},
+				--}
+
+
+
+				client.connect_signal("property::urgent", function(c)
+					if c.class ~= "microsoft teams - preview"
+						and c.class ~= "Microsoft Teams - Preview"
+						and c.class ~= "whatsapp-nativefier-d40211"
+						and c.class ~= "signal" and c.class ~="Signal"
+						and c.class ~= "discord"
+						then
+
+							-- awful.spawn.easy_async_with_shell("xprop -id "..c.window, function(out)
+								-- 	naughty.notification {
+									-- 		title = c.name,
+									-- 		text = out,
+									-- 		timeout = 0
+									-- 	}
+									-- end)
+									c:jump_to()
+								else
+									c.urgent = false
+								end
+							end)
+
+							-- local function update_naughty_suspended()
+								--     local c = client.focus
+								--     if c and ((c.fullscreen and not naughty.suspended) or c.suspend_notifications) then
+								--         -- naughty.notification {
+									--         -- 	title   = "Notifications Suspended",
+									--         -- 	message = "You'll no longer get notifications",
+									--         -- 	timeout = 5
+									--         -- }
+									--         naughty.suspend()
+									--         return
+									--     end
+									--     if naughty.suspended and not Flags.notif_suspend then
+									--         naughty.resume()
+									--         -- naughty.notification {
+										--         -- 	title   = "Notifications Resumed",
+										--         -- 	message = "You'll get notifications again",
+										--         -- 	timeout = 5
+										--         -- }
+										--     end
+										-- end
+
+										local function update_fullscreen_titlebar(c)
+											if c.fullscreen then
+												c.had_smart_borders_disabled = c.disable_smart_borders
+												c.disable_smart_borders = true
+											elseif not c.fullscreen then
+												c.disable_smart_borders = c.had_smart_borders_disabled
+											end
+										end
+
+										--client.connect_signal("property::fullscreen", update_naughty_suspended)
+										-- client.connect_signal("property::fullscreen", update_fullscreen_titlebar)
+										-- client.connect_signal("focus", update_naughty_suspended)
+										-- client.connect_signal("unfocus", update_naughty_suspended)
+										-- tag.connect_signal("tagged", update_naughty_suspended)
+										-- tag.connect_signal("property::selected", update_naughty_suspended)
+
+
+										naughty.config.defaults.screen = math.min(screen.count(),3)
+										naughty.config.image_animations_enabled = true
+										--naughty.config.persistence_enabled = true
+										naughty.config.defaults.max_width = dpi(500)
+										naughty.config.defaults.position = "top_left"
+										-- screen[1]:split({((5120-1920)/2)/5120, 1920/5120, ((5120-1920)/2)/5120})
+
+										for s in screen do
+											tags.maketags(s)
+										end
 

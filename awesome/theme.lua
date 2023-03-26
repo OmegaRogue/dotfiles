@@ -182,9 +182,11 @@ theme.tasklist_shape_border_width_focus = 0
 require('smart_borders') {
     stealth = false,
     show_button_tooltips = false,
+    show_title_tooltips = true,
     align_horizontal = "center",
     color_normal = "#555555",
     color_focus = "#666666",
+    color_floating = "#886688",
     button_size = dpi(40),
     button_floating_size = dpi(60),
     button_close_size = dpi(60),

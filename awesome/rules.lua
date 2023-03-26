@@ -249,29 +249,7 @@ ruled.client.append_rule {
         placement = awful.placement.restore
     }
 }
-ruled.client.append_rule {
-    rule_any = {
-        class = {
-            "jetbrains-toolbox",
-            "JetBrains Toolbox"
-        },
 
-    },
-    properties = {
-        honor_workarea = true,
-        size_hints_honor = false,
-        placement = function(c)
-            local f = (awful.placement.no_overlap + awful.placement.no_offscreen + awful.placement.top_right)
-            f(c, {
-                offset = { x = -12, y = 40 },
-                margin = 40,
-                honor_workarea = true
-            })
-        end,
-        focus = true,
-        floating = true,
-    }
-}
 ruled.client.append_rule {
     rule = {
         class = { "google-chrome", "Google-chrome" },
@@ -402,5 +380,102 @@ ruled.client.append_rule {
 		floating = true,
 		disable_smart_borders = false,
 		titlebars_enabled = true,
+	}
+}
+ruled.client.append_rule {
+    rule = {
+		name = "JetBrains Toolbox"
+	},
+    properties = {
+        honor_workarea = true,
+        size_hints_honor = false,
+        placement = function(c)
+            local f = (awful.placement.no_overlap + awful.placement.no_offscreen + awful.placement.top_right)
+            local geo =  f(c, {
+                offset = { x = -12, y = 40 },
+                margin = 40,
+                honor_workarea = true,
+				attach = true,
+				store_geometry = true,
+            })
+			c.x = geo.x
+			c.y = geo.y
+			c:geometry(geo)
+			naughty.notify {title="aaa"}
+        end,
+        focus = true,
+        floating = true,
+    },
+	callback = function(c)
+		c.floating = true
+		c.ontop = true
+		local f = (awful.placement.no_overlap + awful.placement.no_offscreen + awful.placement.top_right)
+        local geo = f(c, {
+			offset = { x = -12, y = 40 },
+			margin = 40,
+			honor_workarea = true,
+			attach = true,
+			store_geometry = true,
+        })
+		c.x = geo.x
+		c.y = geo.y
+		c:geometry(geo)
+		naughty.notify {title="bbb"}
+		awful.placement.restore(c)
+
+	end
+}
+-- ruled.client.append_rule{
+-- 	rule = { type="normal"},
+-- callback = function(c)
+-- 		--utils.dump_client(c)
+-- 			gears.debug.print_warning("detected1: \""..c.name.."\" id: "..tostring(c.window))
+-- 			utils.dump_client(c)
+-- 			naughty.notify {title=""..c.name.."",text=tostring(ruled.client.matches(c,{rule={name="JetBrains Toolbox"}})),timeout=0}
+-- 	end
+--
+-- 	}
+ruled.client.append_rule {
+	id = "wezterm opacity",
+	rule = {
+		class = "org.wezfurlong.wezterm"
+	},
+	properties = {
+		opacity = 0.7
+	}
+}
+ruled.client.append_rule {
+	id = "dock opacity",
+	rule = {
+		type = "dock"
+	},
+	properties = {
+		opacity = 0.8
+	}
+}
+ruled.client.append_rule {
+	id = "messenger opacity",
+	rule_any = {
+		class = {
+			"evolution", "Evolution",
+			"telegram-desktop", "TelegramDesktop",
+			"element", "Element",
+			"signal", "Signal",
+			"whatsapp-nativefier-d40211",
+            "whatsapp-for-linux",
+            "Whatsapp-for-linux",
+            "WhatsAppQT",
+			"discord"
+		}
+	},
+	properties = {
+		opacity = 0.7
+	}
+}
+ruled.client.append_rule {
+	id = "firefox opacity",
+	rule = { class = "firefox" },
+	properties = {
+		opacity = 1.0
 	}
 }
