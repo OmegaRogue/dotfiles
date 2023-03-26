@@ -1,9 +1,11 @@
 [submodule "meta/plugins/dotbot-yay"]
 	path = meta/plugins/dotbot-yay
 	url = https://github.com/oxson/dotbot-yay
+	update = rebase
 [submodule "meta/plugins/dotbot-git"]
 	path = meta/plugins/dotbot-git
 	url = https://github.com/DrDynamic/dotbot-git.git
+	update = rebase
 [submodule "awesome/awesome-buttons"]
 	path = awesome/awesome-buttons
 	url = https://github.com/streetturtle/awesome-buttons.git
@@ -48,24 +50,33 @@
 	path = meta/dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
+	update = rebase
 [submodule "awesome/bling"]
 	path = awesome/bling
 	url = https://github.com/BlingCorp/bling.git
+	update = rebase
 [submodule "awesome/layout-machi"]
 	path = awesome/layout-machi
+	update = rebase
 	url = https://github.com/xinhaoyuan/layout-machi.git
 [submodule "awesome/collision"]
 	path = awesome/collision
 	url = https://github.com/Elv13/collision.git
+	update = rebase
 [submodule "awesome/awesome-wm-widgets"]
 	path = awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets.git
+	update = rebase
+	branch = master
 [submodule "awesome/lain"]
 	path = awesome/lain
 	url = https://github.com/lcpz/lain.git
+	update = rebase
 [submodule "awesome/awestore"]
 	path = awesome/awestore
 	url = https://github.com/K4rakara/awestore.git
+	update = rebase
 [submodule "awesome/awesome-sharedtags"]
 	path = awesome/awesome-sharedtags
 	url = https://github.com/Drauthius/awesome-sharedtags.git
+	update = rebase
