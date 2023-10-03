@@ -12,6 +12,7 @@ zgenom autoupdate
 if ! zgenom saved; then
     echo "Creating a zgenom save"
 
+
 	zgenom compdef
 	zgenom ohmyzsh											# https://github.com/ohmyzsh/oh-my-zsh
 #	alias
@@ -20,7 +21,7 @@ if ! zgenom saved; then
 #	unalias ll
 #	unalias ls
 #	unalias lsa
-
+	zgenom load arzzen/calc.plugin.zsh
 	zgenom ohmyzsh plugins/git								# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/git
 	zgenom ohmyzsh plugins/git-flow							# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/git-flow
 	zgenom ohmyzsh plugins/colored-man-pages				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/colored-man-pages
@@ -53,13 +54,18 @@ if ! zgenom saved; then
 	zgenom load voronkovich/project.plugin.zsh				# https://github.com/voronkovich/project.plugin.zsh
 	#zgenom load michaelmcallister/razer-status-code			# https://github.com/michaelmcallister/razer-status-code
 	zgenom load aubreypwd/zsh-plugin-reload					# https://github.com/aubreypwd/zsh-plugin-reload
-	#zgenom load mattmc3/zsh-safe-rm						# https://github.com/mattmc3/zsh-safe-rm
+	zgenom load mattmc3/zsh-safe-rm						# https://github.com/mattmc3/zsh-safe-rm
 	zgenom load gko/ssh-connect								# https://github.com/gko/ssh-connect
 	zgenom load NorthIsMirror/zsh-startify					# https://github.com/NorthIsMirror/zsh-startify
 	zgenom load zshzoo/magic-enter							# https://github.com/zshzoo/magic-enter
 	zgenom load nviennot/zsh-vim-plugin
 	zgenom load jandamm/instant-repl.zsh
 	zgenom load ahmubashshir/zinsults
+	zgenom load MikeDacre/cdbk
+	zgenom bin https://gitlab.com/axdsop/nix-dotfiles --location "Configs/polybar/scripts/mpris_player/mpris_player_control" --name "mpris_player_control"
+	if  (( $+commands[pacman] )); then
+		zgenom load Junker/zsh-archlinux
+	fi
 	# if (( $+commands[tmux] )); then
 		zgenom load MikeDacre/tmux-zsh-vim-titles			# https://github.com/MikeDacre/tmux-zsh-vim-titles
 		zgenom load zpm-zsh/tmux							# https://github.com/zpm-zsh/tmux
@@ -79,9 +85,6 @@ if ! zgenom saved; then
 	# if  (( $+commands[terraform] )); then
 		zgenom ohmyzsh plugins/terraform					# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/terraform
 	# fi
-	# if  (( $+commands[pacman] )); then
-		zgenom ohmyzsh plugins/archlinux					# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/archlinux
-	# fi
 
 	# if (( $+commands[fzf] )); then
 		zgenom load Aloxaf/fzf-tab								# https://github.com/Aloxaf/fzf-tab
@@ -99,6 +102,8 @@ if ! zgenom saved; then
 	zgenom load chisui/zsh-nix-shell
 	zgenom load nix-community/nix-zsh-completions
 
+	if [[ -e $HOME/.zgenom/sources/ohmyzsh/ohmyzsh/___/lib/theme-and-appearance.zsh ]] rm $HOME/.zgenom/sources/ohmyzsh/ohmyzsh/___/lib/theme-and-appearance.zsh
+	if [[ -e $HOME/.zgenom/sources/ohmyzsh/ohmyzsh/___/lib/theme-and-appearance.zsh.zwc ]] rm $HOME/.zgenom/sources/ohmyzsh/ohmyzsh/___/lib/theme-and-appearance.zsh.zwc
 
 	zgenom save
 

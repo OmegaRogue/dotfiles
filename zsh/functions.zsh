@@ -1,9 +1,20 @@
 function magic-enter-cmd {
 	if command git rev-parse --is-inside-work-tree &>/dev/null; then
-		echo ' git status -u .'
+		printf '%s' ' git status -u .'
 	else
-		echo ' [[ $(ls . |wc -l) -le 30 ]] && ls -lh . || ls .'
+		printf '%s' ' [[ $(ls . | wc -l) -le 200 ]] && ([[ $(ls . |wc -l) -le 30 ]] && ls -lh . || ls .)'
 	fi
+}
+auto-ls-ls () {
+	count=$(ls . | wc -l)
+	if [[ $count -le 200 ]]; then
+		if [[ $count -le 30 ]]; then
+			ls -lh .
+		else
+			ls .
+		fi
+	fi
+	[[ $AUTO_LS_NEWLINE != false ]] && echo ""
 }
 lfcd () {
     tmp="$(mktemp)"
@@ -139,9 +150,35 @@ function unarchive() {
             echo "extract: '$1' cannot be extracted" >&2
             return 1;;
     esac
-	nfiles=($extract_dir/*(DN))
-	if [ "${#nfiles[@]}" -eq 1 ]; then
-		mv $nfiles[1] .
-	fi
+	#nfiles=($extract_dir/*(DN))
+	#if [ "${#nfiles[@]}" -eq 1 ]; then
+	#  mv $nfiles[1] .
+	#fi
 	return 0
+}
+
+function uriencode() {
+    setopt localoptions extendedglob
+    input=( ${(s::)1} )
+    print ${(j::)input/(#b)([^A-Za-z0-9_.\!~*\'\(\)-])/%${(l:2::0:)$(([##16]#match))}}
+}
+function uridecode() {
+  setopt localoptions extendedglob multibyte
+  print ${${1//+/ }//(#b)%([[:xdigit:]](#c2))/${(#):-0x$match[1]}}
+}
+function nostderr() {
+	exec 7>&2           # "save" stderr
+	exec 2>/dev/null    # redirect
+}
+function yesstderr() {
+	exec 2>&7           # restore
+	exec 7>&-           # close descriptor which is no longer needed
+}
+function nostdout() {
+	exec 7>&1           # "save" stdout
+	exec 1>/dev/null    # redirect
+}
+function yesstdout() {
+	exec 1>&7           # restore
+	exec 7>&-           # close descriptor which is no longer needed
 }

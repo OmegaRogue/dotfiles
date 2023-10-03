@@ -130,6 +130,50 @@ vim.g.terraform_align = 1
 
 -- }}}
 
+
+-- local lspconfig = require('lspconfig')
+-- lspconfig.lua_ls.setup {
+--   settings = {
+--     Lua = {
+--       runtime = {
+--         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+--         version = 'Lua 5.4',
+--       },
+--       diagnostics = {
+--         -- Get the language server to recognize the `vim` global
+--         globals = {
+-- 		"awesome",
+--     	"button",
+--     	"dbus",
+--     	"drawable",
+--     	"drawin",
+--     	"key",
+--     	"keygrabber",
+--     	"mousegrabber",
+--     	"selection",
+--     	"tag",
+--     	"window",
+--     	"table.unpack",
+-- 		"math.atan2",
+-- 		"screen",
+-- 		"mouse",
+-- 		"root",
+-- 		"client",
+-- 		"vim"
+--       },
+--       workspace = {
+--         -- Make the server aware of Neovim runtime files
+--         library = vim.api.nvim_get_runtime_file("", true),
+--       },
+--       -- Do not send telemetry data containing a randomized but unique identifier
+--       telemetry = {
+--         enable = false,
+--       },
+--     },
+--   },
+-- }
+-- }
+
 -- ---------------------------------------------------------------------------------------------------------------------
 -- Folding settings {{{
 -- ---------------------------------------------------------------------------------------------------------------------
@@ -346,7 +390,19 @@ vim.g.pasta_paste_before_mapping = ',O'
 vim.g.pasta_paste_after_mapping = ',o'
 -- }}}
 
-
+-- -----------------------------------------------------
+-- COC {{{
+-- -----------------------------------------------------
+set.signcolumn = "yes"
+vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
+vim.api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", {nargs = '?'})
+vim.api.nvim_create_augroup("CocGroup", {})
+vim.api.nvim_create_autocmd("CursorHold", {
+    group = "CocGroup",
+    command = "silent call CocActionAsync('highlight')",
+    desc = "Highlight symbol under cursor on CursorHold"
+})
+-- }}}
 
 -- -----------------------------------------------------
 -- Autocommands {{{

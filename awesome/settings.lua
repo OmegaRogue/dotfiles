@@ -4,26 +4,23 @@
 --- DateTime: 06.06.22 16:42
 ---
 
-local menubar = require("menubar")
-
-local settings = {}
+local _M = {}
 
 -- This is used later as the default Terminal and Editor to run.
-settings.terminal = "wezterm"
-settings.editor = os.getenv("EDITOR") or "nvim"
-settings.editor_cmd = settings.terminal .. " -e " .. settings.editor
+_M.terminal = "wezterm"
+_M.editor = os.getenv("EDITOR") or "nvim"
+_M.editor_cmd = _M.terminal .. " -e " .. _M.editor
 
 -- Default Modkey.
-settings.modkey = "Mod4"
+_M.modkey = "Mod4"
 
-settings.raise_volume_cmd = "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"
-settings.lower_volume_cmd = "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%"
-settings.set_volume_cmd = "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 $v%"
-settings.volume_mute_cmd = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-settings.audio_pause_cmd = "playerctl play-pause"
-settings.audio_previous_cmd = "playerctl previous"
-settings.audio_next_cmd = "playerctl next"
-settings.run_prompt_cmd = "rofi -show run"
-settings.power_menu_cmd = "rofi -show power-menu"
+_M.raise_volume_cmd = "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"
+_M.lower_volume_cmd = "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%"
+_M.set_volume_cmd = "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 $v%"
+_M.volume_mute_cmd = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+_M.run_prompt_cmd = "rofi -show run"
+_M.power_menu_cmd = "rofi -show power-menu"
+_M.screenshot_cmd = "flameshot gui"
+_M.video_screenshot_cmd = "peek"
 
-return settings
+return _M

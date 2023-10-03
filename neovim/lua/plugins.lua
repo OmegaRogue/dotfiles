@@ -1,161 +1,190 @@
 -- ======================================================================================================================
 --
--- Plugin manager (Plug) settings.
+-- Plugin manager (packer) settings.
 -- Author : OmegaRogue <thatomegarogue@gmail.com>
 -- ======================================================================================================================
 -- if &compatible
 --  set nocompatible
 -- end
-local Plug = vim.fn['plug#']
-vim.cmd [[
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source ~/.config/nvim/init.vim
-endif
-]]
-vim.call('plug#begin', '~/.config/nvim/plugins')
+-- local use = vim.fn['plug#']
+-- vim.cmd [[
+-- if empty(glob('~/.config/nvim/autoload/plug.vim'))
+--   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+--     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+--   autocmd VimEnter * useInstall | source ~/.config/nvim/init.vim
+-- endif
+-- ]]
+-- vim.call('plug#begin', '~/.config/nvim/plugins')
 
-Plug 'svermeulen/vimpeccable'
+local ensure_packer = function()
+	local fn = vim.fn
+	local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+		vim.cmd [[packadd packer.nvim]]
+		return true
+	end
+	return false
+end
 
--- ---------------------------------------------------------------------------------------------------------------------
--- Interface {{{
--- ---------------------------------------------------------------------------------------------------------------------
+local packer_bootstrap = ensure_packer()
 
--- Plug 'ashisha/image.vim'
--- Plug 'vim-utils/vim-man'
-Plug 'lambdalisue/vim-pager'
-Plug 'lambdalisue/vim-manpager'
-Plug 'christoomey/vim-tmux-navigator'
---Plug 'intrntbrn/awesomewm-vim-tmux-navigator'
-Plug 'melonmanchan/vim-tmux-resizer'
-Plug 'MikeDacre/tmux-zsh-vim-titles'
-Plug 'skywind3000/vim-preview'
-Plug 'majutsushi/tagbar'
-Plug('tversteeg/registers.nvim', {branch = 'main'})
-Plug 'severin-lemaignan/vim-minimap'
-Plug 'ptzz/lf.vim'
-Plug 'voldikss/vim-floaterm'
-Plug 'chrisbra/sudoedit.vim'
--- }}}
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
 
--- ---------------------------------------------------------------------------------------------------------------------
--- Color Themes {{{
--- ---------------------------------------------------------------------------------------------------------------------
+return require('packer').startup(function(use)
+	use 'wbthomason/packer.nvim'
+	use 'svermeulen/vimpeccable'
+	-- ---------------------------------------------------------------------------------------------------------------------
+	-- Interface {{{
+	-- ---------------------------------------------------------------------------------------------------------------------
 
-Plug 'doums/darcula'
+	-- use 'ashisha/image.vim'
+	-- use 'vim-utils/vim-man'
+	use 'lambdalisue/vim-pager'
+	use 'lambdalisue/vim-manpager'
+	use 'christoomey/vim-tmux-navigator'
+	--use 'intrntbrn/awesomewm-vim-tmux-navigator'
+	use 'melonmanchan/vim-tmux-resizer'
+	use 'MikeDacre/tmux-zsh-vim-titles'
+	use 'skywind3000/vim-preview'
+	use 'majutsushi/tagbar'
+	use {'tversteeg/registers.nvim', branch = 'main' }
+	use 'severin-lemaignan/vim-minimap'
+	use 'ptzz/lf.vim'
+	use 'voldikss/vim-floaterm'
+	use 'chrisbra/sudoedit.vim'
+	-- }}}
 
--- }}}
+	-- ---------------------------------------------------------------------------------------------------------------------
+	-- Color Themes {{{
+	-- ---------------------------------------------------------------------------------------------------------------------
 
--- ---------------------------------------------------------------------------------------------------------------------
--- Text insertion/manipulation {{{
--- ---------------------------------------------------------------------------------------------------------------------
+	use 'doums/darcula'
 
-Plug 'vim-scripts/tComment'
-Plug 'justinmk/vim-sneak'
-Plug 'matze/vim-move'
-Plug 'terryma/vim-smooth-scroll'
-Plug 'sickill/vim-pasta'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug('mg979/vim-visual-multi', {branch = 'master'})
-Plug 'bkad/CamelCaseMotion' -- CamelCase and snake_case motions
-Plug 'terryma/vim-expand-region' -- Easily expand selected region
-Plug('godlygeek/tabular', {on = 'Tabularize'}) -- Easy alignment
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
--- }}}
+	-- }}}
 
--- ---------------------------------------------------------------------------------------------------------------------
--- Project Management {{{
--- ---------------------------------------------------------------------------------------------------------------------
+	-- ---------------------------------------------------------------------------------------------------------------------
+	-- Text insertion/manipulation {{{
+	-- ---------------------------------------------------------------------------------------------------------------------
 
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mhinz/vim-startify'
-Plug 'preservim/nerdtree'
-Plug 'tpope/vim-vinegar'
+	use 'vim-scripts/tComment'
+	use 'justinmk/vim-sneak'
+	use 'matze/vim-move'
+	use 'terryma/vim-smooth-scroll'
+	use 'sickill/vim-pasta'
+	use 'AndrewRadev/splitjoin.vim'
+	use {'mg979/vim-visual-multi', branch = 'master' }
+	use 'bkad/CamelCaseMotion'                   -- CamelCase and snake_case motions
+	use 'terryma/vim-expand-region'              -- Easily expand selected region
+	use {'godlygeek/tabular', opt = true, cmd = 'Tabularize' } -- Easy alignment
+	use 'tpope/vim-repeat'
+	use 'tpope/vim-rhubarb'
+	use 'tpope/vim-surround'
+	use 'tpope/vim-unimpaired'
+	-- }}}
 
--- Plug 'vim-ctrlspace/vim-ctrlspace'
+	-- ---------------------------------------------------------------------------------------------------------------------
+	-- Project Management {{{
+	-- ---------------------------------------------------------------------------------------------------------------------
 
--- Plug 'ludovicchabant/vim-gutentags'
--- Plug 'skywind3000/gutentags_plus'
--- }}}
+	use 'ctrlpvim/ctrlp.vim'
+	use 'mhinz/vim-startify'
+	use 'preservim/nerdtree'
+	use 'tpope/vim-vinegar'
 
--- ---------------------------------------------------------------------------------------------------------------------
--- Git {{{
--- ---------------------------------------------------------------------------------------------------------------------
+	-- use 'vim-ctrlspace/vim-ctrlspace'
 
-Plug 'airblade/vim-gitgutter'
-Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
+	-- use 'ludovicchabant/vim-gutentags'
+	-- use 'skywind3000/gutentags_plus'
+	-- }}}
 
--- }}}
+	-- ---------------------------------------------------------------------------------------------------------------------
+	-- Git {{{
+	-- ---------------------------------------------------------------------------------------------------------------------
 
--- ---------------------------------------------------------------------------------------------------------------------
--- Status Bar Theme vim-airline {{{
--- ---------------------------------------------------------------------------------------------------------------------
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
+	use 'airblade/vim-gitgutter'
+	use {'xuyuanp/nerdtree-git-plugin', requires = 'preservim/nerdtree'} 
+	use 'tpope/vim-fugitive'
+	use 'junegunn/gv.vim'
 
--- }}}
+	-- }}}
 
--- ---------------------------------------------------------------------------------------------------------------------
--- Languages {{{
--- ---------------------------------------------------------------------------------------------------------------------
+	-- ---------------------------------------------------------------------------------------------------------------------
+	-- Status Bar Theme vim-airline {{{
+	-- ---------------------------------------------------------------------------------------------------------------------
+	use 'vim-airline/vim-airline'
+	use {'vim-airline/vim-airline-themes', requires = 'vim-airline/vim-airline'}
+	use 'ryanoasis/vim-devicons'
 
-Plug('neoclide/coc.nvim', {branch = 'release'})
+	-- }}}
 
--- HTML5 syntax
--- Plug 'othree/html5.vim'
+	-- ---------------------------------------------------------------------------------------------------------------------
+	-- Languages {{{
+	-- ---------------------------------------------------------------------------------------------------------------------
+	-- use 'neovim/nvim-lspconfig'
+	use {'neoclide/coc.nvim', branch = 'release' }
+	use {'xiyaowong/coc-sumneko-lua', run = 'yarn install --frozen-lockfile', requires = 'neoclide/coc.nvim'}
+	-- HTML5 syntax
+	-- use 'othree/html5.vim'
 
--- Color highlighter
-Plug 'chrisbra/colorizer'
--- Plug('lilydjwg/colorizer', {
---     ['for'] = {
---         'css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript',
---         'javascript.jsx'
---     }
--- })
+	-- Color highlighter
+	use 'chrisbra/colorizer'
+	-- use('lilydjwg/colorizer', {
+	--     ['for'] = {
+	--         'css', 'sass', 'scss', 'less', 'html', 'xhtml', 'javascript',
+	--         'javascript.jsx'
+	--     }
+	-- })
 
--- Yaml indentation
-Plug 'martin-svk/vim-yaml'
--- Markdown syntax
-Plug 'tpope/vim-markdown'
--- Git syntax
-Plug 'tpope/vim-git'
--- Dockerfile
-Plug 'honza/dockerfile.vim'
--- C# syntax
-Plug 'omnisharp/omnisharp-vim'
+	-- Yaml indentation
+	use 'martin-svk/vim-yaml'
+	-- Markdown syntax
+	use 'tpope/vim-markdown'
+	-- Git syntax
+	use 'tpope/vim-git'
+	-- Dockerfile
+	use 'honza/dockerfile.vim'
+	-- C# syntax
+	use 'omnisharp/omnisharp-vim'
 
--- LaTeX
-Plug 'lervag/vimtex'
+	-- LaTeX
+	use 'lervag/vimtex'
 
--- Plug 'vim-scripts/Improved-AnsiEsc'
+	-- use 'vim-scripts/Improved-AnsiEsc'
 
--- Hashicorp tools
-Plug 'hashivim/vim-terraform'
-Plug 'hashivim/vim-consul'
-Plug 'hashivim/vim-vagrant'
-Plug 'hashivim/vim-nomadproject'
-Plug 'hashivim/vim-packer'
+	-- Hashicorp tools
+	use 'hashivim/vim-terraform'
+	use 'hashivim/vim-consul'
+	use 'hashivim/vim-vagrant'
+	use 'hashivim/vim-nomadproject'
+	use 'hashivim/vim-packer'
 
--- Log syntax
-Plug 'dzeban/vim-log-syntax'
+	-- Log syntax
+	use 'dzeban/vim-log-syntax'
 
--- Gitignore syntax
-Plug 'gisphm/vim-gitignore'
+	-- Gitignore syntax
+	use 'gisphm/vim-gitignore'
 
--- Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+	-- use 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
-Plug 'samsaga2/vim-z80'
-Plug 'vim-scripts/avr8bit.vim'
+	use 'samsaga2/vim-z80'
+	use 'vim-scripts/avr8bit.vim'
 
-Plug 'rid9/vim-fstab'
+	use 'rid9/vim-fstab'
 
--- }}}
+	-- }}}
 
-vim.call('plug#end')
+
+	if packer_bootstrap then
+		require('packer').sync()
+	end
+end)
+
+
+
+--vim.call('plug#end')

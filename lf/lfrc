@@ -78,7 +78,7 @@ cmd paste_try_cow &{{
 			"$(echo "$src_targets" | tail -n 1)" ] && \
 			(( "$(echo "$src_targets" | wc -l)" == 1 )) && \
 			[[ "$(df --output=fstype -- "$PWD" | tail -n 1)" =~ ^(btrfs|xfs|zfs)$ ]]; then
-				echo 'selected copy and cp reflink paste'
+echo 'selected copy and cp reflink paste'
 				start=$(date '+%s')
 
 # Handle same names in dst
@@ -438,6 +438,7 @@ map gDt cd ~/.dotfiles
 map gc cd ~/.config
 map gl. cd ~/.local
 map gls. cd ~/.local/share
+map glsf11 cd ~/.local/share/FoundryVTTv11
 map glsf10 cd ~/.local/share/FoundryVTTv10
 map glsf9 cd ~/.local/share/FoundryVTTv9
 map gE cd /etc

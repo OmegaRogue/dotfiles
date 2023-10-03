@@ -4,63 +4,59 @@
 --- DateTime: 06.06.22 17:15
 ---
 
-local hardware_compat = {}
+local _M = {}
 
 local awful = require("awful")
 local utils = require('utils')
 local gears = require('gears')
 local foggy = require('foggy')
-local settings = require('settings')
 
-hardware_compat.global_keys = gears.table.join(awful.key({ }, "XF86MonBrightnessUp", function()
-    foggy.shortcuts.inc_backlight(10, 1)
+awful.keyboard.append_global_keybindings({ awful.key({}, "XF86MonBrightnessUp", function()
+	foggy.shortcuts.inc_backlight(10, 1)
 end),
-        awful.key({ }, "XF86MonBrightnessDown", function()
-            foggy.shortcuts.inc_backlight(-10, 1)
-        end),
-        awful.key({ }, "XF86TouchpadToggle", function()
-        end),
-        awful.key({ }, "XF86WebCam", function()
-        end),
-        awful.key({ }, "XF86AudioRaiseVolume", function()
-            --awful.spawn.with_shell(settings.raise_volume_cmd)
-            utils.change_volume(5)
-        end),
-        awful.key({ }, "XF86AudioLowerVolume", function()
-            --awful.spawn.with_shell(settings.lower_volume_cmd)
-            utils.change_volume(-5)
-        end),
-        awful.key({ }, "XF86AudioMute", function()
-            awful.spawn(settings.volume_mute_cmd)
-        end),
-        awful.key({}, "XF86AudioPlay", function()
-            awful.spawn(settings.audio_pause_cmd, false)
-        end),
-        awful.key({}, "XF86AudioNext", function()
-            awful.spawn(settings.audio_next_cmd, false)
-        end),
-        awful.key({}, "XF86AudioPrev", function()
-            awful.spawn(settings.audio_previous_cmd, false)
-        end),
-        awful.key({}, "#+120", function()
-            awful.spawn(settings.run_prompt_cmd)
-        end),
-        awful.key({}, "XF86Search", function()
-            awful.spawn(settings.run_prompt_cmd)
-        end),
-        awful.key({}, "XF86Favorites", function()
-            awful.spawn(settings.run_prompt_cmd)
-        end))
+	awful.key({}, "XF86MonBrightnessDown", function()
+		foggy.shortcuts.inc_backlight(-10, 1)
+	end),
+	awful.key({}, "XF86TouchpadToggle", function()
+	end),
+	awful.key({}, "XF86WebCam", function()
+	end),
+	awful.key({}, "XF86AudioRaiseVolume", function()
+		--awful.spawn.with_shell(RC.settings.raise_volume_cmd)
+		utils.change_volume(5)
+	end),
+	awful.key({}, "XF86AudioLowerVolume", function()
+		--awful.spawn.with_shell(RC.settings.lower_volume_cmd)
+		utils.change_volume(-5)
+	end),
+	awful.key({}, "XF86AudioMute", function()
+		awful.spawn(RC.settings.volume_mute_cmd)
+	end),
+	awful.key({}, "XF86AudioPlay", function()
+		RC.playerctl:play_pause()
+	end),
+	awful.key({}, "XF86AudioNext", function()
+		RC.playerctl:next()
+	end),
+	awful.key({}, "XF86AudioPrev", function()
+		RC.playerctl:previous()
+	end),
+	awful.key({}, "#+120", function()
+		awful.spawn(RC.settings.run_prompt_cmd)
+	end),
+	awful.key({}, "XF86Search", function()
+		awful.spawn(RC.settings.run_prompt_cmd)
+	end),
+	awful.key({}, "XF86Favorites", function()
+		awful.spawn(RC.settings.run_prompt_cmd)
+	end) })
 
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 5 do
-    hardware_compat.global_keys = gears.table.join(hardware_compat.global_keys,
-            awful.key({}, "XF86Launch" .. i + 4, utils.toggle_tag(i)))
+	awful.keyboard.append_global_keybinding(awful.key({}, "XF86Launch" .. i + 4, utils.toggle_tag(i)))
 end
 
-
-
-return hardware_compat
+return _M

@@ -64,14 +64,14 @@ menubar.menu_gen.all_categories = {
         app_type = "Science",
         name = "Science",
         --icon_name = '/usr/share/icons/gnome/16x16/categories/applications-science.png',
-		icon_name = "applications-science",
+        icon_name = "applications-science",
         use = true
     },
     settings = {
         app_type = "Settings",
         name = "Settings",
         --icon_name = '/usr/share/icons/gnome/16x16/categories/applications-utilities.png',
-		icon_name = "applications-utilities",
+        icon_name = "applications-utilities",
         use = true
     },
     tools = {
@@ -91,8 +91,8 @@ menubar.menu_gen.all_categories = {
         name = "Wine",
         icon_name = "wine",
         use = true
-    }, 
-	applications = {
+    },
+    applications = {
         app_type = "Application",
         name = "Applications",
         icon_name = "applications",

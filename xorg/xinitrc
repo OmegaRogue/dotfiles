@@ -31,5 +31,11 @@ export SSH_AUTH_SOCK
 xdg-autostart &
 #exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
 #
-export LOL="test"
+pactl load-module module-switch-on-connect &
+
+# Make sure this is before the 'exec' command or it won't be sourced.
+[ -f /etc/xprofile ] && source /etc/xprofile
+[ -f ~/.xprofile ] && source ~/.xprofile
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
 exec /usr/bin/awesome 2>> ~/.cache/awesome/stderr

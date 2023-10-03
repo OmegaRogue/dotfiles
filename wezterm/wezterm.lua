@@ -1,7 +1,7 @@
 local wezterm = require "wezterm"
 
 return {
-  font = wezterm.font("JetBrainsMono Nerd Font"),
+  font = wezterm.font("JetBrainsMono Nerd Font Mono"),
   colors = {
     -- The default text color
     foreground = "#DFDBD2",

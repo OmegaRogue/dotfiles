@@ -6,28 +6,42 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 
 export TK_SILENCE_DEPRECATION=1
 export DOTNET_ROOT="$HOME/.dotnet"
-
+export DOTNET_ROOT=/opt/dotnet
 typeset -U path
-typeset -TUx XDG_CONFIG_HOME xdg_config_home
+typeset -TUx XDG_CONFIG_DIRS xdg_config_dirs
 typeset -TUx XDG_DATA_DIRS xdg_data_dirs
 
+export DOTFILE_ROOT=$0:P:h:h
 
-xdg_config_home+=$HOME/.config
+if [[ -z $XDG_DATA_HOME ]]; then
+	export XDG_DATA_HOME=$HOME/.local/share
+fi
+
+if [[ -z $XDG_CONFIG_HOME ]]; then
+	export XDG_CONFIG_HOME=$HOME/.config
+fi
+if [[ -z $XDG_CACHE_HOME ]]; then
+	export XDG_CACHE_HOME=$HOME/.cache
+fi
+
+if [[ -z $XDG_STATE_HOME ]]; then
+	export XDG_STATE_HOME=$HOME/.local/state
+fi
 
 xdg_data_dirs+=$HOME/.nix-profile/share
 
-path+=$HOME/.dotnet
-path+=("/usr/local/go/bin" "$HOME/go/bin")
-path+=$HOME/.local/bin
-path+=("$HOME/.npm-global/bin" "$XDG_CONFIG_HOME/yarn/global/node_modules/.bin")
-path+=/usr/local/vpnclient
-path+=$HOME/.cargo/bin
-path+=("$ANDROID_HOME/tools" "$ANDROID_HOME/emulator" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/platform-tools")
-path+=("$HOME/kiri/submodules/KiCad-Diff/" "$HOME/kiri/bin")
-path+=$HOME/.dotfiles/scripts
-path+=$HOME/.nix-profile/bin
 
-
+path_temp=($HOME/.dotnet)
+path_temp+=("$HOME/go/bin" "/usr/local/go/bin")
+path_temp+=$HOME/.local/bin
+path_temp+=("$HOME/.npm-global/bin" "$XDG_CONFIG_HOME/yarn/global/node_modules/.bin")
+path_temp+=/usr/local/vpnclient
+path_temp+=$HOME/.cargo/bin
+path_temp+=("$ANDROID_HOME/tools" "$ANDROID_HOME/emulator" "$ANDROID_HOME/tools/bin" "$ANDROID_HOME/platform-tools")
+path_temp+=("$HOME/kiri/submodules/KiCad-Diff/" "$HOME/kiri/bin")
+path_temp+=$DOTFILE_ROOT/scripts
+path_temp+=$HOME/.nix-profile/bin
+path=($path_temp $path)
 
 
 
@@ -61,6 +75,10 @@ export LANG=en_US.UTF-8
 # Default Apps
 export TERMINAL='wezterm'
 export EDITOR='nvim'
+export VISUAL='nvim'
+export BROWSER='firefox'
+export IMAGE='nsxiv'
+
 export SYSTEMD_EDITOR=$EDITOR
 export READER='zathura'
 export PAGER='less'
@@ -72,6 +90,8 @@ export WM='awesome'
 if [ -f $HOME/.dircolors ]; then
   eval $(dircolors -b $HOME/.dircolors)
 fi
+
+lsd_params+='--hyperlink=always'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -92,6 +112,6 @@ export QT_QPA_PLATFORMTHEME=gtk2
 
 export PATH
 export XDG_DATA_DIRS
-export XDG_CONFIG_HOME
+export XDG_CONFIG_DIRS
+export xdg_config_dirs
 export xdg_data_dirs
-export xdg_config_home

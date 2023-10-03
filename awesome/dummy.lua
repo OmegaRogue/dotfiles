@@ -1,2 +1,63 @@
-awesome = { ["xkb_get_group_names"] = function: 0x562931d2c853,["set_xproperty"] = function: 0x562931d26e53,["xkb_get_layout_group"] = function: 0x562931d2c7d2,["unix_signal"] = { [1] = SIGHUP,[2] = SIGINT,[3] = SIGQUIT,[4] = SIGILL,[5] = SIGTRAP,[6] = SIGABRT,[7] = SIGBUS,[8] = SIGFPE,[9] = SIGKILL,[10] = SIGUSR1,[11] = SIGSEGV,[12] = SIGUSR2,[13] = SIGPIPE,[14] = SIGALRM,[15]= SIGTERM,[16] = SIGSTKFLT,[17] = SIGCHLD,[18] = SIGCONT,[19] = SIGSTOP,[20] = SIGTSTP,[21] = SIGTTIN,[22] = SIGTTOU,[23] = SIGURG,[24] = SIGXCPU,[25] = SIGXFSZ,[26] = SIGVTALRM,[27] = SIGPROF,[28] = SIGWINCH,[29] = SIGPOLL,[30] = SIGPWR,[31] = SIGSYS,["SIGUSR2"] = 12,["SIGTSTP"] = 20,["SIGPIPE"] = 13,["SIGCHLD"] = 17,["SIGSEGV"] = 11,["SIGILL"] = 4,["SIGQUIT"] = 3,["SIGSTKFLT"]= 16,["SIGXCPU"] = 24,["SIGABRT"] = 6,["SIGTTIN"] = 21,["SIGURG"] = 23,["SIGSYS"] = 31,["SIGPROF"] = 27,["SIGHUP"] = 1,["SIGTERM"] = 15,["SIGSTOP"] = 19,["SIGTRAP"] = 5,["SIGKILL"] = 9,["SIGPOLL"] = 29,["SIGTTOU"] = 22,["SIGCONT"] = 18,["SIGWINCH"] = 28,["SIGINT"] = 2,["SIGXFSZ"] = 25,["SIGVTALRM"] = 26,["SIGCLD"] = 17,["SIGBUS"] = 7,["SIGUSR1"] = 10,["SIGPWR"] = 30,["SIGALRM"] = 14,["SIGIO"] = 29,["SIGIOT"] = 6,["SIGFPE"] = 8,} ,["xkb_set_layout_group"] = function: 0x562931d2c769,["__index"] = function: 0x562931d2393b,["restart"] = function: 0x562931d21999,["register_xproperty"] = function: 0x562931d26b61,["xrdb_get_value"] = function: 0x562931d2ccf9,["quit"] = function: 0x562931d21e77,["kill"] = function: 0x562931d21ed7,["sync"] = function: 0x562931d21bf3,["systray"] = function: 0x562931d2af35,["exec"] = function: 0x562931d21e48,["get_xproperty"] = function: 0x562931d26e75,["set_preferred_icon_size"] = function: 0x562931d21c0e,["disconnect_signal"] = function: 0x562931d222d8,["load_image"] = function: 0x562931d21d66,["spawn"] = function: 0x562931d29449,["connect_signal"] = function: 0x562931d21fc3,["emit_signal"] = function: 0x562931d21e02,["__newindex"] = function: 0x562931d238c3,["pixbuf_to_surface"] = function: 0x562931d21d3b}
+awesome = {}
 
+---Register a new xproperty.
+---@param name string THe name of the X11 property.
+---@param type "string"|"number"|"boolean" One of "string, "number" or "boolean".
+function awesome.register_xproperty (name, type)
+	_ = name
+	_ = type
+end
+---Quit awesome.
+---@param code integer The exit code to use when exiting.
+function awesome.quit (code)
+end
+---Execute another application, probably a window manager, to replace awesome. 	
+function awesome.exec (cmd)
+end
+---Restart awesome. 	
+function awesome.restart ()
+end
+---Send a signal to a process. 	
+---@return boolean
+function awesome.kill (pid, sig)
+end
+---Synchronize with the X11 server. 	
+function awesome.sync ()
+end
+---Translate a GdkPixbuf to a cairo image surface.. 
+---@return gears.surface
+function awesome.pixbuf_to_surface (pixbuf, path)
+end
+---Load an image from a given path.
+---@return (gears.surface, nil|string)
+function awesome.load_image (name)
+end
+---Set the preferred size for client icons. 	
+function awesome.set_preferred_icon_size (size)
+end
+---Add a global signal.
+---@async
+function awesome.connect_signal (name, func)
+end
+---Remove a global signal. 	
+function awesome.disconnect_signal (name, func)
+end
+---Emit a global signal.
+---@async
+function awesome.emit_signal (name, ...)
+end
+---Spawn a program. 	
+---@return (integer, string, integer, integer, integer)|string)
+function awesome.spawn (cmd, use_sn, stdin, stdout, stderr, exit_callback, cmd)
+end
+---Switch keyboard layout. 	
+function awesome.xkb_set_layout_group (num)
+end
+---Get current layout number. 	
+---@return integer
+function awesome.xkb_get_layout_group ()
+end
+---Get layout short names. 
+---@return string
+function awesome.xkb_get_group_names ()
+end
