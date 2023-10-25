@@ -21,12 +21,38 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 
-for _, s in ipairs(screen) do
+
+-- screen.connect_signal("request::resize", function(old, new, args)
+-- 	naughty.notification { text = gears.debug.dump_return(old), timeout = 0 }
+-- 	naughty.notification { text = gears.debug.dump_return(new), timeout = 0 }
+-- end)
+--
+-- screen.connect_signal("property::viewports", function(viewports)
+-- 	for _, v in pairs(viewports) do
+-- 		naughty.notification { text = gears.debug.dump_return(v.outputs[0]), timeout = 0 }
+-- 		naughty.notification { text = gears.debug.dump_return(v.geometry), timeout = 0 }
+-- 	end
+-- end)
+--
+-- screen.connect_signal("property::viewports", function(viewports)
+-- 	for _, v in pairs(viewports) do
+-- 		naughty.notification { text = gears.debug.dump_return(v.outputs[0]), timeout = 0 }
+-- 		naughty.notification { text = gears.debug.dump_return(v.geometry), timeout = 0 }
+-- 	end
+-- end)
+
+local function set_screen_dpi(s)
 	for _, o in pairs(s.outputs) do
 		if o.mm_width == 1 then
+			-- naughty.notification { title = tostring(s.geometry.width), text = gears.debug.dump_return(o), timeout = 0 }
 			s.mm_maximum_size = math.sqrt(1198 * 1198 + 337 * 337)
 			beautiful.xresources.set_dpi(5120 / 1198 * 25.4, s)
 			beautiful.xresources.set_dpi(5120 / 1198 * 25.4)
+		elseif o.mm_width == 1193 then
+			-- naughty.notification { title = tostring(s.geometry.width), text = gears.debug.dump_return(o), timeout = 0 }
+			s.mm_maximum_size = math.sqrt((1198 / 2.0) * (1198 / 2.0) + 337 * 337)
+			beautiful.xresources.set_dpi(2560 / (1198 / 2.0) * 25.4, s)
+			beautiful.xresources.set_dpi(2560 / (1198 / 2.0) * 25.4)
 		else
 			beautiful.xresources.set_dpi(s.geometry.width / o.mm_width * 25.4, s)
 			s.mm_maximum_size = math.sqrt(o.mm_width * o.mm_width + o.mm_height * o.mm_height)
@@ -38,6 +64,9 @@ for _, s in ipairs(screen) do
 	end
 end
 
+for _, s in ipairs(screen) do
+	set_screen_dpi(s)
+end
 -- Notification library
 
 local menubar = require("menubar")
@@ -608,20 +637,7 @@ end)
 -- end)
 -- }}}
 
-awful.screen.connect_for_each_screen(function(s)
-	for _, o in pairs(s.outputs) do
-		if o.mm_width == 1 then
-			s.mm_maximum_size = math.sqrt(1198 * 1198 + 337 * 337)
-			s.dpi = 5120 / 1198 * 25.4
-		else
-			s.dpi = s.geometry.width / o.mm_width * 25.4
-			s.mm_maximum_size = math.sqrt(o.mm_width * o.mm_width + o.mm_height * o.mm_height)
-		end
-		s.mm_minimum_size = s.mm_maximum_size
-		s.inch_maximum_size = s.mm_maximum_size / 25.4
-		s.inch_minimum_size = s.inch_maximum_size
-	end
-end)
+awful.screen.connect_for_each_screen(set_screen_dpi)
 
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
 

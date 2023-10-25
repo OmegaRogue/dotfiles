@@ -390,8 +390,8 @@ function _M:rules()
 			type = { "splash" }
 		},
 		callback = function(c)
-			naughty.notification { title = c.name, timeout = 0, text = gears.debug.dump_return(c.class) ..
-				"\n" .. gears.debug.dump_return(c.window) }
+			-- naughty.notification { title = c.name, timeout = 0, text = gears.debug.dump_return(c.class) ..
+			-- 	"\n" .. gears.debug.dump_return(c.window) }
 		end
 	}
 	ruled.client.append_rule {

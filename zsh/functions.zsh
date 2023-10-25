@@ -182,3 +182,7 @@ function yesstdout() {
 	exec 1>&7           # restore
 	exec 7>&-           # close descriptor which is no longer needed
 }
+yt-list()
+{
+  youtube-dl -j --flat-playlist "$1" | sed 's/.*\"url\": \"\([^\"]*\)\".*/https:\/\/www.youtube.com\/watch?v=\1/'
+}
