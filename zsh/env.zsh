@@ -61,9 +61,12 @@ if [[ -z $SSH_CONNECTION ]]; then
 fi
 
 
+path+="$(yarn global bin)"
+
 
 export DEFAULT_USER=$USER
 
+export NOMAD_ADDR="http://nomad.service.consul:4646"
 
 # User configuration
 

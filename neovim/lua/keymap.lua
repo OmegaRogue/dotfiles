@@ -164,7 +164,7 @@ keyset("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', o
 vimp.nnoremap({'silent'}, '<F1>', [[:call utils#showHelp()<CR>]])
 
 -- F2 Source (reload configuration)
-vimp.nnoremap({'silent'}, '<F2>', [[:so ~/.config/nvim/init.vim<CR>]])
+vimp.nnoremap({'silent'}, '<F2>', [[:so ~/.config/nvim/init.lua<CR>]])
 
 -- F3 Toggle white characters visibility
 vimp.nnoremap({'silent'}, '<F3>', [[:set list!<CR> :set list?<CR>]])
@@ -173,11 +173,15 @@ vimp.nnoremap({'silent'}, '<F3>', [[:set list!<CR> :set list?<CR>]])
 vimp.nnoremap('<F4>', [[:qa<CR>]])
 -- Shift+F4 (F16) Force Quit Vim
 vimp.nnoremap('<F16>', [[:qa!<CR>]])
-
+-- F5 
 vimp.tnoremap('<F5>', '<C-\\><C-n>')
+-- F6
+vimp.nnoremap('<F6>', [[:Startify<CR>]])
+-- F7 reformat good
+vimp.map('<F7>', ':Format<CR>')
+-- F8 reformat bad
+vimp.map('<F8>', ':%s/\\s\\+$//e<CR>')
 -- F12 Show F keys toggles
 vimp.nnoremap('<F12>', [[:call utils#showToggles()<CR>]])
-vimp.map('<F7>', ':Format<CR>')
-vimp.map('<F8>', ':%s/\\s\\+$//e<CR>')
 
 -- }}}

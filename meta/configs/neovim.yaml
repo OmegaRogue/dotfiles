@@ -7,6 +7,7 @@
     # ~/.config/nvim/keymap.vim: neovim/keymap.vim
     ~/.config/nvim/lua/keymap.lua: neovim/lua/keymap.lua
     ~/.config/nvim/autoload/utils.vim: neovim/autoload/utils.vim
+    ~/.config/nvim/autoload/coc/ui.vim: neovim/autoload/coc/ui.vim
 # - shell:
 #     - 
 #       description: Install Neovim

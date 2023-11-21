@@ -99,6 +99,7 @@ local utils = require('utils')
 local bling = require("bling")
 
 local machi = require("layout-machi")
+local fenetre = require("fenetre")
 
 beautiful.layout_machi = machi.get_icon()
 awful.layout.layouts = {
@@ -271,19 +272,21 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			{
 				widget = wibox.container.background,
 				--bg = "#ff000000",
-				s.title_display,
-			},
-			buttons = {
-				awful.button({}, 1, function(c)
-					if s.focused_client then
-						s.focused_client.minimized = true
-					end
-				end),
-				awful.button({}, 3, nil, function()
-					if s.focused_client then
-						s.focused_client:emit_signal("smart_borders::right_click")
-					end
-				end)
+				-- 	s.title_display,
+				widgets.titlebar,
+				--},
+				buttons = {
+					-- 	awful.button({}, 1, function(c)
+					-- 		if s.focused_client then
+					-- 			s.focused_client.minimized = true
+					-- 		end
+					-- 	end),
+					awful.button({}, 3, nil, function()
+						if s.focused_client then
+							s.focused_client:emit_signal("smart_borders::right_click")
+						end
+					end)
+				}
 			}
 		},
 		{
@@ -324,7 +327,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 		halign = "center",
 		fill_horizontal = true,
 		{
-			layout = wibox.layout.fixed.horizontal,
+			widget = wibox.container.background,
 			s.tasklist,
 		}
 	}

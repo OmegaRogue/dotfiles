@@ -25,7 +25,7 @@ if [[ $(uname -r) == *WSL* ]]; then
 	$HOME/.local/bin/gpg-agent-relay start
 fi
 
-
+source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 if (( $+commands[powerline-daemon] )); then
 	powerline-daemon -q

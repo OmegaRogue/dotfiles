@@ -50,7 +50,7 @@ return require('packer').startup(function(use)
 	use 'christoomey/vim-tmux-navigator'
 	--use 'intrntbrn/awesomewm-vim-tmux-navigator'
 	use 'melonmanchan/vim-tmux-resizer'
-	use 'MikeDacre/tmux-zsh-vim-titles'
+	--use 'MikeDacre/tmux-zsh-vim-titles'
 	use 'skywind3000/vim-preview'
 	use 'majutsushi/tagbar'
 	use {'tversteeg/registers.nvim', branch = 'main' }
@@ -58,6 +58,7 @@ return require('packer').startup(function(use)
 	use 'ptzz/lf.vim'
 	use 'voldikss/vim-floaterm'
 	use 'chrisbra/sudoedit.vim'
+	use 'rcarriga/nvim-notify'
 	-- }}}
 
 	-- ---------------------------------------------------------------------------------------------------------------------
@@ -108,7 +109,7 @@ return require('packer').startup(function(use)
 	-- ---------------------------------------------------------------------------------------------------------------------
 
 	use 'airblade/vim-gitgutter'
-	use {'xuyuanp/nerdtree-git-plugin', requires = 'preservim/nerdtree'} 
+	use {'xuyuanp/nerdtree-git-plugin', requires = 'preservim/nerdtree'}
 	use 'tpope/vim-fugitive'
 	use 'junegunn/gv.vim'
 
@@ -176,6 +177,8 @@ return require('packer').startup(function(use)
 	use 'vim-scripts/avr8bit.vim'
 
 	use 'rid9/vim-fstab'
+
+	use 'lnl7/vim-nix'
 
 	-- }}}
 

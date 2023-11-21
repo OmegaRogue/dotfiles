@@ -25,6 +25,7 @@ local foggy = require('foggy')
 
 local dpi = beautiful.xresources.apply_dpi
 local markup = lain.util.markup
+local fenetre = require("fenetre")
 
 _M.baticon = wibox.widget.textbox(beautiful.widget_battery)
 _M.baticon.font = beautiful.icon_font
@@ -204,4 +205,22 @@ _M.tasklist = function(s)
 		},
 	}
 end
+
+_M.titlebar = fenetre {
+	order = {"max", "seperator", "title", "seperator", "sticky"},
+	title_edit = function()
+		-- Remove " - Mozilla Firefox" from the ends of firefox's titles
+		local replacements = {
+			"— Mozilla Firefox",
+			"— Mozilla Firefox (Private Browsing)",
+			"- Discord",
+			"— Evolution"
+		}
+		for _, v in ipairs(replacements) do
+			if title:sub(-v:len()) == v then
+				title = title:gsub(" %" .. v, "")
+			end
+		end
+	end,
+}
 return _M

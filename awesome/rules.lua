@@ -584,6 +584,17 @@ function _M:rules()
 		}
 	}
 	ruled.client.append_rule {
+		id = self:id_add("Discord Updater"),
+		rule = {
+			name = "Discord Updater"
+		},
+		properties = {
+			floating = true,
+			placement = awful.placement.no_overlap +
+				awful.placement.no_offscreen + awful.placement.centered
+		}
+	}
+	ruled.client.append_rule {
 		id = self:id_gen(),
 		rule = {
 			name = "Capture Launcher",

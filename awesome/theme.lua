@@ -150,7 +150,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
-theme.notification_font = "Segoe UI Regular 18"
+theme.notification_font = "Atkinson Hyperlegible Regular 18"
 theme.notification_shape = function(cr, width, height)
     return gears.shape.rounded_rect(cr, width, height, dpi(5))
 end
@@ -177,8 +177,8 @@ theme.taglist_squares_sel = theme_assets.taglist_squares_unsel(dpi(4), theme.tag
 theme.taglist_squares_unsel = theme.taglist_squares_sel
 
 -- theme.tasklist_shape = gears.shape.powerline
-theme.tasklist_font_focus = "Segoe UI Bold 14"
-theme.tasklist_font = "Segoe UI Regular 14"
+theme.tasklist_font_focus = "Atkinson Hyperlegible Bold 14"
+theme.tasklist_font = "Atkinson Hyperlegible 14"
 theme.tasklist_align = 'center'
 theme.tasklist_spacing = 0
 theme.tasklist_shape_border_width = 0
@@ -269,7 +269,7 @@ switcher.settings.preview_box_title_font = { theme.font, "sans", "italic", "norm
 switcher.settings.client_opacity = true
 theme.switcher = switcher
 
-theme.window_switcher_name_font = "Segoe UI Regular 14" -- The font of all titles
+theme.window_switcher_name_font = "Atkinson Hyperlegible 14" -- The font of all titles
 theme.window_switcher_widget_bg = "#00000055"
 theme.window_switcher_widget_border_radius = dpi(0)
 theme.window_switcher_widget_border_color = theme.border_normal

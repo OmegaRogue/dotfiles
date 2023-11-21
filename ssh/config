@@ -43,15 +43,6 @@ Host esx03
   HostName 192.168.222.13
 	User root
   ForwardAgent yes
-Host cloud1
-  HostName 192.168.222.15
-    User cadmin
-Host cloud2
-  HostName 192.168.222.16
-	User cadmin
-Host cloud3
-  HostName 192.168.222.17
-	User cadmin
 Host omegakube
   HostName 192.168.222.37
     User vmadmin
@@ -101,3 +92,12 @@ Host loki
   HostName 192.168.222.113
     User root
   ForwardAgent yes
+Host cloud1
+  HostName cloud1.fritz.box
+	User root
+Host cloud2
+  HostName cloud2.fritz.box
+	User root
+Host cloud3
+  HostName cloud3.fritz.box
+	User root

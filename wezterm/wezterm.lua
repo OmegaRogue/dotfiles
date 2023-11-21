@@ -116,7 +116,7 @@ return {
     }
     ]]
 	{
-		regex = "(?:(?:zgenom\\s+load)|(?:Plug)|(?:set\\s+-g\\s+@plugin))\\s+[\'\"]?([^\\s/\'\"]+/[^\\s/\'\"]+)[\'\"]?",
+		regex = "(?:(?:zgenom\\s+load)|(?:Plug)|(?:use)|(?:set\\s+-g\\s+@plugin))\\s+{?[\'\"]?([^\\s/\'\"]+/[^\\s/\'\"]+)[\'\"]?",
 		format = "https://github.com/$1",
 	},
 	{
