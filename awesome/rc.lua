@@ -63,7 +63,6 @@ local function set_screen_dpi(s)
 		-- naughty.notify{title=tostring(s.index),text=tostring(s.dpi)}
 	end
 end
-
 for _, s in ipairs(screen) do
 	set_screen_dpi(s)
 end
@@ -271,16 +270,16 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			fill_horizontal = true,
 			{
 				widget = wibox.container.background,
-				--bg = "#ff000000",
-				-- 	s.title_display,
-				widgets.titlebar,
+				-- bg = "#ff000000",
+					s.title_display,
+				-- widgets.titlebar,
 				--},
 				buttons = {
-					-- 	awful.button({}, 1, function(c)
-					-- 		if s.focused_client then
-					-- 			s.focused_client.minimized = true
-					-- 		end
-					-- 	end),
+						awful.button({}, 1, function(c)
+							if s.focused_client then
+								s.focused_client.minimized = true
+							end
+						end),
 					awful.button({}, 3, nil, function()
 						if s.focused_client then
 							s.focused_client:emit_signal("smart_borders::right_click")
@@ -360,6 +359,8 @@ client.connect_signal("request::default_mousebindings", function()
 	})
 end)
 
+awful.mouse.snap.edge_enabled = false
+awful.mouse.snap.client_enabled = false
 
 -- }}}
 
@@ -400,7 +401,7 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ Modkey, }, ".", function()
 		machi.default_editor.start_interactive()
 	end, { description = "edit the current layout if it is a machi layout", group = "layout" }),
-	awful.key({ Modkey, }, "/", function()
+	awful.key({ Modkey, }, ",", function()
 		machi.switcher.start(client.focus)
 	end, { description = "switch between windows for a machi layout", group = "layout" }),
 	awful.key({ Modkey, "Control" }, "n", function()

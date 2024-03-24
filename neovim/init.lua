@@ -26,94 +26,8 @@ vim.g.icon_name = "undefined"
 -- Plugins managed with vim-plug {{{
 require('plugins')
 require('keymap')
-vim.notify = require("notify")
 -- }}}
 
----
--- COC Notify {{{
----
-local coc_status_record = {}
-
-function coc_status_notify(msg, level)
-  local notify_opts = { title = "LSP Status", timeout = 500, hide_from_history = true, on_close = reset_coc_status_record }
-  -- if coc_status_record is not {} then add it to notify_opts to key called "replace"
-  if coc_status_record ~= {} then
-    notify_opts["replace"] = coc_status_record.id
-  end
-  coc_status_record = vim.notify(msg, level, notify_opts)
-end
-
-function reset_coc_status_record(window)
-  coc_status_record = {}
-end
-
-local coc_diag_record = {}
-
-function coc_diag_notify(msg, level)
-  local notify_opts = { title = "LSP Diagnostics", timeout = 500, on_close = reset_coc_diag_record }
-  -- if coc_diag_record is not {} then add it to notify_opts to key called "replace"
-  if coc_diag_record ~= {} then
-    notify_opts["replace"] = coc_diag_record.id
-  end
-  coc_diag_record = vim.notify(msg, level, notify_opts)
-end
-
-function reset_coc_diag_record(window)
-  coc_diag_record = {}
-end
-
-vim.cmd [[
-function! s:DiagnosticNotify() abort
-  let l:info = get(b:, 'coc_diagnostic_info', {})
-  if empty(l:info) | return '' | endif
-  let l:msgs = []
-  let l:level = 'info'
-   if get(l:info, 'warning', 0)
-    let l:level = 'warn'
-  endif
-  if get(l:info, 'error', 0)
-    let l:level = 'error'
-  endif
- 
-  if get(l:info, 'error', 0)
-    call add(l:msgs, ' Errors: ' . l:info['error'])
-  endif
-  if get(l:info, 'warning', 0)
-    call add(l:msgs, ' Warnings: ' . l:info['warning'])
-  endif
-  if get(l:info, 'information', 0)
-    call add(l:msgs, ' Infos: ' . l:info['information'])
-  endif
-  if get(l:info, 'hint', 0)
-    call add(l:msgs, ' Hints: ' . l:info['hint'])
-  endif
-  let l:msg = join(l:msgs, "\n")
-  if empty(l:msg) | let l:msg = ' All OK' | endif
-  call v:lua.coc_diag_notify(l:msg, l:level)
-endfunction
-
-function! s:StatusNotify() abort
-  let l:status = get(g:, 'coc_status', '')
-  let l:level = 'info'
-  if empty(l:status) | return '' | endif
-  call v:lua.coc_status_notify(l:status, l:level)
-endfunction
-
-function! s:InitCoc() abort
-  runtime! autoload/coc/ui.vim
-  execute "lua vim.notify('Initialized coc.nvim for LSP support', 'info', { title = 'LSP Status' })"
-endfunction
-
-function coc_notify(msg, level)
-  local notify_opts = { title = "LSP Message", timeout = 500 }
-  vim.notify(msg, level, notify_opts)
-end
-" notifications
-autocmd User CocNvimInit call s:InitCoc()
-autocmd User CocDiagnosticChange call s:DiagnosticNotify()
-autocmd User CocStatusChange call s:StatusNotify()
-]]
--- }}}
 -----------------------------------------------------------------------------------------------------------------------
 -- Basic settings (Neovim defaults: https://neovim.io/doc/user/vim_diff.html#nvim-option-defaults) {{{
 --=====================================================================================================================
@@ -181,6 +95,99 @@ call darcula#Hi('Normal',darcula#palette.fg, darcula#palette.bg)
 -- let g:terminal_color_14 = '#34e2e2'
 -- let g:terminal_color_15 = '#eeeeec'
 
+-- }}}
+---
+-- COC Notify {{{
+---
+
+vim.notify = require("notify")
+require("notify").setup({
+	background_colour = "#2B2B2B",
+})
+
+
+local coc_status_record = {}
+
+function coc_status_notify(msg, level)
+  local notify_opts = { title = "LSP Status", timeout = 500, hide_from_history = true, on_close = reset_coc_status_record }
+  -- if coc_status_record is not {} then add it to notify_opts to key called "replace"
+  if coc_status_record ~= {} then
+    notify_opts["replace"] = coc_status_record.id
+  end
+  coc_status_record = vim.notify(msg, level, notify_opts)
+end
+
+function reset_coc_status_record(window)
+  coc_status_record = {}
+end
+
+local coc_diag_record = {}
+
+function coc_diag_notify(msg, level)
+  local notify_opts = { title = "LSP Diagnostics", timeout = 500, on_close = reset_coc_diag_record }
+  -- if coc_diag_record is not {} then add it to notify_opts to key called "replace"
+  if coc_diag_record ~= {} then
+    notify_opts["replace"] = coc_diag_record.id
+  end
+  coc_diag_record = vim.notify(msg, level, notify_opts)
+end
+
+function reset_coc_diag_record(window)
+  coc_diag_record = {}
+end
+
+function coc_notify(msg, level)
+  local notify_opts = { title = "LSP Message", timeout = 500 }
+  vim.notify(msg, level, notify_opts)
+end
+
+vim.cmd [[
+function! s:DiagnosticNotify() abort
+  let l:info = get(b:, 'coc_diagnostic_info', {})
+  if empty(l:info) | return '' | endif
+  let l:msgs = []
+  let l:level = 'info'
+   if get(l:info, 'warning', 0)
+    let l:level = 'warn'
+  endif
+  if get(l:info, 'error', 0)
+    let l:level = 'error'
+  endif
+ 
+  if get(l:info, 'error', 0)
+    call add(l:msgs, ' Errors: ' . l:info['error'])
+  endif
+  if get(l:info, 'warning', 0)
+    call add(l:msgs, ' Warnings: ' . l:info['warning'])
+  endif
+  if get(l:info, 'information', 0)
+    call add(l:msgs, ' Infos: ' . l:info['information'])
+  endif
+  if get(l:info, 'hint', 0)
+    call add(l:msgs, ' Hints: ' . l:info['hint'])
+  endif
+  let l:msg = join(l:msgs, "\n")
+  if empty(l:msg) | let l:msg = ' All OK' | endif
+  call v:lua.coc_diag_notify(l:msg, l:level)
+endfunction
+
+function! s:StatusNotify() abort
+  let l:status = get(g:, 'coc_status', '')
+  let l:level = 'info'
+  if empty(l:status) | return '' | endif
+  call v:lua.coc_status_notify(l:status, l:level)
+endfunction
+
+function! s:InitCoc() abort
+  runtime! autoload/coc/ui.vim
+  execute "lua vim.notify('Initialized coc.nvim for LSP support', 'info', { title = 'LSP Status' })"
+endfunction
+
+" notifications
+autocmd User CocNvimInit call s:InitCoc()
+autocmd User CocDiagnosticChange call s:DiagnosticNotify()
+autocmd User CocStatusChange call s:StatusNotify()
+]]
 -- }}}
 
 -----------------------------------------------------------------------------------------------------------------------
@@ -302,14 +309,14 @@ vim.g.startify_session_delete_buffers = 1
 vim.g.startify_skiplist = {'COMMIT_EDITMSG', '.*/doc/.*.txt'}
 
 vim.g.startify_bookmarks = {
-    {c = os.getenv("DOTFILE_ROOT")..'/neovim/init.lua'},
-	{d = os.getenv("DOTFILE_ROOT")..'/neovim/lua/plugins.lua'},
-    {f = os.getenv("DOTFILE_ROOT")..'/neovim/autoload/utils.vim'},
-    {g = os.getenv("DOTFILE_ROOT")..'/zsh/zshrc'},
-	{h = os.getenv("DOTFILE_ROOT")..'/zsh/zshenv'},
-    {i = os.getenv("DOTFILE_ROOT")..'/zsh/zsh_aliases'},
-	{j = os.getenv("DOTFILE_ROOT")..'/install.conf.yaml'},
-	{k = os.getenv("DOTFILE_ROOT")..'/neovim/lua/keymap.lua'},
+    {c = (os.getenv("DOTFILE_ROOT") or os.getenv("HOME").."/.dotfiles")..'/neovim/init.lua'},
+	{d = (os.getenv("DOTFILE_ROOT") or os.getenv("HOME").."/.dotfiles")..'/neovim/lua/plugins.lua'},
+    {f = (os.getenv("DOTFILE_ROOT") or os.getenv("HOME").."/.dotfiles")..'/neovim/autoload/utils.vim'},
+    {g = (os.getenv("DOTFILE_ROOT") or os.getenv("HOME").."/.dotfiles")..'/zsh/zshrc'},
+	{h = (os.getenv("DOTFILE_ROOT") or os.getenv("HOME").."/.dotfiles")..'/zsh/zshenv'},
+    {i = (os.getenv("DOTFILE_ROOT") or os.getenv("HOME").."/.dotfiles")..'/zsh/zsh_aliases'},
+	{j = (os.getenv("DOTFILE_ROOT") or os.getenv("HOME").."/.dotfiles")..'/install.conf.yaml'},
+	{k = (os.getenv("DOTFILE_ROOT") or os.getenv("HOME").."/.dotfiles")..'/neovim/lua/keymap.lua'},
 	{l = vim.fn['coc#util#get_config_home']()..'/coc-settings.json'}
 }
 

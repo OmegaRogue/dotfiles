@@ -181,6 +181,9 @@ function _M:rules()
 				"Fluffychat",
 				"element",
 				"Element",
+				"schildichat",
+				"SchildiChat",
+				"vesktop",
 			}
 		},
 		rule_except_any = {
@@ -205,7 +208,8 @@ function _M:rules()
 				"Fluffychat",
 				"element",
 				"Element",
-
+				"schildichat",
+				"SchildiChat",
 			}
 		},
 		properties = {
@@ -241,8 +245,11 @@ function _M:rules()
 	}
 	ruled.client.append_rule {
 		id = self:id_gen(),
-		rule = {
-			class = "discord"
+		rule_any = {
+			class = {
+				"discord",
+				"vesktop"
+			}
 		},
 		properties = {
 			screen = utils.screen_fallback(3),
@@ -346,6 +353,15 @@ function _M:rules()
 			suspend_notifications = true,
 		}
 	}
+	ruled.client.append_rule {
+		id = self:id_add("toolbox"),
+		rule = {
+			class = "jetbrains-toolbox"
+		},
+		properties = {
+			sticky = true
+		}
+	}
 	-- ruled.client.append_rule {
 	-- 	rule_any = {
 	-- 		class = {
@@ -407,6 +423,8 @@ function _M:rules()
 				"Whatsapp-for-linux",
 				"WhatsAppQT",
 				"discord",
+				"schildichat",
+				"SchildiChat",
 			}
 		},
 		properties = {
@@ -505,6 +523,8 @@ function _M:rules()
 				"whatsapp-for-linux",
 				"Whatsapp-for-linux",
 				"WhatsAppQT",
+				"schildichat",
+				"SchildiChat",
 			}
 		},
 		properties = {
@@ -643,6 +663,27 @@ function _M:rules()
 			disable_smart_borders = false,
 			titlebars_enabled = true,
 			ontop = true
+		}
+	}
+	ruled.client.append_rule {
+		id = self:id_add("zathura opacity"),
+		rule_any = {
+			class = {
+				"org.pwmt.zathura", "Zathura"
+			}
+		},
+		properties = {
+			opacity = 0.9
+		}
+	}
+	ruled.client.append_rule {
+		id = self:id_gen(),
+		rule = {
+			name = {"Schematic Block Saver", "Assign Footprints" },
+			class = {"kicad"}
+		},
+		properties = {
+			floating = true
 		}
 	}
 end

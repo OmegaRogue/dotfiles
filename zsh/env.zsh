@@ -3,14 +3,16 @@
 # export MAGIC_ENTER_GIT_COMMAND='git status -u .'
 
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-
 export TK_SILENCE_DEPRECATION=1
 export DOTNET_ROOT="$HOME/.dotnet"
 export DOTNET_ROOT=/opt/dotnet
+#OLD_XDG_CONFIG_DIRS=$XDG_CONFIG_DIRS
+#OLD_XDG_DATA_DIRS=$XDG_DATA_DIRS
 typeset -U path
-typeset -TUx XDG_CONFIG_DIRS xdg_config_dirs
-typeset -TUx XDG_DATA_DIRS xdg_data_dirs
-
+#typeset -TU XDG_CONFIG_DIRS xdg_config_dirs
+#typeset -TU XDG_DATA_DIRS xdg_data_dirs
+#XDG_CONFIG_DIRS=$OLD_XDG_CONFIG_DIRS
+#XDG_DATA_DIRS=$OLD_XDG_DATA_DIRS
 export DOTFILE_ROOT=$0:P:h:h
 
 if [[ -z $XDG_DATA_HOME ]]; then
@@ -28,7 +30,21 @@ if [[ -z $XDG_STATE_HOME ]]; then
 	export XDG_STATE_HOME=$HOME/.local/state
 fi
 
-xdg_data_dirs+=$HOME/.nix-profile/share
+#xdg_data_dirs+=$HOME/.nix-profile/share
+
+
+
+
+
+
+export DESKTOP="$(xdg-user-dir DESKTOP)"
+export DOWNLOAD="$(xdg-user-dir DOWNLOAD)"
+export TEMPLATES="$(xdg-user-dir TEMPLATES)"
+export PUBLICSHARE="$(xdg-user-dir PUBLICSHARE)"
+export DOCUMENTS="$(xdg-user-dir DOCUMENTS)"
+export MUSIC="$(xdg-user-dir MUSIC)"
+export PICTURES="$(xdg-user-dir PICTURES)"
+export VIDEOS="$(xdg-user-dir VIDEOS)"
 
 
 path_temp=($HOME/.dotnet)
@@ -53,7 +69,6 @@ path=($path_temp $path)
 if [[ -n $(lspci | grep GeForce) ]]; then
 	path+=/usr/local/cuda-11.3/bin
 fi
-
 
 if [[ -z $SSH_CONNECTION ]]; then
 	export GPG_TTY=$(tty)
@@ -93,8 +108,13 @@ export WM='awesome'
 if [ -f $HOME/.dircolors ]; then
   eval $(dircolors -b $HOME/.dircolors)
 fi
-
 lsd_params+='--hyperlink=always'
+
+
+eval $(opam env)
+export KIRI_HOME="/home/omegarogue/.local/share/kiri"
+path+=${KIRI_HOME}/submodules/KiCad-Diff/bin
+path+=${KIRI_HOME}/bin
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -114,7 +134,7 @@ export LF_BOOKMARK_PATH=${HOME}/bookmarks
 export QT_QPA_PLATFORMTHEME=gtk2
 
 export PATH
-export XDG_DATA_DIRS
-export XDG_CONFIG_DIRS
-export xdg_config_dirs
-export xdg_data_dirs
+#export XDG_DATA_DIRS
+#export XDG_CONFIG_DIRS
+#export xdg_config_dirs
+#export xdg_data_dirs

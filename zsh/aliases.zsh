@@ -84,6 +84,9 @@ alias scg-try-reload-or-restart='systemctl --global try-reload-or-restart'
 alias scg-try-restart='systemctl --global try-restart'
 alias scg-unmask='systemctl --global unmask'
 alias scg-unset-environment='systemctl --global unset-environment'
+
+alias colap="colmena apply"
+
 #unalias l
 #unalias la
 #unalias ll
@@ -120,3 +123,5 @@ alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 
 
 alias lf='lfcd'
+
+alias kikitf='flatpak run --command=sh org.kicad.KiCad -- python -m kikit.ui'

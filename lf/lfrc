@@ -426,7 +426,8 @@ map gva cd ~/Videos/anime
 map gp. cd ~/Pictures
 map gps cd ~/Pictures/screenshots
 
-map gd cd ~/Documents
+map gd. cd ~/Documents
+map gdd cd ~/Documents/DungeonDraft
 
 map gDw cd ~/Downloads
 map ge cd ~/Desktop

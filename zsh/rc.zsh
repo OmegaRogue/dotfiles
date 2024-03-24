@@ -90,13 +90,13 @@ cdbk -r mdr /mnt/omegadrive
 cdbk -r mm /mnt/movies
 cdbk -r mr /mnt/rpg_stuff
 cdbk -r mt /mnt/tv_shows
-cdbk -r v $HOME/Videos
-cdbk -r va $HOME/Videos/anime
-cdbk -r p $HOME/Pictures
-cdbk -r ps $HOME/Pictures/screenshots
-cdbk -r d $HOME/Documents
-cdbk -r Dw $HOME/Downloads
-cdbk -r e $HOME/Desktop
+cdbk -r v $VIDEOS
+cdbk -r va $VIEOS/anime
+cdbk -r p $PICTURES
+cdbk -r ps $PICTURES/screenshots
+cdbk -r d $DOCUMENTS
+cdbk -r Dw $DOWNLOAD
+cdbk -r e $DESKTOP
 cdbk -r r $HOME/projects
 cdbk -r rs $HOME/src
 cdbk -r Dt $DOTFILE_ROOT
@@ -109,6 +109,7 @@ cdbk -r lsf9 $XDG_DATA_HOME/FoundryVTTv9
 cdbk -r E /etc
 cdbk -r Ucd /usr
 cdbk -r Us /usr/share
+cdbk -r dd $DOCUMENTS/DungeonDraft
 yesstdout
 #neofetch
 #zsh-startify
@@ -116,3 +117,7 @@ yesstdout
 [ -f /opt/anaconda/etc/profile.d/conda.sh ] && source /opt/anaconda/etc/profile.d/conda.sh
 
 source $XDG_CONFIG_HOME/broot/launcher/bash/br
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[[ -f /tmp/makepkg/material-companion/src/MaterialCompanion-1.0.3/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /tmp/makepkg/material-companion/src/MaterialCompanion-1.0.3/node_modules/tabtab/.completions/electron-forge.zsh

@@ -200,7 +200,7 @@ require('smart_borders') {
     button_floating_size = dpi(60),
     button_close_size = dpi(60),
     --rounded_corner = dpi(0),
-    snapping = true,
+    snapping = false,
     snapping_max_distance = theme.useless_gap,
     snapping_center_mouse = true,
     border_width = dpi(6),
@@ -292,7 +292,7 @@ theme.window_switcher_name_focus_color = theme.fg_focus       -- The color of on
 
 theme.wallpaper = os.getenv("HOME") ..
     -- "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-4-1920x1080.jpg"
-    "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-1-2560x1440.jpg"
+    "/Pictures/Factorio 1080p Wallpaper/factorio-wallpaper-2-2560x1440.jpg"
 
 
 -- You can use your own layout icons like this:

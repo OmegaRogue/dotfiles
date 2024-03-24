@@ -11,7 +11,7 @@ return {
     -- cursor and the cursor style is set to Block
     cursor_bg = "#DFDBD2",
     -- the background color of selected text
-    selection_bg = "#FFFFFF",
+    selection_bg = "#214283",
     -- The color of the split lines between panes
     split = "#555555",
     ansi = {"#2E3436", "#CC0000", "#4E9A06", "#C4A000", "#3465A4", "#75507B", "#06989A", "#D3D7CF"},
@@ -41,53 +41,9 @@ return {
   enable_scroll_bar = true,
   default_cursor_style = "BlinkingBar",
   warn_about_missing_glyphs = false,
+  exit_behavior = "Hold",
 --  ssh_domains = {
---	{
---	  name = "omegamtf",
---	  remote_address = "omegamtf",
---	  username = "omegarogue",
-   -- },
-   -- {
-   --   -- This name identifies the domain
-   --   name = "node01",
-   --   -- The address to connect to
-   --   remote_address = "192.168.0.50",
-   --   -- The username to use on the remote host
-   --   username = "omegarogue",
-   -- },
---	{
-   --   -- This name identifies the domain
-   --   name = "node02",
-   --   -- The address to connect to
-   --   remote_address = "192.168.0.51",
-   --   -- The username to use on the remote host
-   --   username = "omegarogue",
-   -- },
---	{
-   --   -- This name identifies the domain
-   --   name = "node03",
-   --   -- The address to connect to
-   --   remote_address = "192.168.0.52",
-   --   -- The username to use on the remote host
-   --   username = "omegarogue",
-   -- },
---	{
-   --   -- This name identifies the domain
-   --   name = "node04",
-   --   -- The address to connect to
-   --   remote_address = "192.168.0.53",
-   --   -- The username to use on the remote host
-   --   username = "omegarogue",
-   -- },
---	{
-   --   -- This name identifies the domain
-   --   name = "node05",
-   --   -- The address to connect to
-   --   remote_address = "192.168.0.54",
-   --   -- The username to use on the remote host
-   --   username = "omegarogue",
-   -- }
-  --},
+--  },	
   hyperlink_rules = {
     -- Linkify things that look like URLs
     -- This is actually the default if you don't specify any hyperlink_rules
