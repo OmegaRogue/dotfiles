@@ -2,3 +2,4 @@ wget-log
 scripts/dotnet-install.sh
 .dirname
 Makefile
+*.zwc

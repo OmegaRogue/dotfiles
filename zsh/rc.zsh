@@ -1,3 +1,8 @@
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zmodload zsh/zprof
+fi
+
+
 #setopt SOURCE_TRACE
 #setopt XTRACE
 
@@ -60,57 +65,28 @@ fpath+=${ZDOTDIR:-$HOME}/.zsh_functions
 fpath+=$DOTFILE_ROOT/zsh/completions/**
 fpath+=$DOTFILE_ROOT/zsh/functions.zsh
 
-autoload -U compinit
-autoload -U bashcompinit
-compinit
-complete -o nospace -C /usr/bin/nomad nomad
-bashcompinit
+
+# autoload -Uz compinit
+# autoload -Uz bashcompinit
+# for dump in ~/.zcompdump(N.mh+24); do
+#   compinit
+#   bashcompinit
+#   complete -o nospace -C /usr/bin/nomad nomad
+# done
+# compinit -C
+# bashcompinit -C
+
+
 
 if (( $+commands[pipx] )); then
 	eval "$(register-python-argcomplete pipx)"
 fi
 
 
-source /usr/lib/python3.11/site-packages/powerline/bindings/zsh/powerline.zsh
+source $(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/powerline/bindings/zsh/powerline.zsh
 if (( $+commands[broot] )); then
 	source ${XDG_CONFIG_HOME}/broot/launcher/bash/br
 fi
-
-nostdout
-cdbk -d pr
-cdbk -r cfg $XDG_CONFIG_HOME
-cdbk -r dat $XDG_DATA_HOME
-cdbk -r tr $XDG_DATA_HOME/Trash/files
-cdbk -r us /run/media/omegarogue
-cdbk -r m /mnt
-cdbk -r mb /mnt/butter
-cdbk -r mc /mnt/c
-cdbk -r mda /mnt/omegadata
-cdbk -r mdr /mnt/omegadrive
-cdbk -r mm /mnt/movies
-cdbk -r mr /mnt/rpg_stuff
-cdbk -r mt /mnt/tv_shows
-cdbk -r v $VIDEOS
-cdbk -r va $VIEOS/anime
-cdbk -r p $PICTURES
-cdbk -r ps $PICTURES/screenshots
-cdbk -r d $DOCUMENTS
-cdbk -r Dw $DOWNLOAD
-cdbk -r e $DESKTOP
-cdbk -r r $HOME/projects
-cdbk -r rs $HOME/src
-cdbk -r Dt $DOTFILE_ROOT
-cdbk -r c $XDG_CONFIG_HOME
-cdbk -r l $HOME/.local
-cdbk -r ls $XDG_DATA_HOME
-cdbk -r lsf11 $XDG_DATA_HOME/FoundryVTTv11
-cdbk -r lsf10 $XDG_DATA_HOME/FoundryVTTv10
-cdbk -r lsf9 $XDG_DATA_HOME/FoundryVTTv9
-cdbk -r E /etc
-cdbk -r Ucd /usr
-cdbk -r Us /usr/share
-cdbk -r dd $DOCUMENTS/DungeonDraft
-yesstdout
 #neofetch
 #zsh-startify
 
@@ -121,3 +97,10 @@ source $XDG_CONFIG_HOME/broot/launcher/bash/br
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [[ -f /tmp/makepkg/material-companion/src/MaterialCompanion-1.0.3/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /tmp/makepkg/material-companion/src/MaterialCompanion-1.0.3/node_modules/tabtab/.completions/electron-forge.zsh
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+    zprof
+fi

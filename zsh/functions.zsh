@@ -199,3 +199,37 @@ rga-fzf() {
 	echo "opening $file" &&
 	xdg-open "$file"
 }
+
+function audio_combine() {
+	if [ $# -lt 2 ]
+	then
+		echo "Usage: audio_combine <source track 1> <source track 2> <out file> [track 1 name] [track 2 name]"
+		return
+	fi
+	if [ $# -eq 2 ]
+	then
+		ffmpeg -i $1 -i $2 -map 0 -map 1 -c copy $3
+		echo "Usage: audio_combine <source track 1> <source track 2> <out file> [track 1 name] [track 2 name]"
+		return
+	fi
+	ffmpeg -i $1 -i $2 -map 0 -map 1 -c copy -metadata:s:a:0 language=$4 -metadata:s:a:0 title="$4" -metadata:s:a:1 language=$5 -metadata:s:a:1 title="$5" $3
+
+}
+function anime_dub_sub() {
+	if [ $# -lt 2 ]
+	then
+		echo "Usage: anime_dub_sub <title> <episode> <out>"
+		return
+	fi
+	dub=$(mktemp -d)
+	sub=$(mktemp -d)
+	pushd $dub
+	ani-cli --dub --download --episode $2 $1
+	popd
+	pushd $sub
+	ani-cli --download --episode $2 $1
+	popd
+	ffmpeg -i $sub/* -i $dub/* -map 0 -map 1 -c copy -metadata:s:a:0 language=jpn -metadata:s:a:0 title="Japanese" -metadata:s:a:1 language=eng -metadata:s:a:1 title="English" $3
+	command rm -rf $dub
+	command rm -rf $sub
+}

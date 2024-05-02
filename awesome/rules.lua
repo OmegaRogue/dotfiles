@@ -362,6 +362,18 @@ function _M:rules()
 			sticky = true
 		}
 	}
+	ruled.client.append_rule {
+		id = self:id_gen(),
+		rule_any = {
+			class = {
+				"Navigator", "firefox"
+			}
+		},
+		properties = {
+			tag = "Browser",
+			sticky = true
+		}
+	}
 	-- ruled.client.append_rule {
 	-- 	rule_any = {
 	-- 		class = {

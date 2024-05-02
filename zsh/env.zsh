@@ -123,8 +123,8 @@ export SH_SYSTEM_CLIPBOARD_TMUX_SUPPORT=true
 export TMUX_AUTOSTART=false
 export WORKON_HOME="$HOME/.virtualenvs"
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
-	source /usr/bin/virtualenvwrapper.sh
+if [[ -f /usr/bin/virtualenvwrapper_lazy.sh ]]; then
+	source /usr/bin/virtualenvwrapper_lazy.sh
 fi
 if [[ -d /opt/zephyr-sdk-0.14.1 ]]; then
 	source /opt/zephyr-sdk-0.14.1/environment-setup-x86_64-pokysdk-linux

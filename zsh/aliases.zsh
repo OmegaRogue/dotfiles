@@ -25,6 +25,7 @@ alias mv='mv -iv'
 
 alias src='reload'
 
+alias zgen="zgenom"
 
 alias scg-add-requires= 'systemctl --global add-requires'
 alias scg-add-wants= 'systemctl --global add-wants'

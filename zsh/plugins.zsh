@@ -1,4 +1,4 @@
-# Check if zgen load is installed
+# Check if zgenom is installed
 if [[ ! -d $HOME/.zgenom ]]; then
 	git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
 fi
@@ -21,7 +21,6 @@ if ! zgenom saved; then
 #	unalias ll
 #	unalias ls
 #	unalias lsa
-	zgenom load arzzen/calc.plugin.zsh
 	zgenom ohmyzsh plugins/git								# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/git
 	zgenom ohmyzsh plugins/git-flow							# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/git-flow
 	zgenom ohmyzsh plugins/colored-man-pages				# https://github.com/ohmyzsh/oh-my-zsh/tree/master/plugins/colored-man-pages
@@ -104,6 +103,8 @@ if ! zgenom saved; then
 
 	if [[ -e $HOME/.zgenom/sources/ohmyzsh/ohmyzsh/___/lib/theme-and-appearance.zsh ]] rm $HOME/.zgenom/sources/ohmyzsh/ohmyzsh/___/lib/theme-and-appearance.zsh
 	if [[ -e $HOME/.zgenom/sources/ohmyzsh/ohmyzsh/___/lib/theme-and-appearance.zsh.zwc ]] rm $HOME/.zgenom/sources/ohmyzsh/ohmyzsh/___/lib/theme-and-appearance.zsh.zwc
+
+	zgenom load arzzen/calc.plugin.zsh
 
 	zgenom save
 

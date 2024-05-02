@@ -14,7 +14,7 @@ _M.maketags = function(s)
     end
     awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
     -- TODO: handle variable display configurations
-	awful.tag.add("6", { layout = awful.layout.layouts[1], screen = s})
+	awful.tag.add("Browser", { layout = awful.layout.layouts[1], screen = s})
     awful.tag.add(s.index == math.min(screen.count(), 3) and "Messenger" or "7", { layout = awful.layout.layouts[6], screen = s, gap = 0 })
     awful.tag.add(s.index == 1 and "Teams" or "8", { layout = awful.layout.layouts[2], screen = s, gap = 0 })
     awful.tag.add(s.index == math.min(screen.count(), 2) and "Mail" or s.index == 1 and "TTRPG" or "9", { layout = awful.layout.layouts[1], screen = s, gap = 0 })

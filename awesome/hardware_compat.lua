@@ -55,8 +55,8 @@ end),
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 5 do
-	awful.keyboard.append_global_keybinding(awful.key({}, "XF86Launch" .. i + 4, utils.toggle_tag(i)))
-end
+-- for i = 1, 5 do
+-- 	awful.keyboard.append_global_keybinding(awful.key({}, "XF86Launch" .. i + 4, utils.toggle_tag(i)))
+-- end
 
 return _M
